@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Welcome to Eat",
+    "subtitle": "Discover and reserve your table at the best restaurants",
+    "image": "onboarding_1"
+  },
+  {
+    "title": "Discover the best restaurants",
+    "subtitle": "A select list of the best restaurants in Bahrain and Dubai",
+    "image": "onboarding_2"
+  },
+  {
+    "title": "Reserve your\ntable online",
+    "subtitle": "Discover and reserve your table at the best restaurants",
+    "image": "onboarding_3"
+  },
+  {
+    "title": "Where will you\neat today?",
+    "subtitle": "Go ahead, get started and treat yourself to some exquisite dining",
+    "image": "onboarding_4"
+  }
+]

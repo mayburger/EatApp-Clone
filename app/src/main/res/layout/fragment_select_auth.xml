@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.auth.select.SelectAuthViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/bottom_sheet_header" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Log in or Register?"
+                android:textAlignment="center"
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp"
+                app:typeface="bold" />
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/shp_rectangle_primary_8dp"
+                app:onClickAnimate="@{()->viewModel.onClickLogin()}"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Log In"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                app:typeface="bold" />
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/shp_rectangle_stroke_primary_8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Register"
+                app:onClickAnimate="@{()->viewModel.onClickRegister()}"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                app:typeface="bold" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/colorWhite" />
+
+    </LinearLayout>
+
+</layout>

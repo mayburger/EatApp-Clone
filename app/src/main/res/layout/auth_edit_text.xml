@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                tools:src="@drawable/ic_mail" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    app:typeface="bold"
+                    tools:text="Email" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <com.mayburger.eatclone.util.textfont.EditTextFont
+                        android:id="@+id/edit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:maxLines="1"
+                        android:padding="0dp"
+                        android:singleLine="true"
+                        android:inputType="text"
+                        android:textColor="@color/colorBlack"
+                        android:textColorHint="@color/colorTextGrey"
+                        android:textSize="14sp"
+                        app:typeface="regular" />
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:layout_height="wrap_content">-->
+<!--                        <com.mayburger.eatclone.util.textfont.TextFont-->
+<!--                            android:id="@+id/mPhoneCode"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_marginEnd="4dp"-->
+<!--                            android:visibility="gone"-->
+<!--                            android:text="+62"-->
+<!--                            android:layout_height="wrap_content"/>-->
+<!--                        -->
+<!--                    </LinearLayout>-->
+                    <com.mayburger.eatclone.util.textfont.TextFont
+                        android:id="@+id/mHint"
+                        android:layout_width="wrap_content"
+                        tools:visibility="gone"
+                        tools:text="Enter your email"
+                        android:layout_height="wrap_content"/>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/mVisibility"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_invisible"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</merge>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.auth.register.RegisterViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_eat_primary" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:onClick="@{()->viewModel.onClickLogin()}"
+                    android:text="Login"
+                    android:textColor="@color/colorTextGrey"
+                    app:typeface="bold" />
+            </RelativeLayout>
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Let's get started"
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp"
+                app:typeface="bold" />
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Create an account to get started"
+                android:textColor="@color/colorTextGrey" />
+
+            <com.mayburger.eatclone.util.AuthEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:hint="Enter your email address"
+                android:src="@drawable/ic_mail"
+                android:text="@={viewModel.email}"
+                app:title="Email"/>
+
+            <com.mayburger.eatclone.util.AuthEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Create a password"
+                android:inputType="textPassword"
+                android:src="@drawable/ic_password"
+                android:text="@={viewModel.password}"
+                app:title="Password" />
+
+            <com.mayburger.eatclone.util.AuthEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Confirm the password"
+                android:inputType="textPassword"
+                android:src="@drawable/ic_password"
+                android:text="@={viewModel.confirmPassword}"
+                app:title="Confirm Password" />
+
+            <com.mayburger.eatclone.util.AuthEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your full name"
+                android:src="@drawable/ic_user"
+                android:text="@={viewModel.fullName}"
+                app:title="Full name" />
+
+            <com.mayburger.eatclone.util.AuthEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your phone number"
+                android:inputType="phone"
+                android:src="@drawable/ic_phone"
+                android:text="@={viewModel.phoneNumber}"
+                app:actionDone="@{()->viewModel.onClickRegister()}"
+                app:title="Phone Number" />
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/shp_rectangle_primary_8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Register"
+                android:textAlignment="center"
+                android:textColor="@color/text_button_color_white"
+                android:textSize="18sp"
+                app:onClickAnimate="@{()->viewModel.onClickRegister()}"
+                app:typeface="bold" />
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

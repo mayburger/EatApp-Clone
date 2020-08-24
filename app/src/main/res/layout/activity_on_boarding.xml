@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.onboarding.OnBoardingViewModel" />
+
+        <import type="com.mayburger.eatclone.R" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite"
+            android:padding="0dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/ic_eat_white" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="24dp"
+                android:layout_weight="0.8"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.mayburger.eatclone.util.textfont.TextFont
+                        android:id="@+id/tvTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.title}"
+                        android:textAlignment="center"
+                        android:textColor="#000"
+                        android:textSize="32sp"
+                        app:typeface="bold"
+                        tools:text="Welcome to Eat" />
+
+                    <com.mayburger.eatclone.util.textfont.TextFont
+                        android:id="@+id/subtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@{viewModel.subtitle}"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorTextGrey"
+                        android:textSize="16sp"
+                        tools:text="Discover and reserve your table at the best restaurants" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:animateLayoutChanges="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_margin="2dp"
+                        app:backgroundResource="@{viewModel.selectedPosition == 0 ? R.drawable.indicator_selected : R.drawable.indicator_default}" />
+
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_margin="2dp"
+                        app:backgroundResource="@{viewModel.selectedPosition == 1 ? R.drawable.indicator_selected : R.drawable.indicator_default}" />
+
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_margin="2dp"
+                        app:backgroundResource="@{viewModel.selectedPosition == 2 ? R.drawable.indicator_selected : R.drawable.indicator_default}" />
+
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_margin="2dp"
+                        app:backgroundResource="@{viewModel.selectedPosition == 3 ? R.drawable.indicator_selected : R.drawable.indicator_default}" />
+                </LinearLayout>
+
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/shp_rectangle_primary_8dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="Get Started"
+                    android:textAlignment="center"
+                    android:textColor="@color/text_button_color_white"
+                    android:textSize="18sp"
+                    app:onClickAnimate="@{()->viewModel.onGetStarted()}"
+                    app:typeface="bold" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</layout>
