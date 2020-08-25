@@ -3,8 +3,8 @@ package com.mayburger.eatclone.ui.restaurant
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mayburger.eatclone.databinding.V2ItemRestaurantGridBinding
-import com.mayburger.eatclone.databinding.V2ItemRestaurantListBinding
+import com.mayburger.eatclone.databinding.ItemRestaurantGridBinding
+import com.mayburger.eatclone.databinding.ItemRestaurantListBinding
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.ui.base.BaseViewHolder
 
@@ -45,12 +45,12 @@ class RestaurantAdapter : RecyclerView.Adapter<BaseViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
             VIEW_TYPE_GRID -> {
-                val viewBinding = V2ItemRestaurantGridBinding
+                val viewBinding = ItemRestaurantGridBinding
                     .inflate(LayoutInflater.from(parent.context), parent, false)
                 GridViewHolder(viewBinding)
             }
             else -> {
-                val viewBinding = V2ItemRestaurantListBinding
+                val viewBinding = ItemRestaurantListBinding
                     .inflate(LayoutInflater.from(parent.context), parent, false)
                 ListViewHolder(viewBinding)
             }
@@ -76,7 +76,7 @@ class RestaurantAdapter : RecyclerView.Adapter<BaseViewHolder>() {
         fun onSelectedItem(restaurant: RestaurantDataModel)
     }
 
-    inner class GridViewHolder(private val mBinding: V2ItemRestaurantGridBinding) :
+    inner class GridViewHolder(private val mBinding: ItemRestaurantGridBinding) :
         BaseViewHolder(mBinding.root) {
 
         override fun onBind(position: Int) {
@@ -88,7 +88,7 @@ class RestaurantAdapter : RecyclerView.Adapter<BaseViewHolder>() {
             }
         }
     }
-    inner class ListViewHolder(private val mBinding: V2ItemRestaurantListBinding) :
+    inner class ListViewHolder(private val mBinding: ItemRestaurantListBinding) :
         BaseViewHolder(mBinding.root) {
 
         override fun onBind(position: Int) {

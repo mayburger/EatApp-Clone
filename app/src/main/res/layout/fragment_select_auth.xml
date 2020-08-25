@@ -41,27 +41,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-
-                app:onClickAnimate="@{()->viewModel.onClickLogin()}"
+                android:background="@drawable/shp_primary_8dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="Log In"
                 android:textAlignment="center"
                 android:textColor="@color/colorWhite"
                 android:textSize="18sp"
+                app:onClickAnimate="@{()->viewModel.onClickLogin()}"
                 app:typeface="bold" />
 
             <com.mayburger.eatclone.util.textfont.TextFont
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/stroke_primary_8dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="Register"
-                app:onClickAnimate="@{()->viewModel.onClickRegister()}"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
+                app:onClickAnimate="@{()->viewModel.onClickRegister()}"
                 app:typeface="bold" />
 
         </LinearLayout>

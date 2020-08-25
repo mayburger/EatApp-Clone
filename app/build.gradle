@@ -104,6 +104,9 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-firestore-ktx:21.5.0'
 
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+
 
     // Dagger Android
     api 'com.google.dagger:dagger-android:2.28.1'

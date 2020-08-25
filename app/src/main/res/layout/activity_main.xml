@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.main.MainViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_eat_primary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_search"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:id="@+id/greetings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@{viewModel.greetings}"
+                android:textColor="@color/colorBlack"
+                android:textSize="24sp"
+                app:layout_constraintLeft_toLeftOf="@id/logo"
+                app:layout_constraintTop_toBottomOf="@id/logo"
+                app:typeface="bold"
+                tools:text="Hello Ahmed!" />
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:id="@+id/subgreeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="What would you like to eat today?"
+                android:textColor="@color/colorTextGrey"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="@id/logo"
+                app:layout_constraintTop_toBottomOf="@id/greetings" />
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:id="@+id/sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Nearby"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="@id/logo"
+                app:layout_constraintTop_toBottomOf="@id/subgreeting"
+                app:typeface="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:layout_constraintTop_toBottomOf="@id/sort"
+                app:restaurantAdapter="@{viewModel.restaurants}" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

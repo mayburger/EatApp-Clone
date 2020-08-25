@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:padding="14dp"
+                android:background="@drawable/shp_grey_8dp"
                 android:singleLine="true"
                 android:text="Where would you like to eat?"
                 android:textColor="@color/colorTextGrey">
