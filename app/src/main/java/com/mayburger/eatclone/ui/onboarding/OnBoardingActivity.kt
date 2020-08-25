@@ -36,13 +36,13 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding, OnBoardingVie
             viewModel.selectedPosition.set(position)
             subtitle.animate().alpha(0f).setDuration(500)
             .withEndAction{
-                viewModel.subtitle.set(viewModel.dataManager.getOnBoardingData[position].subtitle)
+                viewModel.subtitle.set(viewModel.dataManager.boardingData[position].subtitle)
                 subtitle.animate().alpha(1f).setDuration(500).start()
             }.
             start()
             tvTitle.animate().alpha(0f).setDuration(500)
             .withEndAction{
-                viewModel.title.set(viewModel.dataManager.getOnBoardingData[position].title)
+                viewModel.title.set(viewModel.dataManager.boardingData[position].title)
                 tvTitle.animate().alpha(1f).setDuration(500).start()
             }.
             start()

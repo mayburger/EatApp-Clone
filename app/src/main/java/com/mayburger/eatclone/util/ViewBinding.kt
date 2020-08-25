@@ -4,21 +4,9 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.MotionEvent
 import android.view.View
-import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 
 object ViewBinding {
-
-    @BindingAdapter("imageResource")
-    @JvmStatic
-    fun setImageResource(view: ImageView, resource:Int){
-        view.setImageResource(resource)
-    }
-    @BindingAdapter("backgroundResource")
-    @JvmStatic
-    fun setBackgroundResource(view: View, resource:Int){
-        view.setBackgroundResource(resource)
-    }
 
     @BindingAdapter("onClickAnimate")
     @JvmStatic
@@ -65,45 +53,6 @@ object ViewBinding {
             }
             true
         }
-//        view.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                switch (event.getAction()) {
-//                    case MotionEvent.ACTION_DOWN:
-//                    ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(imgSpin,
-//                    "scaleX", 0.8f);
-//                    ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(imgSpin,
-//                    "scaleY", 0.8f);
-//                    scaleDownX.setDuration(1000);
-//                    scaleDownY.setDuration(1000);
-//
-//                    AnimatorSet scaleDown = new AnimatorSet();
-//                    scaleDown.play(scaleDownX).with(scaleDownY);
-//
-//                    scaleDown.start();
-//
-//                    spinslot();
-//                    break;
-//
-//                    case MotionEvent.ACTION_UP:
-//                    ObjectAnimator scaleDownX2 = ObjectAnimator.ofFloat(
-//                            imgSpin, "scaleX", 1f);
-//                    ObjectAnimator scaleDownY2 = ObjectAnimator.ofFloat(
-//                            imgSpin, "scaleY", 1f);
-//                    scaleDownX2.setDuration(1000);
-//                    scaleDownY2.setDuration(1000);
-//
-//                    AnimatorSet scaleDown2 = new AnimatorSet();
-//                    scaleDown2.play(scaleDownX2).with(scaleDownY2);
-//
-//                    scaleDown2.start();
-//
-//                    imgSpin.setEnabled(false);
-//                    break;
-//                }
-//                return true;
-//            }
-//        });
     }
 
 }

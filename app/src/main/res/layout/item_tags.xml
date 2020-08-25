@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.ItemTagViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        onClickAnimate="@{()->viewModel.onClickTag()}"
+        android:layout_height="wrap_content">
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:background="@{viewModel.selected ? @drawable/shp_rectangle_grey_decor_dark_8dp.xml : @drawable/shp_rectangle_primary_8dp}"
+            android:padding="8dp"
+            android:textColor="@{viewModel.selected ? @color/colorTextGrey : @color/colorWhite}" />
+
+
+    </RelativeLayout>
+</layout>

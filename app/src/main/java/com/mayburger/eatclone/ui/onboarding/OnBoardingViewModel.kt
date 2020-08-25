@@ -22,8 +22,8 @@ class OnBoardingViewModel @ViewModelInject constructor(
     }
 
     val imageResource:ObservableField<Int> = ObservableField(0)
-    val title = ObservableField(dataManager.getOnBoardingData[0].title)
-    val subtitle = ObservableField(dataManager.getOnBoardingData[0].subtitle)
+    val title = ObservableField(dataManager.boardingData[0].title)
+    val subtitle = ObservableField(dataManager.boardingData[0].subtitle)
     val selectedPosition = ObservableField(0)
 
     fun onGetStarted() {

@@ -3,15 +3,17 @@ package com.mayburger.eatclone.model
 import com.google.gson.annotations.SerializedName
 
 data class UserDataModel(
+    @SerializedName("uid")
+    var uid:String? = null,
     @SerializedName("email")
-    val email:String? = null,
+    var email:String? = null,
     @SerializedName("password")
-    val password:String? = null,
+    var password:String? = null,
     @SerializedName("fullname")
-    val fullName:String? = null,
+    var fullName:String? = null,
     @SerializedName("phone")
-    val phone:String? = null
+    var phone:String? = null
 ){
     @SerializedName("region")
-    val region:String? = null
+    var region:Long? = null
 }

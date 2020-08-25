@@ -31,7 +31,7 @@ class OnBoardingFragment : BaseFragment<FragmentOnBoardingBinding, OnBoardingVie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val position = requireArguments().getInt(ARG_POSITION)
-        val imageName = viewModel.dataManager.getOnBoardingData[position].image.toString()
+        val imageName = viewModel.dataManager.boardingData[position].image.toString()
         viewModel.imageResource.set(context?.resources?.getIdentifier(imageName, "drawable",context?.packageName))
     }
 

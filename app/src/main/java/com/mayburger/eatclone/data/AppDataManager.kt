@@ -10,7 +10,9 @@ import com.google.gson.reflect.TypeToken
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.data.firebase.FirebaseHelper
 import com.mayburger.eatclone.data.hawk.HawkHelper
-import com.mayburger.eatclone.model.TitleSubImage
+import com.mayburger.eatclone.model.OnBoardingModel
+import com.mayburger.eatclone.model.RegionDataModel
+import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.UserDataModel
 import java.io.*
 import javax.inject.Inject
@@ -30,23 +32,48 @@ class AppDataManager @Inject constructor(private val mContext: Context,
         return mFirebaseHelper.createFirebaseUser(email,password)
     }
 
-    override fun createFirestoreUser(user: UserDataModel): Task<DocumentReference> {
-        return mFirebaseHelper.createFirestoreUser(user)
+    override fun createFirestoreUser(user: UserDataModel, uuid: String): Task<Void> {
+        return mFirebaseHelper.createFirestoreUser(user,uuid)
     }
 
-    override fun checkFirestoreUser(email: String): Task<QuerySnapshot> {
-        return mFirebaseHelper.checkFirestoreUser(email)
+    override fun getUserByEmail(email: String): Task<QuerySnapshot> {
+        return mFirebaseHelper.getUserByEmail(email)
     }
 
-    override var region: String
+    override fun createRestaurant(restaurantDataModel: RestaurantDataModel): Task<DocumentReference> {
+        return mFirebaseHelper.createRestaurant(restaurantDataModel)
+    }
+
+    override fun updateRestaurant(restaurantDataModel: RestaurantDataModel): Task<Void> {
+        return mFirebaseHelper.updateRestaurant(restaurantDataModel)
+    }
+
+    override fun getRestaurants(): Task<QuerySnapshot> {
+        return mFirebaseHelper.getRestaurants()
+    }
+
+    override fun regions(): Task<QuerySnapshot> {
+        return mFirebaseHelper.regions()
+    }
+
+    override fun setUserRegion(id: Int): Task<Void> {
+        return mFirebaseHelper.setUserRegion(id)
+    }
+
+    override var region: RegionDataModel
         get() = mHawkHelper.region
         set(value) {
             mHawkHelper.region = value
         }
+    override var user: UserDataModel
+        get() = mHawkHelper.user
+        set(value) {
+            mHawkHelper.user = value
+        }
 
-    override val getOnBoardingData: ArrayList<TitleSubImage>
-        get() = Gson().fromJson<ArrayList<TitleSubImage>>(getJsonStringFromRaw(R.raw.onboarding),object:
-            TypeToken<ArrayList<TitleSubImage>>(){}.type)
+    override val boardingData: ArrayList<OnBoardingModel>
+        get() = Gson().fromJson<ArrayList<OnBoardingModel>>(getJsonStringFromRaw(R.raw.onboarding),object:
+            TypeToken<ArrayList<OnBoardingModel>>(){}.type)
 
     fun getJsonStringFromRaw(rawInt:Int):String{
         val `is`: InputStream = mContext.resources.openRawResource(rawInt)

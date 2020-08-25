@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.admin.create.CreateRestaurantViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical">
+
+            <com.mayburger.eatclone.util.textfont.EditTextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorDecorGrey"
+                android:hint="Name"
+                android:singleLine="true"
+                android:text="@={viewModel.name}"
+                android:padding="16dp" />
+
+            <com.mayburger.eatclone.util.textfont.EditTextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorDecorGrey"
+                android:text="@={viewModel.address}"
+                android:hint="Address"
+                android:singleLine="true"
+                android:padding="16dp" />
+            <com.mayburger.eatclone.util.textfont.EditTextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorDecorGrey"
+                android:text="@={viewModel.image}"
+                android:hint="Image"
+                android:padding="16dp" />
+
+            <com.mayburger.eatclone.util.textfont.EditTextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.description}"
+                android:background="@color/colorDecorGrey"
+                android:hint="Description"
+                android:padding="16dp" />
+
+            <com.mayburger.eatclone.util.textfont.EditTextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorDecorGrey"
+                android:text="@={viewModel.cuisine}"
+                android:hint="Cuisine"
+                android:singleLine="true"
+                android:padding="16dp" />
+
+            <com.mayburger.eatclone.util.textfont.EditTextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorDecorGrey"
+                android:text="@={viewModel.distance}"
+                android:hint="Distance"
+                android:singleLine="true"
+                android:padding="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{viewModel.selectedPrice != 0 ? @color/colorDecorGrey : @color/colorPrimary}"
+                    android:onClick="@{()->viewModel.priceOne()}"
+                    android:padding="20dp"
+                    android:text="$"
+                    android:textAlignment="center"
+                    android:textColor="@{viewModel.selectedPrice != 0 ? @color/colorTextGrey : @color/colorWhite}"
+                    android:textSize="16sp" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{viewModel.selectedPrice != 1 ? @color/colorDecorGrey : @color/colorPrimary}"
+                    android:onClick="@{()->viewModel.priceTwo()}"
+                    android:padding="20dp"
+                    android:text="$$"
+                    android:textAlignment="center"
+                    android:textColor="@{viewModel.selectedPrice != 1 ? @color/colorTextGrey : @color/colorWhite}"
+                    android:textSize="16sp" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@{viewModel.selectedPrice != 2 ? @color/colorDecorGrey : @color/colorPrimary}"
+                    android:onClick="@{()->viewModel.priceThree()}"
+                    android:padding="20dp"
+                    android:text="$$$"
+                    android:textAlignment="center"
+                    android:textColor="@{viewModel.selectedPrice != 2 ? @color/colorTextGrey : @color/colorWhite}"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="32dp"
+                app:alignContent="stretch"
+                app:alignItems="stretch"
+                app:flexWrap="wrap" />
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@{viewModel.isEditMode() ? `Update` : `Create`}"
+                onClickAnimate="@{()->viewModel.onClickCreate()}"
+                android:textAlignment="center"
+                android:textColor="@color/text_button_color_white"
+                android:textSize="18sp"
+                app:typeface="bold" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

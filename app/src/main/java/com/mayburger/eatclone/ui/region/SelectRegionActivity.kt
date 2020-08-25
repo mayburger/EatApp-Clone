@@ -4,15 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivitySelectRegionBinding
+import com.mayburger.eatclone.model.RegionDataModel
 import com.mayburger.eatclone.ui.base.BaseActivity
+import com.mayburger.eatclone.ui.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_select_region.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class SelectRegionActivity : BaseActivity<ActivitySelectRegionBinding, SelectRegionViewModel>(),
-    SelectRegionNavigator {
+    SelectRegionNavigator,SelectRegionAdapter.Callback{
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -20,14 +26,33 @@ class SelectRegionActivity : BaseActivity<ActivitySelectRegionBinding, SelectReg
         get() = R.layout.activity_select_region
     override val viewModel: SelectRegionViewModel by viewModels()
 
+    @Inject
+    lateinit var layoutManager:LinearLayoutManager
+    @Inject
+    lateinit var adapter:SelectRegionAdapter
+
     companion object{
         fun startActivity(context: Context){
             context.startActivity(Intent(context, SelectRegionActivity::class.java))
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.navigator = this
+        rvRegions.adapter = adapter
+        rvRegions.layoutManager = GridLayoutManager(this,2)
+        adapter.setListener(this)
+        rvRegions.isNestedScrollingEnabled = false
+        viewModel.getRegions()
+    }
+
+    override fun onSelectedItem(region: RegionDataModel) {
+        viewModel.setRegion(region)
+    }
+
+    override fun onSelectRegion() {
+        MainActivity.startActivity(this)
+        finish()
     }
 }

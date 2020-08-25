@@ -39,19 +39,20 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
     }
 
     override fun onSuccessRegister() {
+        var runnable:Runnable? = null
         val dialog = ViewUtils.getDialog(
             this,
             "Success!",
             "Your account has been created, please Login to get started!",
-            true,
+            false,
             "Okay",
-            Runnable {
-                LoginActivity.startActivity(this)
-                finish()
-            },
+            runnable,
             null,
             null
         )
+        runnable = Runnable {
+            dialog.dismiss()
+        }
         dialog.show()
         dialog.setOnDismissListener {
             LoginActivity.startActivity(this)

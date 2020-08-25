@@ -3,6 +3,8 @@ package com.mayburger.eatclone.ui.base
 import android.annotation.TargetApi
 import android.app.ProgressDialog
 import android.content.ContentResolver
+import android.content.Context
+import android.hardware.SensorManager
 import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
@@ -18,10 +20,12 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import com.mayburger.eatclone.R
+import com.mayburger.eatclone.util.ShakeDetector
 import com.mayburger.eatclone.util.ViewUtils
 
 
-abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(), BaseFragment.Callback,
+abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(),
+    BaseFragment.Callback,
     BaseNavigator {
 
     lateinit var viewDataBinding: T
@@ -53,6 +57,14 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     }
 
 
+    fun initShakeToOpenRestaurant(runnable: Runnable) {
+        val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        val shakeDetector = ShakeDetector {
+            runnable.run()
+        }
+        shakeDetector.start(sensorManager)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
@@ -76,7 +88,8 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
     }
 
     override fun showSnackBar(message: String) {
-        val snackBar: Snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT)
+        val snackBar: Snackbar =
+            Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT)
         val sbView: View = snackBar.view
         val textView: TextView = sbView.findViewById(R.id.snackbar_text)
         textView.setTextColor(ContextCompat.getColor(this, android.R.color.white))

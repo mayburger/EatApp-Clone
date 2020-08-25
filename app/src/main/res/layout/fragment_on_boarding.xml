@@ -25,7 +25,7 @@
             android:layout_height="0dp">
             <ImageView
                 android:layout_width="match_parent"
-                app:backgroundResource="@{viewModel.imageResource}"
+                app:imageResource="@{viewModel.imageResource}"
                 android:layout_height="match_parent"/>
 
             <View

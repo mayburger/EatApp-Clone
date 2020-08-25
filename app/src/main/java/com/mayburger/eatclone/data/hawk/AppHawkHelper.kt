@@ -1,5 +1,7 @@
 package com.mayburger.eatclone.data.hawk
 
+import com.mayburger.eatclone.model.RegionDataModel
+import com.mayburger.eatclone.model.UserDataModel
 import com.orhanobut.hawk.Hawk
 import javax.inject.Inject
 
@@ -11,6 +13,7 @@ class AppHawkHelper @Inject constructor() : HawkHelper {
     companion object {
         private const val HAWK_KEY_IS_LOGGED_IN = "hawk_key_is_logged_in"
         private const val HAWK_KEY_REGION = "hawk_key_region"
+        private const val HAWK_KEY_USER = "hawk_key_user"
     }
 
     override var isLoggedIn: Boolean
@@ -18,9 +21,14 @@ class AppHawkHelper @Inject constructor() : HawkHelper {
         set(value) {
             Hawk.put(HAWK_KEY_IS_LOGGED_IN,value)
         }
-    override var region: String
-        get() = Hawk.get(HAWK_KEY_REGION,"")
+    override var region: RegionDataModel
+        get() = Hawk.get(HAWK_KEY_REGION,RegionDataModel())
         set(value) {
             Hawk.put(HAWK_KEY_REGION,value)
+        }
+    override var user: UserDataModel
+        get() = Hawk.get(HAWK_KEY_USER,UserDataModel())
+        set(value) {
+            Hawk.put(HAWK_KEY_USER,value)
         }
 }

@@ -1,0 +1,92 @@
+[
+  {
+    "id": 0,
+    "name": "Abu Dhabi",
+    "country": "United Arab Emirates",
+    "image": "https://images.unsplash.com/photo-1512632578888-169bbbc64f33?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+  },
+  {
+    "id": 1,
+    "name": "Alexandria",
+    "country": "Egypt",
+    "image": "https://images.unsplash.com/photo-1594808815295-52034d585f56?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80"
+  },
+  {
+    "id": 2,
+    "name": "Amman",
+    "country": "Jordan",
+    "image": "https://images.unsplash.com/photo-1568158640025-288a83488503?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
+  },
+  {
+    "id": 3,
+    "name": "Bahrain",
+    "country": "Kingdom of Bahrain",
+    "image": "https://unsplash.com/photos/S7FEiLILEuM"
+  },
+  {
+    "id": 4,
+    "name": "Beirut",
+    "country": "Lebanon",
+    "image": "https://images.unsplash.com/photo-1548432297-685a375056ed?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=979&q=80"
+  },
+  {
+    "id": 5,
+    "name": "Cairo",
+    "country": "Egypt",
+    "image": "https://images.unsplash.com/photo-1553835568-c48d3b90ed70?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+  },
+  {
+    "id": 6,
+    "name": "Cyprus",
+    "country": "Republic of Cyprus",
+    "image": "https://images.unsplash.com/photo-1534264556392-40fde544a5fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80"
+  },
+  {
+    "id": 7,
+    "name": "Doha",
+    "country": "Qatar",
+    "image": "https://images.unsplash.com/photo-1575645071699-7db20e138c8e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+  },
+  {
+    "id": 8,
+    "name": "Dubai",
+    "country": "United Arab Emirates",
+    "image": "https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+  },
+  {
+    "id": 9,
+    "name": "Eastern Province",
+    "country": "United Arab Emirates",
+    "image": "https://images.unsplash.com/photo-1578895101408-1a36b834405b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=985&q=80"
+  },
+  {
+    "id": 10,
+    "name": "Jeddah",
+    "country": "Kingdom of Saudi Arabia",
+    "image": "https://vid.alarabiya.net/images/2014/06/11/80264da5-36e8-4ce0-8766-2df735b77cbe/80264da5-36e8-4ce0-8766-2df735b77cbe_16x9_600x338.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Kuwait",
+    "country": "State of Kuwait",
+    "image": "https://www.state.gov/wp-content/uploads/2019/04/Kuwait-2272x1406.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Muscat",
+    "country": "Sultanate of Oman",
+    "image": "https://images.unsplash.com/photo-1583515182553-94bf075b5709?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+  },
+  {
+    "id": 12,
+    "name": "Northern Emirates",
+    "country": "United Arab Emirates",
+    "image": "https://images.unsplash.com/photo-1566555108172-f8a02274a3d3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80"
+  },
+  {
+    "id": 13,
+    "name": "Riyadh",
+    "country": "Kingdom of Saudi Arabia",
+    "image": "https://cdnassets.hw.net/f1/c0/47fa35164565bb3ea20deb749de1/e3331a06cb92418fac36a8ee3d7dcdfd.jpg"
+  }
+]

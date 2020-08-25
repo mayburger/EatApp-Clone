@@ -1,0 +1,62 @@
+[
+  {
+    "id": 0,
+    "name": "Valet Parking"
+  },
+  {
+    "id": 1,
+    "name": "Smoking Allowed"
+  },
+  {
+    "id": 2,
+    "name": "Serves Alcohol"
+  },
+  {
+    "id": 3,
+    "name": "Outdoor Seating"
+  },
+  {
+    "id": 4,
+    "name": "Casual"
+  },
+  {
+    "id": 5,
+    "name": "Good for Breakfast"
+  },
+  {
+    "id": 6,
+    "name": "Quick Bites"
+  },
+  {
+    "id": 7,
+    "name": "Accepts Cash"
+  },
+  {
+    "id": 8,
+    "name": "Good for Lunch"
+  },
+  {
+    "id": 9,
+    "name": "Great Service"
+  },
+  {
+    "id": 10,
+    "name": "Good for groups"
+  },
+  {
+    "id": 11,
+    "name": "Good for Brunch"
+  },
+  {
+    "id": 12,
+    "name": "Accepts Credit Cards"
+  },
+  {
+    "id": 13,
+    "name": "Good for Families"
+  },
+  {
+    "id": 14,
+    "name": "Special Occasion"
+  }
+]

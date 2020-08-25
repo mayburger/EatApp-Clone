@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/shp_rectangle_primary_8dp"
+
                 app:onClickAnimate="@{()->viewModel.onClickLogin()}"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
@@ -55,7 +55,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/shp_rectangle_stroke_primary_8dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="Register"
