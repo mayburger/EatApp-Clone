@@ -1,15 +1,15 @@
-package com.mayburger.eatclone.ui.main
+package com.mayburger.eatclone.ui.main.reservations
 
 import androidx.hilt.lifecycle.ViewModelInject
 import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.ui.base.BaseViewModel
 import com.mayburger.eatclone.util.rx.SchedulerProvider
 
-class MainViewModel @ViewModelInject constructor(
+class ReservationsViewModel @ViewModelInject constructor(
     dataManager: DataManager,
     schedulerProvider: SchedulerProvider
 ) :
-    BaseViewModel<MainNavigator>(dataManager, schedulerProvider) {
+    BaseViewModel<ReservationsNavigator>(dataManager, schedulerProvider) {
 
     override fun onEvent(obj: Any) {
 
