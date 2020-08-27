@@ -1,8 +1,8 @@
 package com.mayburger.eatclone.ui.main.explore
 
-import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableField
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.ktx.toObject
 import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.model.MealDataModel
@@ -23,8 +23,8 @@ class ExploreViewModel @ViewModelInject constructor(
     }
 
     val greetings = ObservableField("Hello ${dataManager.user.fullName}!")
-    val restaurants = ObservableArrayList<ItemRestaurantViewModel>()
-    val meals = ObservableArrayList<ItemMealViewModel>()
+    val restaurants = MutableLiveData<ArrayList<ItemRestaurantViewModel>>()
+    val meals = MutableLiveData<ArrayList<ItemMealViewModel>>()
 
 
     fun onClickSearch() {
@@ -32,31 +32,33 @@ class ExploreViewModel @ViewModelInject constructor(
     }
 
     fun getMeals() {
-        meals.clear()
+        val data = ArrayList<ItemMealViewModel>()
         dataManager.getMeals(4).addOnCompleteListener {
             if (it.isSuccessful) {
                 it.result?.documents?.let {
                     for (i in it) {
-                        meals.add(ItemMealViewModel(i.toObject<MealDataModel>() ?: MealDataModel()))
+                        data.add(ItemMealViewModel(i.toObject<MealDataModel>() ?: MealDataModel()))
                     }
                 }
+                meals.value = data
             }
         }
     }
 
     fun getRestaurants() {
-        restaurants.clear()
+        val data = ArrayList<ItemRestaurantViewModel>()
         dataManager.getRestaurants(5).addOnCompleteListener {
             if (it.isSuccessful) {
                 it.result?.documents?.let {
                     for (i in it) {
-                        restaurants.add(
+                        data.add(
                             ItemRestaurantViewModel(
                                 i.toObject<RestaurantDataModel>() ?: RestaurantDataModel()
                             )
                         )
                     }
                 }
+                restaurants.value = data
             }
         }
     }

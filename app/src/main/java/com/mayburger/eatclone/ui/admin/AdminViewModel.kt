@@ -1,13 +1,13 @@
 package com.mayburger.eatclone.ui.admin
 
-import androidx.databinding.ObservableArrayList
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.ktx.toObject
 import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.data.events.RestaurantUpdateEvent
 import com.mayburger.eatclone.model.RestaurantDataModel
-import com.mayburger.eatclone.ui.base.BaseViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
+import com.mayburger.eatclone.ui.base.BaseViewModel
 import com.mayburger.eatclone.util.rx.SchedulerProvider
 
 class AdminViewModel @ViewModelInject constructor(
@@ -16,7 +16,7 @@ class AdminViewModel @ViewModelInject constructor(
 ) :
     BaseViewModel<AdminNavigator>(dataManager, schedulerProvider) {
 
-    val restaurants = ObservableArrayList<ItemRestaurantViewModel>()
+    val restaurantsLiveData = MutableLiveData<ArrayList<ItemRestaurantViewModel>>()
 
     override fun onEvent(obj: Any) {
         when(obj){
@@ -27,7 +27,7 @@ class AdminViewModel @ViewModelInject constructor(
     }
 
     fun getRestaurants() {
-        restaurants.clear()
+        val restaurants = ArrayList<ItemRestaurantViewModel>()
         dataManager.getRestaurants().addOnCompleteListener {
             if (it.isSuccessful) {
                 it.result?.documents?.let {
@@ -38,6 +38,7 @@ class AdminViewModel @ViewModelInject constructor(
                             )
                         )
                     }
+                    restaurantsLiveData.value = restaurants
                 }
             }
         }

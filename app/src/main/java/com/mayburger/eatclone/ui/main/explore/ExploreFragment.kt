@@ -3,6 +3,7 @@ package com.mayburger.eatclone.ui.main.explore
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.FragmentExploreBinding
@@ -39,6 +40,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.navigator = this
+        viewDataBinding?.lifecycleOwner = this
         initSort()
         initMeals()
         initCollection()
@@ -56,6 +58,11 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreViewModel>()
         rvSort.adapter = restaurantAdapter
         restaurantAdapter.setListener(this)
         restaurantAdapter.asGrid()
+        activity?.let { it ->
+            viewModel.restaurants.observe(it, Observer {
+                restaurantAdapter.addItems(it)
+            })
+        }
     }
 
     fun initCollection() {

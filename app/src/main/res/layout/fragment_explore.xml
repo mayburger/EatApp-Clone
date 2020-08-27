@@ -40,8 +40,8 @@
                 android:layout_height="32dp"
                 android:layout_margin="16dp"
                 android:onClick="@{()->viewModel.onClickSearch()}"
-                android:src="@drawable/ic_search"
                 android:padding="4dp"
+                android:src="@drawable/ic_search"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -92,13 +92,13 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSort"
+                recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
+                restaurantAdapter="@{viewModel.restaurants}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                app:layout_constraintTop_toBottomOf="@id/sort"
-                app:restaurantAdapter="@{viewModel.restaurants}" />
+                app:layout_constraintTop_toBottomOf="@id/sort" />
 
             <com.mayburger.eatclone.util.textfont.TextFont
                 android:id="@+id/meal"
@@ -124,10 +124,10 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvMeal"
+                recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintTop_toBottomOf="@id/meal"
                 app:mealAdapter="@{viewModel.meals}" />
@@ -179,11 +179,11 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCollection"
+                recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_marginTop="8dp"
-                recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintTop_toBottomOf="@id/verified"
                 app:restaurantAdapter="@{viewModel.restaurants}" />

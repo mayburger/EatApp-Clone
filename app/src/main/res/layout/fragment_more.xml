@@ -11,21 +11,19 @@
 
         <variable
             name="viewModel"
-            type="com.mayburger.eatclone.ui.admin.AdminViewModel" />
+            type="com.mayburger.eatclone.ui.main.more.MoreViewModel" />
+
+        <import type="com.mayburger.eatclone.util.constants.RecyclerConstants" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:fitsSystemWindows="true"
+        android:background="@color/colorWhite"
         android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvAdmin"
-            restaurantAdapter="@{viewModel.restaurantsLiveData}"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

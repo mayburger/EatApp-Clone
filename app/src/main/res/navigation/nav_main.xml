@@ -13,5 +13,21 @@
     <fragment
         android:id="@+id/reservations"
         android:name="com.mayburger.eatclone.ui.main.reservations.ReservationsFragment"
-        android:label="ReservationsFragment" />
+        android:label="ReservationsFragment" >
+        <action
+            android:id="@+id/action_reservations_to_supportFragment"
+            app:destination="@id/support" />
+    </fragment>
+    <fragment
+        android:id="@+id/support"
+        android:name="com.mayburger.eatclone.ui.main.support.SupportFragment"
+        android:label="SupportFragment" >
+        <action
+            android:id="@+id/action_supportFragment_to_moreFragment"
+            app:destination="@id/more" />
+    </fragment>
+    <fragment
+        android:id="@+id/more"
+        android:name="com.mayburger.eatclone.ui.main.more.MoreFragment"
+        android:label="MoreFragment" />
 </navigation>

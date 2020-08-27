@@ -1,6 +1,7 @@
 package com.mayburger.eatclone.util.binding
 
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.mayburger.eatclone.ui.adapters.MealAdapter
 import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
@@ -28,12 +29,14 @@ object AdapterBinding {
     @JvmStatic
     fun addRestaurantItems(
         recyclerView: RecyclerView,
-        items: ArrayList<ItemRestaurantViewModel>
+        items: MutableLiveData<ArrayList<ItemRestaurantViewModel>>
     ) {
         val adapter = recyclerView.adapter as RestaurantAdapter?
         if (adapter != null) {
-            adapter.clearItems()
-            adapter.addItems(items)
+            items.value?.let {
+                adapter.clearItems()
+                adapter.addItems(it)
+            }
         }
     }
 
@@ -41,12 +44,16 @@ object AdapterBinding {
     @JvmStatic
     fun addMealItems(
         recyclerView: RecyclerView,
-        items: ArrayList<ItemMealViewModel>
+        items: MutableLiveData<ArrayList<ItemMealViewModel>>
     ) {
         val adapter = recyclerView.adapter as MealAdapter?
         if (adapter != null) {
             adapter.clearItems()
-            adapter.addItems(items)
+            items.value?.let {
+                adapter.clearItems()
+                adapter.addItems(it)
+            }
+
         }
     }
 

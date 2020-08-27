@@ -1,9 +1,9 @@
 package com.mayburger.eatclone.ui.restaurant.detail
 
-import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.ktx.toObject
 import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.model.RestaurantDataModel
@@ -22,7 +22,7 @@ class RestaurantDetailViewModel @ViewModelInject constructor(
     }
 
     val restaurant = ObservableField(RestaurantDataModel())
-    val restaurants = ObservableArrayList<ItemRestaurantViewModel>()
+    val restaurantsLiveData = MutableLiveData<ArrayList<ItemRestaurantViewModel>>()
     val tags = ObservableField(dataManager)
     val mIsTheTitleVisible = ObservableField(false)
 
@@ -47,7 +47,7 @@ class RestaurantDetailViewModel @ViewModelInject constructor(
     }
 
     fun getRestaurants() {
-        restaurants.clear()
+        val restaurants = ArrayList<ItemRestaurantViewModel>()
         dataManager.getRestaurants(5).addOnCompleteListener {
             if (it.isSuccessful) {
                 it.result?.documents?.let {
@@ -58,6 +58,7 @@ class RestaurantDetailViewModel @ViewModelInject constructor(
                             )
                         )
                     }
+                    restaurantsLiveData.value = restaurants
                 }
             }
         }
