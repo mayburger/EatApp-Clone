@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
@@ -27,9 +26,6 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding, OnBoardingVie
 
     @Inject
     lateinit var adapter: OnBoardingAdapter
-
-    @Inject
-    lateinit var linearLayoutManager: LinearLayoutManager
 
     val pagerChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {

@@ -12,6 +12,7 @@
         <variable
             name="viewModel"
             type="com.mayburger.eatclone.ui.restaurant.detail.RestaurantDetailViewModel" />
+        <import type="com.mayburger.eatclone.util.constants.RecyclerConstants"/>
     </data>
 
     <RelativeLayout
@@ -405,7 +406,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             android:orientation="vertical"
-                            horizontalLayoutManager="@{true}"
+                            recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/titleOthers" />
 

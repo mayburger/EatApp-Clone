@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.FragmentReserveBinding
@@ -16,7 +15,6 @@ import com.mayburger.eatclone.ui.adapters.viewmodels.ItemReserveGuestViewModel
 import com.mayburger.eatclone.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_reserve.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ReserveFragment : BaseFragment<FragmentReserveBinding, ReserveViewModel>(),
@@ -27,13 +25,6 @@ class ReserveFragment : BaseFragment<FragmentReserveBinding, ReserveViewModel>()
     override val layoutId: Int
         get() = R.layout.fragment_reserve
     override val viewModel: ReserveViewModel by viewModels()
-
-    @Inject
-    lateinit var dateLayoutManager: LinearLayoutManager
-    @Inject
-    lateinit var guestLayoutManager: LinearLayoutManager
-    @Inject
-    lateinit var timesLayoutManager: LinearLayoutManager
 
     companion object {
         const val ARG_RESTAURANT = "arg_restaurant"
@@ -64,8 +55,6 @@ class ReserveFragment : BaseFragment<FragmentReserveBinding, ReserveViewModel>()
         val dateAdapter =
             HorizontalSelectionAdapter<ItemReserveDateViewModel>()
         rvDates.adapter = dateAdapter
-        rvDates.layoutManager = dateLayoutManager
-        dateLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         var itemViewModels = viewModel.getItemReserveDateViewModel(0)
         dateAdapter.setListener(object :
             HorizontalSelectionAdapter.Callback<ItemReserveDateViewModel> {
@@ -82,8 +71,6 @@ class ReserveFragment : BaseFragment<FragmentReserveBinding, ReserveViewModel>()
         val guestAdapter =
             HorizontalSelectionAdapter<ItemReserveGuestViewModel>()
         rvGuests.adapter = guestAdapter
-        rvGuests.layoutManager = guestLayoutManager
-        guestLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         var itemViewModels =
             viewModel.getItemReserveGuestViewModel(viewModel.selectedNumberOfGuests.get() ?: 0)
         guestAdapter.setListener(object :
@@ -101,8 +88,6 @@ class ReserveFragment : BaseFragment<FragmentReserveBinding, ReserveViewModel>()
         val timesAdapter =
             HorizontalSelectionAdapter<ItemReserveAvailableTimesViewModel>()
         rvTimes.adapter = timesAdapter
-        rvTimes.layoutManager = timesLayoutManager
-        timesLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         var itemViewModels = viewModel.getItemReserveAvailableTimesViewModel( 0)
         viewModel.selectedTime.set(itemViewModels[0].it)
         timesAdapter.setListener(object :

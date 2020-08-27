@@ -9,7 +9,6 @@ import android.view.animation.AlphaAnimation
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.appbar.AppBarLayout
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
@@ -42,8 +41,6 @@ class RestaurantDetailFragment :
 
     @Inject
     lateinit var restaurantAdapter:RestaurantAdapter
-    @Inject
-    lateinit var layoutManager:LinearLayoutManager
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -62,7 +59,6 @@ class RestaurantDetailFragment :
         notes.setReadMore(rootNotes,viewModel.showReadMore,viewModel.notesMaxLine)
         viewModel.getRestaurants()
         rvOthers.adapter = restaurantAdapter
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         restaurantAdapter.setListener(this)
         restaurantAdapter.asImage()
     }

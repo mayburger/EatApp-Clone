@@ -12,6 +12,8 @@
         <variable
             name="viewModel"
             type="com.mayburger.eatclone.ui.restaurant.reserve.ReserveViewModel" />
+
+        <import type="com.mayburger.eatclone.util.constants.RecyclerConstants" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,6 +75,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvDates"
+            recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -94,6 +97,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvGuests"
+            recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -115,6 +119,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTimes"
+            recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

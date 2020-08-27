@@ -12,6 +12,8 @@
         <variable
             name="viewModel"
             type="com.mayburger.eatclone.ui.region.SelectRegionViewModel" />
+
+        <import type="com.mayburger.eatclone.util.constants.RecyclerConstants" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -45,11 +47,12 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvRegions"
+                recyclerLayoutManager="@{RecyclerConstants.GRID_2_LAYOUT_MANAGER}"
                 android:layout_width="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp"
-                app:regionAdapter="@{viewModel.regionsViewModel}"
-                android:layout_height="match_parent"/>
+                app:regionAdapter="@{viewModel.regionsViewModel}" />
 
         </LinearLayout>
 

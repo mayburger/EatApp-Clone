@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivityMainBinding
@@ -38,15 +37,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     @Inject
     lateinit var mealsAdapter: MealAdapter
 
-    @Inject
-    lateinit var mealLayoutManager: LinearLayoutManager
-
-    @Inject
-    lateinit var sortLayoutManager: LinearLayoutManager
-
-    @Inject
-    lateinit var collectionLayoutManager: LinearLayoutManager
-
     companion object {
         fun startActivity(context: Context) {
             context.startActivity(Intent(context, MainActivity::class.java))
@@ -64,8 +54,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     fun initMeals() {
         viewModel.getMeals()
         rvMeal.adapter = mealsAdapter
-        rvMeal.layoutManager = mealLayoutManager
-        mealLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         mealsAdapter.setListener(this)
 
     }
@@ -73,16 +61,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     fun initSort() {
         viewModel.getRestaurants()
         rvSort.adapter = restaurantAdapter
-        rvSort.layoutManager = sortLayoutManager
-        sortLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         restaurantAdapter.setListener(this)
         restaurantAdapter.asGrid()
     }
 
     fun initCollection() {
         rvCollection.adapter = collectionAdapter
-        rvCollection.layoutManager = collectionLayoutManager
-        collectionLayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         collectionAdapter.setListener(this)
         collectionAdapter.asCollection()
     }

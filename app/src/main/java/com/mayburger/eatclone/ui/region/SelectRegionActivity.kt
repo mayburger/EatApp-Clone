@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivitySelectRegionBinding
@@ -27,8 +26,6 @@ class SelectRegionActivity : BaseActivity<ActivitySelectRegionBinding, SelectReg
     override val viewModel: SelectRegionViewModel by viewModels()
 
     @Inject
-    lateinit var layoutManager:LinearLayoutManager
-    @Inject
     lateinit var adapter:SelectRegionAdapter
 
     companion object{
@@ -41,7 +38,6 @@ class SelectRegionActivity : BaseActivity<ActivitySelectRegionBinding, SelectReg
         super.onCreate(savedInstanceState)
         viewModel.navigator = this
         rvRegions.adapter = adapter
-        rvRegions.layoutManager =  layoutManager
         adapter.setListener(this)
         rvRegions.isNestedScrollingEnabled = false
         viewModel.getRegions()
