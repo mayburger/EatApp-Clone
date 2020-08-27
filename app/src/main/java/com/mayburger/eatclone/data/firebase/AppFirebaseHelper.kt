@@ -36,8 +36,16 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             .get()
     }
 
-    override fun getRestaurants(): Task<QuerySnapshot> {
-        return Firebase.firestore.collection(FirebaseConstants.RESTAURANTS).get()
+    override fun getRestaurants(limit: Int): Task<QuerySnapshot> {
+        val restaurant = Firebase.firestore.collection(FirebaseConstants.RESTAURANTS)
+        restaurant.limit(limit.toLong())
+        return restaurant.get()
+    }
+
+    override fun getMeals(limit: Int): Task<QuerySnapshot> {
+        val meals = Firebase.firestore.collection(FirebaseConstants.MEALS)
+        meals.limit(limit.toLong())
+        return meals.get()
     }
 
     override fun createRestaurant(restaurantDataModel: RestaurantDataModel): Task<DocumentReference> {
@@ -46,7 +54,8 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
 
 
     override fun updateRestaurant(restaurantDataModel: RestaurantDataModel): Task<Void> {
-        return Firebase.firestore.collection(FirebaseConstants.RESTAURANTS).document(restaurantDataModel.id?:"").set(restaurantDataModel)
+        return Firebase.firestore.collection(FirebaseConstants.RESTAURANTS)
+            .document(restaurantDataModel.id ?: "").set(restaurantDataModel)
     }
 
     override fun regions(): Task<QuerySnapshot> {
@@ -56,7 +65,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
     override fun setUserRegion(id: Int): Task<Void> {
         return Firebase.firestore.collection(FirebaseConstants.USERS)
             .document(FirebaseAuth.getInstance().currentUser?.uid ?: "")
-            .update(FirebaseConstants.REGION,id)
+            .update(FirebaseConstants.REGION, id)
     }
 
 

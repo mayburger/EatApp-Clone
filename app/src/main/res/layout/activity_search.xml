@@ -29,7 +29,7 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/ic_back" />
+                android:src="@drawable/ic_back_black" />
 
             <com.mayburger.eatclone.util.textfont.EditTextFont
                 android:layout_width="match_parent"
@@ -38,7 +38,7 @@
                 android:padding="14dp"
                 android:background="@drawable/shp_grey_8dp"
                 android:singleLine="true"
-                android:text="Where would you like to eat?"
+                android:hint="Where would you like to eat?"
                 android:textColor="@color/colorTextGrey">
                 <requestFocus/>
             </com.mayburger.eatclone.util.textfont.EditTextFont>

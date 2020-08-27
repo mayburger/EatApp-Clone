@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.adapters.viewmodels.ItemReserveGuestViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="4dp"
+        android:background="@{viewModel.selected ? @drawable/shp_primary_8dp : @drawable/shp_grey_8dp}"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:onSingleClick="@{()->viewModel.onClickGuest()}"
+        tools:background="@drawable/shp_grey_8dp">
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.numberOfGuests}"
+            android:textColor="@{viewModel.selected ? @color/colorWhite : @color/colorTextGrey}"
+            android:textSize="16sp"
+            app:typeface="bold"
+            tools:text="15"
+            tools:textColor="@color/colorBlack" />
+
+    </LinearLayout>
+</layout>

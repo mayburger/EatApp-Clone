@@ -7,7 +7,7 @@ import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.data.events.RestaurantUpdateEvent
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.ui.base.BaseViewModel
-import com.mayburger.eatclone.ui.restaurant.ItemRestaurantViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
 import com.mayburger.eatclone.util.rx.SchedulerProvider
 
 class AdminViewModel @ViewModelInject constructor(

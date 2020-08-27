@@ -9,7 +9,7 @@ import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivityRegisterBinding
 import com.mayburger.eatclone.ui.auth.login.LoginActivity
 import com.mayburger.eatclone.ui.base.BaseActivity
-import com.mayburger.eatclone.util.ViewUtils
+import com.mayburger.eatclone.util.ext.ViewUtils
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

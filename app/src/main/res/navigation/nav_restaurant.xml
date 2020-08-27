@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_restaurant"
+    app:startDestination="@id/restaurantDetailFragment">
+
+    <fragment
+        android:id="@+id/restaurantDetailFragment"
+        android:name="com.mayburger.eatclone.ui.restaurant.detail.RestaurantDetailFragment"
+        android:label="RestaurantDetailFragment">
+        <action
+            android:id="@+id/action_restaurantDetailFragment_to_reserveFragment"
+            app:destination="@id/reserveFragment"
+            app:enterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down" />
+    </fragment>
+    <fragment
+        android:id="@+id/reserveFragment"
+        android:name="com.mayburger.eatclone.ui.restaurant.reserve.ReserveFragment"
+        android:label="ReserveFragment" />
+</navigation>

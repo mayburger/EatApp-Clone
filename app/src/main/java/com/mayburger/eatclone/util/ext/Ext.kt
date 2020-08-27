@@ -1,4 +1,4 @@
-package com.mayburger.eatclone.util
+package com.mayburger.eatclone.util.ext
 
 import android.content.Context
 import java.io.*

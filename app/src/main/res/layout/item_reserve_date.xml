@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.adapters.viewmodels.ItemReserveDateViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:background="@{viewModel.selected ? @drawable/shp_primary_8dp : @drawable/shp_grey_8dp}"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="32dp"
+        android:paddingTop="8dp"
+        android:paddingRight="32dp"
+        android:paddingBottom="8dp"
+        app:onSingleClick="@{()->viewModel.onClickDate()}"
+        tools:background="@drawable/shp_grey_8dp">
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Today"
+            android:text="@{viewModel.day()}"
+            android:textColor="@{viewModel.selected ? @color/colorWhite : @color/colorTextGrey}"
+            android:textSize="16sp"
+            app:typeface="bold"
+            tools:textColor="@color/colorBlack" />
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Fri, Aug 21"
+            android:text="@{viewModel.date()}"
+            android:textColor="@{viewModel.selected ? @color/colorWhite : @color/colorTextGrey}"
+            android:textSize="12sp"
+            tools:textColor="@color/colorTextGrey" />
+
+
+    </LinearLayout>
+</layout>

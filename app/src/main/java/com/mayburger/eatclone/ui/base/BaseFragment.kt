@@ -10,6 +10,8 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 
 
 abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment(),
@@ -22,6 +24,8 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         private set
 
     abstract val bindingVariable: Int
+
+    lateinit var navController: NavController
 
     @get:LayoutRes
     abstract val layoutId: Int
@@ -42,7 +46,11 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         setHasOptionsMenu(false)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         mRootView = viewDataBinding!!.root
         return mRootView
@@ -63,7 +71,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
             setVariable(bindingVariable, viewModel)
             executePendingBindings()
         }
-
     }
 
     override fun hideLoading() {

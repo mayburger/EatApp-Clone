@@ -41,7 +41,7 @@ class SelectRegionActivity : BaseActivity<ActivitySelectRegionBinding, SelectReg
         super.onCreate(savedInstanceState)
         viewModel.navigator = this
         rvRegions.adapter = adapter
-        rvRegions.layoutManager = GridLayoutManager(this,2)
+        rvRegions.layoutManager =  layoutManager
         adapter.setListener(this)
         rvRegions.isNestedScrollingEnabled = false
         viewModel.getRegions()
@@ -49,6 +49,10 @@ class SelectRegionActivity : BaseActivity<ActivitySelectRegionBinding, SelectReg
 
     override fun onSelectedItem(region: RegionDataModel) {
         viewModel.setRegion(region)
+    }
+
+    override fun onLoadRegion() {
+        rvRegions.layoutManager = GridLayoutManager(this,2)
     }
 
     override fun onSelectRegion() {

@@ -2,10 +2,12 @@ package com.mayburger.eatclone.util.binding
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.mayburger.eatclone.ui.adapters.MealAdapter
+import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMealViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
 import com.mayburger.eatclone.ui.region.ItemRegionViewModel
 import com.mayburger.eatclone.ui.region.SelectRegionAdapter
-import com.mayburger.eatclone.ui.restaurant.ItemRestaurantViewModel
-import com.mayburger.eatclone.ui.restaurant.RestaurantAdapter
 
 object AdapterBinding {
 
@@ -24,7 +26,7 @@ object AdapterBinding {
 
     @BindingAdapter("restaurantAdapter")
     @JvmStatic
-    fun addAdminRestaurantItems(
+    fun addRestaurantItems(
         recyclerView: RecyclerView,
         items: ArrayList<ItemRestaurantViewModel>
     ) {
@@ -34,5 +36,20 @@ object AdapterBinding {
             adapter.addItems(items)
         }
     }
+
+    @BindingAdapter("mealAdapter")
+    @JvmStatic
+    fun addMealItems(
+        recyclerView: RecyclerView,
+        items: ArrayList<ItemMealViewModel>
+    ) {
+        val adapter = recyclerView.adapter as MealAdapter?
+        if (adapter != null) {
+            adapter.clearItems()
+            adapter.addItems(items)
+        }
+    }
+
+
 
 }

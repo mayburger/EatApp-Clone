@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.restaurant.reserve.ReserveViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="16dp"
+            android:onClick="@{()->viewModel.onClickClose()}"
+            android:padding="8dp"
+            android:src="@drawable/ic_close_black"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLength="32"
+            android:text="@{viewModel.restaurant.name}"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            android:transitionName="restaurantName"
+            app:layout_constraintBottom_toBottomOf="@id/close"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/close"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/close"
+            app:typeface="bold"
+            tools:text="Zaytinya Restaurant Al Ain" />
+
+        <View
+            android:id="@+id/div"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorDecorGrey"
+            app:layout_constraintTop_toBottomOf="@id/close" />
+
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:id="@+id/titleDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Date of Reservation"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/div"
+            app:typeface="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvDates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/titleDate"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleDate" />
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:id="@+id/titleGuests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Number of Guests"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvDates"
+            app:typeface="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGuests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/titleGuests"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleGuests" />
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:id="@+id/titleTimes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="Available Times"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvGuests"
+            app:typeface="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTimes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="@id/titleTimes"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleTimes" />
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:id="@+id/noticePeriod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text="This restaurant requires a notice period of 30 minutes"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/earliest" />
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:id="@+id/earliest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="The earliest possible reservation can be for Fri Aug 21 - 11:00 PM"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:id="@+id/reserve"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/shp_accent_8dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Reserve a Table"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/noticePeriod"
+            app:typeface="bold" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

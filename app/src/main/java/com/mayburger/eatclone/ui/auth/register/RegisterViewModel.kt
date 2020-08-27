@@ -7,7 +7,7 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.model.UserDataModel
 import com.mayburger.eatclone.ui.base.BaseViewModel
-import com.mayburger.eatclone.util.isRegisterValid
+import com.mayburger.eatclone.util.ext.isRegisterValid
 import com.mayburger.eatclone.util.rx.SchedulerProvider
 
 class RegisterViewModel @ViewModelInject constructor(

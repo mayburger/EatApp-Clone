@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel" />
+
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:clickable="true"
+        android:clipToPadding="false"
+        android:focusable="true"
+        android:padding="2dp"
+        tools:visibility="visible">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:background="@drawable/ripple_white_8dp"
+            app:cardCornerRadius="8dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="170dp"
+                android:layout_height="match_parent"
+                android:elevation="2dp">
+
+                <ImageView
+                    android:id="@+id/image"
+                    imageUrl="@{viewModel.data.image}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorDecorGrey"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:background="@color/colorBlack"
+                    android:alpha="0.4"
+                    android:layout_height="match_parent"/>
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="match_parent"
+                    android:textColor="@color/colorWhite"
+                    android:layout_margin="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:typeface="bold"
+                    tools:text="Zaytunya Restaurant"
+                    android:text="@{viewModel.data.name}"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content"/>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</layout>

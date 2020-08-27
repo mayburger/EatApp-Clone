@@ -21,7 +21,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.util.ShakeDetector
-import com.mayburger.eatclone.util.ViewUtils
+import com.mayburger.eatclone.util.ext.ViewUtils
 
 
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(),

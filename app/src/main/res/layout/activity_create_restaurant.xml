@@ -53,9 +53,9 @@
             <com.mayburger.eatclone.util.textfont.EditTextFont
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.description}"
+                android:text="@={viewModel.notes}"
                 android:background="@color/colorDecorGrey"
-                android:hint="Description"
+                android:hint="Notes"
                 android:padding="16dp" />
 
             <com.mayburger.eatclone.util.textfont.EditTextFont
@@ -133,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-
+                android:background="@drawable/shp_primary_8dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="@{viewModel.isEditMode() ? `Update` : `Create`}"

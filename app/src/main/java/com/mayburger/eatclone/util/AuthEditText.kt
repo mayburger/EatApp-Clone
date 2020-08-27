@@ -15,6 +15,7 @@ import androidx.databinding.InverseBindingListener
 import androidx.databinding.InverseBindingMethod
 import androidx.databinding.InverseBindingMethods
 import com.mayburger.eatclone.R
+import com.mayburger.eatclone.util.ext.showKeyboard
 import kotlinx.android.synthetic.main.auth_edit_text.view.*
 
 

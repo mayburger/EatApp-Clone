@@ -1,9 +1,10 @@
-package com.mayburger.eatclone.util
+package com.mayburger.eatclone.util.binding
 
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.mayburger.eatclone.util.AuthEditText
 
 object EditTextBinding {
 

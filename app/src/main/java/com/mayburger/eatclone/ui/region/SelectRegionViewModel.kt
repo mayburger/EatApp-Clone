@@ -26,6 +26,7 @@ class SelectRegionViewModel @ViewModelInject constructor(
                 for (i in it.result?.documents!!) {
                     regionsViewModel.add(ItemRegionViewModel(i.toObject<RegionDataModel>()))
                 }
+                navigator?.onLoadRegion()
             }
         }
     }

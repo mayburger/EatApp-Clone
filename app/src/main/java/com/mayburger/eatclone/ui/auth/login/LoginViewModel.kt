@@ -5,7 +5,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import com.google.firebase.auth.FirebaseAuth
 import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.ui.base.BaseViewModel
-import com.mayburger.eatclone.util.isLoginValid
+import com.mayburger.eatclone.util.ext.isLoginValid
 import com.mayburger.eatclone.util.rx.SchedulerProvider
 
 class LoginViewModel @ViewModelInject constructor(
@@ -22,7 +22,11 @@ class LoginViewModel @ViewModelInject constructor(
     val password = ObservableField("")
 
     fun onClickLogin() {
-        if (isLoginValid(email.get() ?: "", password.get() ?: "")) {
+        if (isLoginValid(
+                email.get() ?: "",
+                password.get() ?: ""
+            )
+        ) {
             navigator?.showLoading()
             FirebaseAuth.getInstance()
                 .signInWithEmailAndPassword(email.get() ?: "", password.get() ?: "")

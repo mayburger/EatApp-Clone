@@ -1,12 +1,42 @@
-package com.mayburger.eatclone.util
+package com.mayburger.eatclone.util.binding
 
 import android.animation.AnimatorSet
+import android.animation.LayoutTransition
 import android.animation.ObjectAnimator
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import androidx.databinding.BindingAdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.mayburger.eatclone.util.ext.setOnSingleClickListener
 
 object ViewBinding {
+
+    @BindingAdapter("onSingleClick")
+    @JvmStatic
+    fun setOnSingleClick(view:View,runnable:Runnable){
+        view.setOnSingleClickListener {
+            runnable.run()
+        }
+    }
+
+    @BindingAdapter("animateLayoutChanges")
+    @JvmStatic
+    fun animateLayoutChanges(view:ViewGroup, animate:Boolean){
+        view.layoutTransition
+            .enableTransitionType(LayoutTransition.CHANGING);
+    }
+
+    @BindingAdapter("recyclerLayoutManager")
+    @JvmStatic
+    fun horizontalLayoutManager(view:RecyclerView, use:Boolean){
+        if (use){
+            val layoutManager =LinearLayoutManager(view.context)
+            layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+            view.layoutManager =  layoutManager
+        }
+    }
 
     @BindingAdapter("onClickAnimate")
     @JvmStatic
@@ -54,5 +84,7 @@ object ViewBinding {
             true
         }
     }
+
+
 
 }

@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.mayburger.eatclone.ui.restaurant.ItemRestaurantViewModel" />
+            type="com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel" />
 
     </data>
 
@@ -20,25 +20,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:clickable="true"
         android:clipToPadding="false"
-        android:padding="2dp">
+        android:focusable="true"
+        android:padding="2dp"
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/shp_white_8dp"
+            android:background="@drawable/ripple_white_8dp"
             android:elevation="2dp"
             android:padding="8dp">
 
-            <ImageView
-                android:id="@+id/image"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardImage"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:scaleType="centerCrop"
-                app:imageUrl="@{viewModel.data.image}"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="8dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:withRoundedCorners="@{true}" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{viewModel.data.image}" />
+            </androidx.cardview.widget.CardView>
 
             <com.mayburger.eatclone.util.textfont.TextFont
                 android:id="@+id/name"
@@ -51,8 +62,8 @@
                 android:text="@{viewModel.data.name}"
                 android:textColor="@color/colorBlack"
                 android:textSize="16sp"
-                app:layout_constraintLeft_toLeftOf="@id/image"
-                app:layout_constraintTop_toBottomOf="@id/image"
+                app:layout_constraintLeft_toLeftOf="@id/cardImage"
+                app:layout_constraintTop_toBottomOf="@id/cardImage"
                 app:typeface="bold"
                 tools:text="Zaytinya Restaurant" />
 
@@ -75,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:background="@drawable/stroke_grey_dark_8dp"
+                android:background="@drawable/circle_stroke_grey_dark"
                 android:paddingLeft="6dp"
                 android:paddingTop="2dp"
                 android:paddingRight="6dp"
@@ -92,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:background="@drawable/stroke_grey_dark_8dp"
+                android:background="@drawable/circle_stroke_grey_dark"
                 android:paddingLeft="6dp"
                 android:paddingTop="2dp"
                 android:paddingRight="6dp"

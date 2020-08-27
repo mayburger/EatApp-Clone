@@ -11,7 +11,7 @@ import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivityCreateRestaurantBinding
 import com.mayburger.eatclone.databinding.ItemTagsBinding
 import com.mayburger.eatclone.model.RestaurantDataModel
-import com.mayburger.eatclone.ui.ItemTagViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemTagViewModel
 import com.mayburger.eatclone.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_create_restaurant.*
@@ -57,8 +57,10 @@ class CreateRestaurantActivity : BaseActivity<ActivityCreateRestaurantBinding, C
             val mLayoutInflater = LayoutInflater.from(this)
             val binding = ItemTagsBinding.inflate(mLayoutInflater, flex,false)
             val name = binding.root.findViewById<TextView>(R.id.name)
-            val itemViewModel = ItemTagViewModel()
-            itemViewModel.navigator = object:ItemTagViewModel.Callback{
+            val itemViewModel =
+                ItemTagViewModel()
+            itemViewModel.navigator = object:
+                ItemTagViewModel.Callback{
                 override fun onClickTag() {
                     itemViewModel.selected.set(itemViewModel.selected.get()?.not())
                     if (viewModel.selectedTags.contains(i)){
@@ -80,6 +82,7 @@ class CreateRestaurantActivity : BaseActivity<ActivityCreateRestaurantBinding, C
         viewModel.id.set(i.id)
         viewModel.name.set(i.name)
         viewModel.address.set(i.address)
+        viewModel.notes.set(i.notes)
         viewModel.image.set(i.image)
         viewModel.cuisine.set(i.cuisine)
         viewModel.distance.set(i.distance)

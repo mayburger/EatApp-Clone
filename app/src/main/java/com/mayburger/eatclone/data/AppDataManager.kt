@@ -15,13 +15,42 @@ import com.mayburger.eatclone.model.RegionDataModel
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.UserDataModel
 import java.io.*
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.collections.ArrayList
 
 @Singleton
 class AppDataManager @Inject constructor(private val mContext: Context,
                                          private val mHawkHelper: HawkHelper,
                                          private val mFirebaseHelper: FirebaseHelper) : DataManager {
+
+    override val boardingData: ArrayList<OnBoardingModel>
+        get() = Gson().fromJson<ArrayList<OnBoardingModel>>(getJsonStringFromRaw(R.raw.onboarding),object:
+            TypeToken<ArrayList<OnBoardingModel>>(){}.type)
+
+    override fun get30Days(): ArrayList<Date> {
+        val dates = ArrayList<Date>()
+        val calendar = Calendar.getInstance()
+        for (i in 0..30) {
+            dates.add(calendar.time)
+            calendar.add(Calendar.DATE,1)
+        }
+        return dates
+    }
+
+    override fun getAvailableTimes(): ArrayList<Date> {
+        val dates = ArrayList<Date>()
+        val calendar = Calendar.getInstance()
+        calendar.set(Calendar.HOUR,8)
+        calendar.set(Calendar.MINUTE,30)
+        for(i in 0..30){
+            dates.add(calendar.time)
+            calendar.add(Calendar.MINUTE,30)
+        }
+        return dates
+    }
+
     override var isLoggedIn: Boolean
         get() = mHawkHelper.isLoggedIn
         set(value) {
@@ -48,8 +77,12 @@ class AppDataManager @Inject constructor(private val mContext: Context,
         return mFirebaseHelper.updateRestaurant(restaurantDataModel)
     }
 
-    override fun getRestaurants(): Task<QuerySnapshot> {
-        return mFirebaseHelper.getRestaurants()
+    override fun getRestaurants(limit: Int): Task<QuerySnapshot> {
+        return mFirebaseHelper.getRestaurants(limit)
+    }
+
+    override fun getMeals(limit: Int): Task<QuerySnapshot> {
+        return mFirebaseHelper.getMeals(limit)
     }
 
     override fun regions(): Task<QuerySnapshot> {
@@ -70,10 +103,6 @@ class AppDataManager @Inject constructor(private val mContext: Context,
         set(value) {
             mHawkHelper.user = value
         }
-
-    override val boardingData: ArrayList<OnBoardingModel>
-        get() = Gson().fromJson<ArrayList<OnBoardingModel>>(getJsonStringFromRaw(R.raw.onboarding),object:
-            TypeToken<ArrayList<OnBoardingModel>>(){}.type)
 
     fun getJsonStringFromRaw(rawInt:Int):String{
         val `is`: InputStream = mContext.resources.openRawResource(rawInt)

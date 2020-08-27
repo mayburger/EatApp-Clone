@@ -14,7 +14,7 @@ import com.mayburger.eatclone.model.TagDataModel
 import com.mayburger.eatclone.ui.base.BaseViewModel
 import com.mayburger.eatclone.util.rx.RxBus
 import com.mayburger.eatclone.util.rx.SchedulerProvider
-import com.mayburger.eatclone.util.toStringJson
+import com.mayburger.eatclone.util.ext.toStringJson
 
 class CreateRestaurantViewModel @ViewModelInject constructor(
     dataManager: DataManager,
@@ -30,7 +30,7 @@ class CreateRestaurantViewModel @ViewModelInject constructor(
     val name = ObservableField("")
     val address = ObservableField("")
     val image = ObservableField("")
-    val description = ObservableField("")
+    val notes = ObservableField("")
     val cuisine = ObservableField("")
     val distance = ObservableField("")
     val selectedPrice = ObservableField(0)
@@ -54,6 +54,7 @@ class CreateRestaurantViewModel @ViewModelInject constructor(
             cuisine = cuisine.get() ?: "",
             distance = distance.get() ?: "",
             image = image.get() ?: "",
+            notes = notes.get() ?: "",
             _price = selectedPrice.get() ?: 0,
             tags = selectedTags
         )

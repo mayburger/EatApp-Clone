@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <FrameLayout
+            android:id="@+id/abbr"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/shp_grey_8dp"
+            app:layout_constraintBottom_toBottomOf="@id/date"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/date">
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:id="@+id/abbrText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:text="S"
+                android:textColor="@color/colorTextGrey" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/abbr"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:id="@+id/day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sunday"
+                android:textColor="@color/colorTextGrey"
+                android:textSize="16sp" />
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9:00AM - 11:30PM"
+                android:textColor="@color/colorTextGrey"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

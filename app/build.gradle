@@ -117,9 +117,12 @@ dependencies {
 
 
     // dependency injection
-
     implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+
+    def nav_version = "2.1.0-alpha05"
+    implementation "androidx.navigation:navigation-fragment:$nav_version" // For Kotlin use navigation-fragment-ktx
+    implementation "androidx.navigation:navigation-ui:$nav_version" // For Kotlin use navigation-ui-ktx
 
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
     kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"

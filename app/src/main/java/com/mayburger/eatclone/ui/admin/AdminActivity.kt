@@ -11,7 +11,7 @@ import com.mayburger.eatclone.databinding.ActivityAdminRestaurantBinding
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.ui.admin.create.CreateRestaurantActivity
 import com.mayburger.eatclone.ui.base.BaseActivity
-import com.mayburger.eatclone.ui.restaurant.RestaurantAdapter
+import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_admin_restaurant.*
 import javax.inject.Inject

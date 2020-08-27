@@ -10,6 +10,8 @@ data class RestaurantDataModel(
     var name: String? = null,
     @SerializedName("address")
     var address: String? = null,
+    @SerializedName("notes")
+    var notes: String? = null,
     @SerializedName("cuisine")
     var cuisine: String? = null,
     @SerializedName("distance")

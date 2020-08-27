@@ -17,7 +17,9 @@ interface FirebaseHelper {
     fun createRestaurant(restaurantDataModel: RestaurantDataModel):Task<DocumentReference>
     fun updateRestaurant(restaurantDataModel: RestaurantDataModel):Task<Void>
 
-    fun getRestaurants():Task<QuerySnapshot>
+    fun getRestaurants(limit:Int = 4):Task<QuerySnapshot>
+
+    fun getMeals(limit:Int = 4):Task<QuerySnapshot>
 
     fun getUserByEmail(email:String):Task<QuerySnapshot>
 
