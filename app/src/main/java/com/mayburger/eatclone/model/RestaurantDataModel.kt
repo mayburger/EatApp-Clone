@@ -20,8 +20,11 @@ data class RestaurantDataModel(
     var _price: Int? = null,
     @SerializedName("image")
     var image: String? = null,
+    @SerializedName("phone")
+    var phone: String? = null,
     @SerializedName("tags")
     var tags: ArrayList<TagDataModel>? = null
+
 ) : Serializable {
     fun price(): String {
         return when (_price) {

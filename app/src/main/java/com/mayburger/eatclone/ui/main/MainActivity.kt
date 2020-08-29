@@ -4,12 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivityMainBinding
 import com.mayburger.eatclone.ui.base.BaseActivity
+import com.mayburger.eatclone.ui.main.explore.ExploreFragment
+import com.mayburger.eatclone.ui.main.more.MoreFragment
+import com.mayburger.eatclone.ui.main.reservations.ReservationsFragment
+import com.mayburger.eatclone.ui.main.support.SupportFragment
+import com.mayburger.eatclone.util.ActivityUtil
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -36,8 +39,29 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         setUpNavigation()
     }
 
+    override fun onBackPressed() {
+        finish()
+    }
+
     fun setUpNavigation() {
-        NavigationUI.setupWithNavController(nav, (nav_host as NavHostFragment).navController)
+        ActivityUtil.loadFragment(R.id.container, supportFragmentManager, ExploreFragment())
+        nav.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.explore->{
+                    ActivityUtil.loadFragment(R.id.container, supportFragmentManager, ExploreFragment())
+                }
+                R.id.reservations->{
+                    ActivityUtil.loadFragment(R.id.container, supportFragmentManager, ReservationsFragment())
+                }
+                R.id.support->{
+                    ActivityUtil.loadFragment(R.id.container, supportFragmentManager, SupportFragment())
+                }
+                R.id.more->{
+                    ActivityUtil.loadFragment(R.id.container, supportFragmentManager, MoreFragment())
+                }
+            }
+            true
+        }
     }
 
 }

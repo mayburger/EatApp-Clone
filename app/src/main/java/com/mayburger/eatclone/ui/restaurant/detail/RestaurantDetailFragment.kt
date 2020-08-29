@@ -14,10 +14,8 @@ import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.FragmentRestaurantDetailBinding
 import com.mayburger.eatclone.databinding.ItemOpenHoursBinding
-import com.mayburger.eatclone.databinding.ItemTagsBinding
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemTagViewModel
 import com.mayburger.eatclone.ui.base.BaseFragment
 import com.mayburger.eatclone.ui.restaurant.RestaurantActivity
 import com.mayburger.eatclone.ui.restaurant.reserve.ReserveFragment
@@ -44,11 +42,12 @@ class RestaurantDetailFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewDataBinding?.lifecycleOwner = viewLifecycleOwner
         navController = Navigation.findNavController(view)
         buildDetail()
-        buildTags()
         buildHours()
         buildAppbar()
+        buildOthers()
     }
 
     fun buildDetail() {
@@ -57,7 +56,9 @@ class RestaurantDetailFragment :
         viewModel.navigator = this
         notes.text = viewModel.restaurant.get()?.notes
         notes.setReadMore(rootNotes,viewModel.showReadMore,viewModel.notesMaxLine)
-        viewModel.getRestaurants()
+    }
+
+    fun buildOthers(){
         rvOthers.adapter = restaurantAdapter
         restaurantAdapter.setListener(this)
         restaurantAdapter.asImage()
@@ -86,7 +87,6 @@ class RestaurantDetailFragment :
                     alphaAnimationDuration.toLong(),
                     View.VISIBLE
                 )
-//                handleIconToolbarColorAnimation(true)
                 back.setImageResource(R.drawable.ic_back_black)
                 viewModel.mIsTheTitleVisible.set(true)
             }
@@ -99,7 +99,6 @@ class RestaurantDetailFragment :
                 )
                 viewModel.mIsTheTitleVisible.set(false)
                 back.setImageResource(R.drawable.ic_back_white)
-//                handleIconToolbarColorAnimation(false)
             }
         }
     }
@@ -120,22 +119,6 @@ class RestaurantDetailFragment :
     }
 
 
-    fun buildTags() {
-        facilities.removeAllViews()
-        val tags = viewModel.restaurant.get()?.tags
-        tags?.let {
-            for (i in it) {
-                val mLayoutInflater = LayoutInflater.from(activity)
-                val binding = ItemTagsBinding.inflate(mLayoutInflater, facilities, false)
-                val itemViewModel =
-                    ItemTagViewModel()
-                itemViewModel.selected.set(!tags.contains(i))
-                binding.viewModel = itemViewModel
-                binding.name.text = i.name
-                facilities.addView(binding.root)
-            }
-        }
-    }
 
     private fun buildHours() {
         hours.removeAllViews()
@@ -170,6 +153,10 @@ class RestaurantDetailFragment :
             Uri.parse("http://maps.google.com/maps?q=${viewModel.restaurant.get()?.name}")
         )
         startActivity(intent)
+    }
+
+    override fun onClickCall() {
+
     }
 
     override fun onClickTripAdvisor() {

@@ -23,7 +23,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvAdmin"
-            restaurantAdapter="@{viewModel.restaurantsLiveData}"
+            restaurantAdapter="@{viewModel.restaurants}"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

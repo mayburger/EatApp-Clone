@@ -4,14 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivityAdminRestaurantBinding
 import com.mayburger.eatclone.model.RestaurantDataModel
+import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
 import com.mayburger.eatclone.ui.admin.create.CreateRestaurantActivity
 import com.mayburger.eatclone.ui.base.BaseActivity
-import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_admin_restaurant.*
 import javax.inject.Inject
@@ -41,10 +42,11 @@ class AdminActivity : BaseActivity<ActivityAdminRestaurantBinding, AdminViewMode
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.navigator = this
-        viewModel.getRestaurants()
         rvAdmin.adapter = adapter
-        rvAdmin.layoutManager = layoutManager
         adapter.setListener(this)
+        viewModel.restaurants.observe(this, Observer {
+            it?.let { it1 -> adapter.addItems(it1) }
+        })
         CreateRestaurantActivity.startActivity(this,isEditMode=false)
     }
 

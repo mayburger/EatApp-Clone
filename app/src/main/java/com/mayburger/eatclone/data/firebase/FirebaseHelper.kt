@@ -6,6 +6,8 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.QuerySnapshot
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.UserDataModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMealViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
 
 
 interface FirebaseHelper {
@@ -15,11 +17,14 @@ interface FirebaseHelper {
     fun createFirestoreUser(user:UserDataModel,uuid:String):Task<Void>
 
     fun createRestaurant(restaurantDataModel: RestaurantDataModel):Task<DocumentReference>
+
+//    fun createReservation()
+
     fun updateRestaurant(restaurantDataModel: RestaurantDataModel):Task<Void>
 
-    fun getRestaurants(limit:Int = 4):Task<QuerySnapshot>
+    suspend fun getRestaurants():ArrayList<ItemRestaurantViewModel>?
 
-    fun getMeals(limit:Int = 4):Task<QuerySnapshot>
+    suspend fun getMeals():ArrayList<ItemMealViewModel>?
 
     fun getUserByEmail(email:String):Task<QuerySnapshot>
 

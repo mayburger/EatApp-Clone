@@ -2,7 +2,6 @@ package com.mayburger.eatclone.ui.restaurant
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import androidx.activity.viewModels
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
@@ -28,9 +27,5 @@ class RestaurantActivity: BaseActivity<ActivityRestaurantDetailBinding, Restaura
             intent.putExtra(EXTRA_RESTAURANT,restaurant)
             context.startActivity(intent)
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 }

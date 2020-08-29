@@ -22,7 +22,6 @@
         android:background="@{viewModel.selected ? @drawable/shp_primary_8dp : @drawable/shp_grey_8dp}"
         android:gravity="center"
         android:orientation="vertical"
-        app:onSingleClick="@{()->viewModel.onClickGuest()}"
         tools:background="@drawable/shp_grey_8dp">
 
         <com.mayburger.eatclone.util.textfont.TextFont

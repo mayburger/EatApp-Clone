@@ -26,7 +26,6 @@
         android:paddingTop="16dp"
         android:paddingRight="30dp"
         android:paddingBottom="16dp"
-        app:onSingleClick="@{()->viewModel.onClickTime()}"
         tools:background="@drawable/shp_grey_8dp">
 
         <com.mayburger.eatclone.util.textfont.TextFont

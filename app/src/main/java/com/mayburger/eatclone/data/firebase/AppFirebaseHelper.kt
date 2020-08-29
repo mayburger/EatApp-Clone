@@ -6,10 +6,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.UserDataModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMealViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
 import com.mayburger.eatclone.util.constants.FirebaseConstants
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 
@@ -36,16 +40,32 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             .get()
     }
 
-    override fun getRestaurants(limit: Int): Task<QuerySnapshot> {
-        val restaurant = Firebase.firestore.collection(FirebaseConstants.RESTAURANTS)
-        restaurant.limit(limit.toLong())
-        return restaurant.get()
+    override suspend fun getRestaurants(): ArrayList<ItemRestaurantViewModel>? {
+        return try{
+            val data = ArrayList<ItemRestaurantViewModel>()
+            Firebase.firestore.collection(FirebaseConstants.RESTAURANTS).get().await()?.let { it ->
+                it.map {
+                    data.add(ItemRestaurantViewModel(it.toObject()))
+                }
+            }
+            data
+        } catch (e:java.lang.Exception){
+            ArrayList()
+        }
     }
 
-    override fun getMeals(limit: Int): Task<QuerySnapshot> {
-        val meals = Firebase.firestore.collection(FirebaseConstants.MEALS)
-        meals.limit(limit.toLong())
-        return meals.get()
+    override suspend fun getMeals(): ArrayList<ItemMealViewModel>? {
+        return try{
+            val data = ArrayList<ItemMealViewModel>()
+            Firebase.firestore.collection(FirebaseConstants.MEALS).get().await()?.let { it ->
+                it.map {
+                    data.add(ItemMealViewModel(it.toObject()))
+                }
+            }
+            data
+        } catch (e:java.lang.Exception){
+            ArrayList()
+        }
     }
 
     override fun createRestaurant(restaurantDataModel: RestaurantDataModel): Task<DocumentReference> {

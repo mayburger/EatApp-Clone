@@ -30,51 +30,62 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorDecorGrey"
                 android:hint="Name"
+                android:padding="16dp"
                 android:singleLine="true"
-                android:text="@={viewModel.name}"
-                android:padding="16dp" />
+                android:text="@={viewModel.name}" />
 
             <com.mayburger.eatclone.util.textfont.EditTextFont
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorDecorGrey"
-                android:text="@={viewModel.address}"
                 android:hint="Address"
+                android:padding="16dp"
                 android:singleLine="true"
-                android:padding="16dp" />
-            <com.mayburger.eatclone.util.textfont.EditTextFont
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorDecorGrey"
-                android:text="@={viewModel.image}"
-                android:hint="Image"
-                android:padding="16dp" />
+                android:text="@={viewModel.address}" />
 
             <com.mayburger.eatclone.util.textfont.EditTextFont
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.notes}"
+                android:background="@color/colorDecorGrey"
+                android:hint="Image"
+                android:padding="16dp"
+                android:text="@={viewModel.image}" />
+
+            <com.mayburger.eatclone.util.textfont.EditTextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/colorDecorGrey"
                 android:hint="Notes"
-                android:padding="16dp" />
+                android:padding="16dp"
+                android:text="@={viewModel.notes}" />
 
             <com.mayburger.eatclone.util.textfont.EditTextFont
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorDecorGrey"
-                android:text="@={viewModel.cuisine}"
                 android:hint="Cuisine"
+                android:padding="16dp"
                 android:singleLine="true"
-                android:padding="16dp" />
+                android:text="@={viewModel.cuisine}" />
 
             <com.mayburger.eatclone.util.textfont.EditTextFont
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorDecorGrey"
-                android:text="@={viewModel.distance}"
                 android:hint="Distance"
+                android:padding="16dp"
                 android:singleLine="true"
-                android:padding="16dp" />
+                android:text="@={viewModel.distance}" />
+
+            <com.mayburger.eatclone.util.textfont.EditTextFont
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorDecorGrey"
+                android:hint="Phone Number"
+                android:inputType="phone"
+                android:padding="16dp"
+                android:singleLine="true"
+                android:text="@={viewModel.phone}" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -130,6 +141,7 @@
                 app:flexWrap="wrap" />
 
             <com.mayburger.eatclone.util.textfont.TextFont
+                onClickAnimate="@{()->viewModel.onClickCreate()}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -137,7 +149,6 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="@{viewModel.isEditMode() ? `Update` : `Create`}"
-                onClickAnimate="@{()->viewModel.onClickCreate()}"
                 android:textAlignment="center"
                 android:textColor="@color/text_button_color_white"
                 android:textSize="18sp"

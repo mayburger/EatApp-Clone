@@ -12,7 +12,8 @@
         <variable
             name="viewModel"
             type="com.mayburger.eatclone.ui.restaurant.detail.RestaurantDetailViewModel" />
-        <import type="com.mayburger.eatclone.util.constants.RecyclerConstants"/>
+
+        <import type="com.mayburger.eatclone.util.constants.RecyclerConstants" />
     </data>
 
     <RelativeLayout
@@ -80,6 +81,8 @@
                             app:layout_constraintLeft_toLeftOf="@id/name"
                             app:layout_constraintTop_toBottomOf="@id/name"
                             tools:text="Bawadi Mall, Al Khrair, United Arab Emirates" />
+
+
 
                         <com.mayburger.eatclone.util.textfont.TextFont
                             android:id="@+id/cuisine"
@@ -156,6 +159,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
+                                android:onClick="@{()->viewModel.navigator.finishActivity()}"
                                 tools:src="@drawable/ic_back_white" />
 
 
@@ -206,8 +210,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorWhite"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp"
+                    android:paddingRight="8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingBottom="16dp">
 
                     <com.mayburger.eatclone.util.textfont.TextFont
                         android:id="@+id/reserve"
@@ -217,11 +224,33 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:text="Reserve"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1"
                         android:textAlignment="center"
                         android:textColor="@color/colorWhite"
                         android:textSize="18sp"
                         app:layout_constraintTop_toTopOf="parent"
                         app:onSingleClick="@{()->viewModel.onClickReserve()}"
+                        app:typeface="bold" />
+
+                    <com.mayburger.eatclone.util.textfont.TextFont
+                        android:id="@+id/call"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.showCall != true ? View.GONE : View.VISIBLE}"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:background="@drawable/shp_primary_8dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="Call to Book"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="18sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:onSingleClick="@{()->viewModel.onClickCall()}"
                         app:typeface="bold" />
 
                 </LinearLayout>
@@ -244,8 +273,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
                         android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
                         android:orientation="horizontal"
                         app:layout_constraintTop_toTopOf="parent">
 
@@ -337,6 +366,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
+                            app:tags="@{viewModel.restaurant.tags}"
                             app:alignContent="stretch"
                             app:alignItems="stretch"
                             app:flexWrap="wrap" />
@@ -376,10 +406,10 @@
 
                     <LinearLayout
                         android:id="@+id/rootOthers"
-                        android:layout_marginBottom="128dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:layout_marginBottom="128dp"
                         android:background="@color/colorWhite"
                         android:elevation="1dp"
                         android:orientation="vertical"
@@ -389,24 +419,24 @@
                             android:id="@+id/titleOthers"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginRight="16dp"
                             android:text="Other Restaurants"
                             android:textColor="@color/colorBlack"
                             android:textSize="16sp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
                             app:layout_constraintLeft_toLeftOf="@id/rootNotes"
                             app:layout_constraintTop_toBottomOf="@id/rootHours"
                             app:typeface="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rvOthers"
-                            restaurantAdapter="@{viewModel.restaurantsLiveData}"
+                            app:recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
+                            restaurantAdapter="@{viewModel.restaurants}"
                             android:orientation="vertical"
-                            recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/titleOthers" />
 

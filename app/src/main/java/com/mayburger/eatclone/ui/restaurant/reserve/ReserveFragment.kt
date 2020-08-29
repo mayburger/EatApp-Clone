@@ -76,6 +76,7 @@ class ReserveFragment : BaseFragment<FragmentReserveBinding, ReserveViewModel>()
         guestAdapter.setListener(object :
             HorizontalSelectionAdapter.Callback<ItemReserveGuestViewModel> {
             override fun onSelectedItem(position: Int, item: ItemReserveGuestViewModel) {
+                println("THis is clicked")
                 itemViewModels = viewModel.getItemReserveGuestViewModel(position)
                 viewModel.selectedNumberOfGuests.set(item.it)
                 guestAdapter.setItems(itemViewModels)
