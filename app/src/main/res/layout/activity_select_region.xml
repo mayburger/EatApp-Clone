@@ -52,7 +52,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp"
-                app:regionAdapter="@{viewModel.regionsViewModel}" />
+                app:regionAdapter="@{viewModel.regions}" />
 
         </LinearLayout>
 

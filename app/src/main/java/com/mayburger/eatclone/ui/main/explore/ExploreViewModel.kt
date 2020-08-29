@@ -20,7 +20,7 @@ class ExploreViewModel @ViewModelInject constructor(
 
     val greetings = ObservableField("Hello ${dataManager.user.fullName}!")
 
-    val restaurants = liveData(IO){ emit(dataManager.getRestaurants())}
+    val restaurants = liveData(IO){ emit(dataManager.getRestaurants()) }
     val meals = liveData(IO){emit(dataManager.getMeals())}
 
     fun onClickSearch() {

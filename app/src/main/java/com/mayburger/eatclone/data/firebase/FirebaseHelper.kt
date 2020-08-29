@@ -8,6 +8,7 @@ import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.UserDataModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMealViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
+import com.mayburger.eatclone.ui.region.ItemRegionViewModel
 
 
 interface FirebaseHelper {
@@ -28,7 +29,7 @@ interface FirebaseHelper {
 
     fun getUserByEmail(email:String):Task<QuerySnapshot>
 
-    fun regions():Task<QuerySnapshot>
+    suspend fun getRegions():ArrayList<ItemRegionViewModel>?
 
     fun setUserRegion(id:Int):Task<Void>
 

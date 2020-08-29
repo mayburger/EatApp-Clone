@@ -12,6 +12,7 @@ import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.UserDataModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMealViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
+import com.mayburger.eatclone.ui.region.ItemRegionViewModel
 import com.mayburger.eatclone.util.constants.FirebaseConstants
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -78,8 +79,18 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
             .document(restaurantDataModel.id ?: "").set(restaurantDataModel)
     }
 
-    override fun regions(): Task<QuerySnapshot> {
-        return Firebase.firestore.collection(FirebaseConstants.REGIONS).get()
+    override suspend fun getRegions(): ArrayList<ItemRegionViewModel>? {
+        return try{
+            val data = ArrayList<ItemRegionViewModel>()
+            Firebase.firestore.collection(FirebaseConstants.REGIONS).get().await()?.let { it ->
+                it.map {
+                    data.add(ItemRegionViewModel(it.toObject()))
+                }
+            }
+            data
+        } catch (e:java.lang.Exception){
+            ArrayList()
+        }
     }
 
     override fun setUserRegion(id: Int): Task<Void> {

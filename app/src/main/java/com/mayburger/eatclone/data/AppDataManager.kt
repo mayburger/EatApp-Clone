@@ -16,6 +16,7 @@ import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.UserDataModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMealViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
+import com.mayburger.eatclone.ui.region.ItemRegionViewModel
 import java.io.*
 import java.util.*
 import javax.inject.Inject
@@ -87,8 +88,8 @@ class AppDataManager @Inject constructor(private val mContext: Context,
         return mFirebaseHelper.getMeals()
     }
 
-    override fun regions(): Task<QuerySnapshot> {
-        return mFirebaseHelper.regions()
+    override suspend fun getRegions(): ArrayList<ItemRegionViewModel>? {
+        return mFirebaseHelper.getRegions()
     }
 
     override fun setUserRegion(id: Int): Task<Void> {

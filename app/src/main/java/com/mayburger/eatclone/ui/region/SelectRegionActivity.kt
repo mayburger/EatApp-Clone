@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivitySelectRegionBinding
@@ -37,10 +36,10 @@ class SelectRegionActivity : BaseActivity<ActivitySelectRegionBinding, SelectReg
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.navigator = this
+        viewDataBinding.lifecycleOwner = this
         rvRegions.adapter = adapter
         adapter.setListener(this)
         rvRegions.isNestedScrollingEnabled = false
-        viewModel.getRegions()
     }
 
     override fun onSelectedItem(region: RegionDataModel) {
@@ -48,7 +47,6 @@ class SelectRegionActivity : BaseActivity<ActivitySelectRegionBinding, SelectReg
     }
 
     override fun onLoadRegion() {
-        rvRegions.layoutManager = GridLayoutManager(this,2)
     }
 
     override fun onSelectRegion() {

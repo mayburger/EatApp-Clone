@@ -15,11 +15,6 @@ import com.mayburger.eatclone.ui.restaurant.RestaurantActivity
 import com.mayburger.eatclone.ui.search.SearchActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_explore.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.Default
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -44,19 +39,10 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.navigator = this
-        viewDataBinding?.lifecycleOwner = this
+        viewDataBinding?.lifecycleOwner = viewLifecycleOwner
         initSort()
         initMeals()
         initCollection()
-        CoroutineScope(IO).launch {
-            println("This is the IO thread ${Thread.currentThread().name}")
-        }
-        CoroutineScope(Main).launch {
-            println("This is the Main thread ${Thread.currentThread().name}")
-        }
-        CoroutineScope(Default).launch {
-            println("This is the Default thread ${Thread.currentThread().name}")
-        }
     }
 
     fun initMeals() {

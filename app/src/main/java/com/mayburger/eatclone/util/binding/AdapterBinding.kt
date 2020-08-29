@@ -21,12 +21,14 @@ object AdapterBinding {
     @JvmStatic
     fun addRegionItems(
         recyclerView: RecyclerView,
-        items: ArrayList<ItemRegionViewModel>
+        items: LiveData<ArrayList<ItemRegionViewModel>>
     ) {
         val adapter = recyclerView.adapter as SelectRegionAdapter?
         if (adapter != null) {
-            adapter.clearItems()
-            adapter.addItems(items)
+            items.value?.let{
+                adapter.clearItems()
+                adapter.addItems(it)
+            }
         }
     }
 

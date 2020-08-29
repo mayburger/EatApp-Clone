@@ -1,12 +1,12 @@
 package com.mayburger.eatclone.ui.region
 
-import androidx.databinding.ObservableArrayList
 import androidx.hilt.lifecycle.ViewModelInject
-import com.google.firebase.firestore.ktx.toObject
+import androidx.lifecycle.liveData
 import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.model.RegionDataModel
 import com.mayburger.eatclone.ui.base.BaseViewModel
 import com.mayburger.eatclone.util.rx.SchedulerProvider
+import kotlinx.coroutines.Dispatchers.IO
 
 class SelectRegionViewModel @ViewModelInject constructor(
     dataManager: DataManager,
@@ -18,18 +18,7 @@ class SelectRegionViewModel @ViewModelInject constructor(
 
     }
 
-    val regionsViewModel = ObservableArrayList<ItemRegionViewModel>()
-
-    fun getRegions() {
-        dataManager.regions().addOnCompleteListener {
-            if (it.isSuccessful) {
-                for (i in it.result?.documents!!) {
-                    regionsViewModel.add(ItemRegionViewModel(i.toObject<RegionDataModel>()))
-                }
-                navigator?.onLoadRegion()
-            }
-        }
-    }
+    val regions = liveData(IO){ emit(dataManager.getRegions()) }
 
     fun setRegion(region: RegionDataModel) {
         navigator?.showLoading()
