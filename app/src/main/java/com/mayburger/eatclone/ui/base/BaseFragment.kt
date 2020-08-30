@@ -9,10 +9,11 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 
 
-abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : BaseEventFragment(),
+abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment(),
     BaseNavigatorFragment {
 
     var baseActivity: BaseActivity<*, *>? = null
@@ -42,10 +43,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : BaseEve
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(false)
-    }
-
-    override fun onEvent(obj: Any) {
-
     }
 
     override fun onCreateView(

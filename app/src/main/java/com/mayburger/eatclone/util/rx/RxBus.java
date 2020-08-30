@@ -20,7 +20,7 @@ public class RxBus {
     }
 
     public void send(Object o) {
-//        bus.onNext(o);
+        bus.onNext(o);
     }
 
     public Observable<Object> toObservables() {

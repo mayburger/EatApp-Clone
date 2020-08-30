@@ -11,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.LayoutRes
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -23,7 +24,7 @@ import com.mayburger.eatclone.util.ShakeDetector
 import com.mayburger.eatclone.util.ext.ViewUtils
 
 
-abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : BaseEventActivity(),
+abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(),
     BaseFragment.Callback,
     BaseNavigator {
 
@@ -53,9 +54,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : BaseEve
         performDataBinding()
         FirebaseApp.initializeApp(this)
         Firebase.initialize(this)
-    }
-
-    override fun onEvent(obj: Any) {
     }
 
     fun initShakeToOpenRestaurant(runnable: Runnable) {

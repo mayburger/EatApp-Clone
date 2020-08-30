@@ -12,8 +12,9 @@ import io.reactivex.schedulers.Schedulers
 import java.lang.ref.WeakReference
 
 
-abstract class BaseViewModel<N>(val dataManager: DataManager,
-                                val schedulerProvider: SchedulerProvider
+abstract class BaseViewModel<N>(
+    val dataManager: DataManager,
+    val schedulerProvider: SchedulerProvider
 ) : ViewModel() {
 
     private val TAG = "BaseViewModel"
@@ -25,20 +26,21 @@ abstract class BaseViewModel<N>(val dataManager: DataManager,
             this.mNavigator = WeakReference(navigator)
         }
 
-    var lifecycleOwner:LifecycleOwner? = null
+    var lifecycleOwner: LifecycleOwner? = null
     var colorSchemeResource = intArrayOf(Color.parseColor("#00A85F"))
 
     //it's must be inject from dagger
     val compositeDisposable = CompositeDisposable()
 
-
     init {
         compositeDisposable.add(
             RxBus.getDefault().toObservables()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ obj -> onEvent(obj)
-            }, { it.printStackTrace() }))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ obj ->
+                    onEvent(obj)
+                }, { it.printStackTrace() })
+        )
     }
 
     abstract fun onEvent(obj: Any)

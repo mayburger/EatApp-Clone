@@ -57,14 +57,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         SelectRegionActivity.startActivity(this)
     }
 
-    override fun onEvent(obj: Any) {
-        when (obj) {
-            is SelectRegionEvent -> {
-                viewModel.region.set(viewModel.dataManager.region)
-            }
-        }
-    }
-
     fun setUpNavigation() {
         ActivityUtil.loadFragment(R.id.container, supportFragmentManager, ExploreFragment())
         nav.setOnNavigationItemSelectedListener {

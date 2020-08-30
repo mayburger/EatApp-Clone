@@ -8,7 +8,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivityOnBoardingBinding
-import com.mayburger.eatclone.model.events.LoginEvent
 import com.mayburger.eatclone.ui.auth.select.SelectAuthFragment
 import com.mayburger.eatclone.ui.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -67,13 +66,4 @@ class OnBoardingActivity : BaseActivity<ActivityOnBoardingBinding, OnBoardingVie
     override fun onGetStarted() {
         SelectAuthFragment.getInstance().show(supportFragmentManager, SelectAuthFragment.TAG)
     }
-
-    override fun onEvent(obj: Any) {
-        when(obj){
-            is LoginEvent ->{
-                finishActivity()
-            }
-        }
-    }
-
 }

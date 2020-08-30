@@ -48,7 +48,7 @@ class SelectRegionActivity : BaseActivity<ActivitySelectRegionBinding, SelectReg
     }
 
     override fun onSelectRegion() {
-        RxBus.getDefault().send(SelectRegionEvent("Hello"))
+        RxBus.getDefault().send(SelectRegionEvent())
         finish()
     }
 }
