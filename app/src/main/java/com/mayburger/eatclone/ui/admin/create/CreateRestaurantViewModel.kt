@@ -13,7 +13,7 @@ import com.mayburger.eatclone.model.TagDataModel
 import com.mayburger.eatclone.model.events.RestaurantUpdateEvent
 import com.mayburger.eatclone.ui.base.BaseViewModel
 import com.mayburger.eatclone.util.ext.toStringJson
-import com.mayburger.eatclone.util.rx.LiveBus
+import com.mayburger.eatclone.util.rx.RxBus
 import com.mayburger.eatclone.util.rx.SchedulerProvider
 
 class CreateRestaurantViewModel @ViewModelInject constructor(
@@ -84,7 +84,7 @@ class CreateRestaurantViewModel @ViewModelInject constructor(
             restaurantDataModel
         ).addOnCompleteListener { create ->
             if (create.isSuccessful) {
-                LiveBus.post(RestaurantUpdateEvent())
+                RxBus.getDefault().send(RestaurantUpdateEvent())
                 navigator?.hideLoading()
                 navigator?.finishActivity()
             }
@@ -101,6 +101,10 @@ class CreateRestaurantViewModel @ViewModelInject constructor(
 
     fun priceThree() {
         selectedPrice.set(2)
+    }
+
+    override fun onEvent(obj: Any) {
+
     }
 
 }

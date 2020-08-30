@@ -14,5 +14,8 @@ class AdminViewModel @ViewModelInject constructor(
     BaseViewModel<AdminNavigator>(dataManager, schedulerProvider) {
 
     val restaurants = liveData(IO){emit(dataManager.getRestaurants())}
-    
+    override fun onEvent(obj: Any) {
+
+    }
+
 }

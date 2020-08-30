@@ -18,4 +18,8 @@ class SelectAuthViewModel @ViewModelInject constructor(
     fun onClickRegister() {
         navigator?.onClickRegister()
     }
+
+    override fun onEvent(obj: Any) {
+
+    }
 }

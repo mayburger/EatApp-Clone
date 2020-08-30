@@ -3,7 +3,6 @@ package com.mayburger.eatclone.ui.main.explore
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.google.gson.Gson
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
@@ -16,7 +15,6 @@ import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
 import com.mayburger.eatclone.ui.base.BaseFragment
 import com.mayburger.eatclone.ui.restaurant.RestaurantActivity
 import com.mayburger.eatclone.ui.search.SearchActivity
-import com.mayburger.eatclone.util.rx.LiveBus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_explore.*
 import javax.inject.Inject
@@ -47,10 +45,6 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreViewModel>()
         initSort()
         initMeals()
         initCollection()
-        LiveBus.getDefault().observe(viewLifecycleOwner, Observer {
-            onEvent(it)
-        })
-
     }
 
     fun initMeals() {

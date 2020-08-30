@@ -47,4 +47,8 @@ class ExploreViewModel @ViewModelInject constructor(
             }
         }
     }
+
+    override fun onEvent(obj: Any) {
+
+    }
 }

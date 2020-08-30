@@ -55,4 +55,8 @@ class RestaurantDetailViewModel @ViewModelInject constructor(
         navigator?.onClickTripAdvisor()
     }
 
+    override fun onEvent(obj: Any) {
+
+    }
+
 }

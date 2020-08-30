@@ -44,4 +44,8 @@ class SelectRegionViewModel @ViewModelInject constructor(
             }
         }
     }
+
+    override fun onEvent(obj: Any) {
+
+    }
 }

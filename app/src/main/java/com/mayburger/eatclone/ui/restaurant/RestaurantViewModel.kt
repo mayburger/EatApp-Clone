@@ -10,6 +10,9 @@ class RestaurantViewModel @ViewModelInject constructor(
     schedulerProvider: SchedulerProvider
 ) :
     BaseViewModel<RestaurantNavigator>(dataManager, schedulerProvider) {
+    override fun onEvent(obj: Any) {
+
+    }
 
 
 }

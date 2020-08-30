@@ -93,4 +93,8 @@ class RegisterViewModel @ViewModelInject constructor(
                 }
             }
     }
+
+    override fun onEvent(obj: Any) {
+
+    }
 }

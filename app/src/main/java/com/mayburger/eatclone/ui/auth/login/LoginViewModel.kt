@@ -42,5 +42,9 @@ class LoginViewModel @ViewModelInject constructor(
         navigator?.onClickRegister()
     }
 
+    override fun onEvent(obj: Any) {
+
+    }
+
 
 }

@@ -10,6 +10,9 @@ class SupportViewModel @ViewModelInject constructor(
     schedulerProvider: SchedulerProvider
 ) :
     BaseViewModel<SupportNavigator>(dataManager, schedulerProvider) {
+    override fun onEvent(obj: Any) {
+
+    }
 
 
 }

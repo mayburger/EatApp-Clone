@@ -11,7 +11,7 @@ import com.mayburger.eatclone.model.events.LoginEvent
 import com.mayburger.eatclone.ui.auth.register.RegisterActivity
 import com.mayburger.eatclone.ui.base.BaseActivity
 import com.mayburger.eatclone.ui.splash.SplashActivity
-import com.mayburger.eatclone.util.rx.LiveBus
+import com.mayburger.eatclone.util.rx.RxBus
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,7 +41,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding, LoginViewModel>(),
     }
 
     override fun onSuccessLogin() {
-        LiveBus.post(LoginEvent())
+        RxBus.getDefault().send(LoginEvent())
         SplashActivity.startActivity(this)
         finish()
     }

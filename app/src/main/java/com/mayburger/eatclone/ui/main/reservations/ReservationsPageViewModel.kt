@@ -10,5 +10,8 @@ class ReservationsPageViewModel @ViewModelInject constructor(
     schedulerProvider: SchedulerProvider
 ) :
     BaseViewModel<ReservationsPageNavigator>(dataManager, schedulerProvider) {
+    override fun onEvent(obj: Any) {
+
+    }
 
 }

@@ -14,7 +14,6 @@ import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseApp
 import com.google.firebase.ktx.Firebase
@@ -22,7 +21,6 @@ import com.google.firebase.ktx.initialize
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.util.ShakeDetector
 import com.mayburger.eatclone.util.ext.ViewUtils
-import com.mayburger.eatclone.util.rx.LiveBus
 
 
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : BaseEventActivity(),
@@ -55,9 +53,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : BaseEve
         performDataBinding()
         FirebaseApp.initializeApp(this)
         Firebase.initialize(this)
-        LiveBus.getDefault().observe(this, Observer {
-            onEvent(it)
-        })
     }
 
     override fun onEvent(obj: Any) {

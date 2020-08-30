@@ -25,4 +25,8 @@ class MainViewModel @ViewModelInject constructor(
             navigator?.onClickRegion()
         }
     }
+
+    override fun onEvent(obj: Any) {
+
+    }
 }

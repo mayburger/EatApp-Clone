@@ -10,4 +10,7 @@ class MoreViewModel @ViewModelInject constructor(
     schedulerProvider: SchedulerProvider
 ) :
     BaseViewModel<MoreNavigator>(dataManager, schedulerProvider) {
+    override fun onEvent(obj: Any) {
+
+    }
 }

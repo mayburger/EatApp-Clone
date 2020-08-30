@@ -4,8 +4,11 @@ import android.graphics.Color
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.mayburger.eatclone.data.DataManager
+import com.mayburger.eatclone.util.rx.RxBus
 import com.mayburger.eatclone.util.rx.SchedulerProvider
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import java.lang.ref.WeakReference
 
 
@@ -27,6 +30,18 @@ abstract class BaseViewModel<N>(val dataManager: DataManager,
 
     //it's must be inject from dagger
     val compositeDisposable = CompositeDisposable()
+
+
+    init {
+        compositeDisposable.add(
+            RxBus.getDefault().toObservables()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ obj -> onEvent(obj)
+            }, { it.printStackTrace() }))
+    }
+
+    abstract fun onEvent(obj: Any)
 
     override fun onCleared() {
         compositeDisposable.dispose()

@@ -7,6 +7,9 @@ import com.mayburger.eatclone.util.rx.SchedulerProvider
 
 class SplashViewModel @ViewModelInject constructor(dataManager: DataManager, schedulerProvider: SchedulerProvider) :
         BaseViewModel<SplashNavigator>(dataManager, schedulerProvider) {
+    override fun onEvent(obj: Any) {
+
+    }
 
 
 }

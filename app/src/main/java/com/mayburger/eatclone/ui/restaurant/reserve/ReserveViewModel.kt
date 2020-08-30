@@ -69,4 +69,8 @@ class ReserveViewModel @ViewModelInject constructor(
         return viewModels
     }
 
+    override fun onEvent(obj: Any) {
+
+    }
+
 }
