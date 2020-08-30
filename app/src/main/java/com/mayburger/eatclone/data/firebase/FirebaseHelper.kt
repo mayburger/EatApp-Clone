@@ -21,6 +21,8 @@ interface FirebaseHelper {
 
 //    fun createReservation()
 
+    suspend fun signIn(email:String, password:String):AuthResult
+
     fun updateRestaurant(restaurantDataModel: RestaurantDataModel):Task<Void>
 
     suspend fun getRestaurants():ArrayList<ItemRestaurantViewModel>?

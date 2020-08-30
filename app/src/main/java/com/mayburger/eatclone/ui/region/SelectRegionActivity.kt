@@ -8,8 +8,9 @@ import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivitySelectRegionBinding
 import com.mayburger.eatclone.model.RegionDataModel
+import com.mayburger.eatclone.model.events.SelectRegionEvent
 import com.mayburger.eatclone.ui.base.BaseActivity
-import com.mayburger.eatclone.ui.main.MainActivity
+import com.mayburger.eatclone.util.rx.RxBus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_select_region.*
 import javax.inject.Inject
@@ -46,11 +47,8 @@ class SelectRegionActivity : BaseActivity<ActivitySelectRegionBinding, SelectReg
         viewModel.setRegion(region)
     }
 
-    override fun onLoadRegion() {
-    }
-
     override fun onSelectRegion() {
-        MainActivity.startActivity(this)
+        RxBus.getDefault().send(SelectRegionEvent())
         finish()
     }
 }

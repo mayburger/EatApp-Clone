@@ -6,7 +6,7 @@ data class RegionDataModel(
     @SerializedName("id")
     val id:String? = null,
     @SerializedName("name")
-    val name:String? = null,
+    val name:String? = "",
     @SerializedName("country")
     val country:String? = null,
     @SerializedName("image")

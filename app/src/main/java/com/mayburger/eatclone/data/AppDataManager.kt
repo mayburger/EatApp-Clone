@@ -96,6 +96,10 @@ class AppDataManager @Inject constructor(private val mContext: Context,
         return mFirebaseHelper.setUserRegion(id)
     }
 
+    override suspend fun signIn(email: String, password: String): AuthResult {
+        return mFirebaseHelper.signIn(email,password)
+    }
+
     override var region: RegionDataModel
         get() = mHawkHelper.region
         set(value) {

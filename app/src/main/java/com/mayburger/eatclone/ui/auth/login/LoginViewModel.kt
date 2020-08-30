@@ -2,11 +2,12 @@ package com.mayburger.eatclone.ui.auth.login
 
 import androidx.databinding.ObservableField
 import androidx.hilt.lifecycle.ViewModelInject
-import com.google.firebase.auth.FirebaseAuth
+import androidx.lifecycle.viewModelScope
 import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.ui.base.BaseViewModel
 import com.mayburger.eatclone.util.ext.isLoginValid
 import com.mayburger.eatclone.util.rx.SchedulerProvider
+import kotlinx.coroutines.launch
 
 class LoginViewModel @ViewModelInject constructor(
     dataManager: DataManager,
@@ -28,16 +29,14 @@ class LoginViewModel @ViewModelInject constructor(
             )
         ) {
             navigator?.showLoading()
-            FirebaseAuth.getInstance()
-                .signInWithEmailAndPassword(email.get() ?: "", password.get() ?: "")
-                .addOnCompleteListener {
-                    navigator?.hideLoading()
-                    if (it.isSuccessful) {
-                        navigator?.onSuccessLogin()
-                    } else {
-                        navigator?.onError(it.exception?.message)
-                    }
+            viewModelScope.launch {
+                try {
+                    dataManager.signIn(email.get() ?: "", password.get() ?: "")
+                    navigator?.onSuccessLogin()
+                } catch (e: Exception) {
+                    navigator?.onError(e.message)
                 }
+            }
         } else {
             navigator?.onError("Please make sure all the fields are filled and conditions are met")
         }

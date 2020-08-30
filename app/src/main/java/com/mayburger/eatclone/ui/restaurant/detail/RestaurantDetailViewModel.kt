@@ -21,7 +21,13 @@ class RestaurantDetailViewModel @ViewModelInject constructor(
     }
 
     val restaurant = ObservableField(RestaurantDataModel())
-    val restaurants = liveData(Dispatchers.IO){ emit(dataManager.getRestaurants()) }
+    val restaurants = liveData(Dispatchers.IO){
+        try{
+        emit(dataManager.getRestaurants())
+        }catch (e:Exception){
+            navigator?.onError(e.message)
+        }
+    }
     val tags = ObservableField(dataManager)
     val mIsTheTitleVisible = ObservableField(false)
 

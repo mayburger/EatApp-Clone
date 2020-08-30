@@ -42,7 +42,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
     }
 
     override suspend fun getRestaurants(): ArrayList<ItemRestaurantViewModel>? {
-        return try{
+        return try {
             val data = ArrayList<ItemRestaurantViewModel>()
             Firebase.firestore.collection(FirebaseConstants.RESTAURANTS).get().await()?.let { it ->
                 it.map {
@@ -50,13 +50,21 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
                 }
             }
             data
-        } catch (e:java.lang.Exception){
-            ArrayList()
+        } catch (e: java.lang.Exception) {
+            throw e
+        }
+    }
+
+    override suspend fun signIn(email: String, password: String): AuthResult {
+        return try {
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).await()
+        } catch (e: Exception) {
+            throw e
         }
     }
 
     override suspend fun getMeals(): ArrayList<ItemMealViewModel>? {
-        return try{
+        return try {
             val data = ArrayList<ItemMealViewModel>()
             Firebase.firestore.collection(FirebaseConstants.MEALS).get().await()?.let { it ->
                 it.map {
@@ -64,8 +72,8 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
                 }
             }
             data
-        } catch (e:java.lang.Exception){
-            ArrayList()
+        } catch (e: java.lang.Exception) {
+            throw e
         }
     }
 
@@ -80,7 +88,7 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
     }
 
     override suspend fun getRegions(): ArrayList<ItemRegionViewModel>? {
-        return try{
+        return try {
             val data = ArrayList<ItemRegionViewModel>()
             Firebase.firestore.collection(FirebaseConstants.REGIONS).get().await()?.let { it ->
                 it.map {
@@ -88,8 +96,8 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
                 }
             }
             data
-        } catch (e:java.lang.Exception){
-            ArrayList()
+        } catch (e: java.lang.Exception) {
+            throw e
         }
     }
 

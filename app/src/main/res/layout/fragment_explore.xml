@@ -16,182 +16,192 @@
         <import type="com.mayburger.eatclone.util.constants.RecyclerConstants" />
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:layout_height="wrap_content"
+        app:onRefreshListener="@{viewModel.onRefreshListener}"
+        app:refreshing="@{viewModel.isRefreshing()}">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/colorWhite">
 
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="60dp"
-                android:layout_height="30dp"
-                android:layout_margin="16dp"
-                android:src="@drawable/ic_eat_primary"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/search"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="16dp"
-                android:onClick="@{()->viewModel.onClickSearch()}"
-                android:padding="4dp"
-                android:src="@drawable/ic_search"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.mayburger.eatclone.util.textfont.TextFont
-                android:id="@+id/greetings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@{viewModel.greetings}"
-                android:textColor="@color/colorBlack"
-                android:textSize="24sp"
-                app:layout_constraintLeft_toLeftOf="@id/logo"
-                app:layout_constraintTop_toBottomOf="@id/logo"
-                app:typeface="bold"
-                tools:text="Hello Ahmed!" />
-
-            <com.mayburger.eatclone.util.textfont.TextFont
-                android:id="@+id/subgreeting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="What would you like to eat today?"
-                android:textColor="@color/colorTextGrey"
-                android:textSize="18sp"
-                app:layout_constraintLeft_toLeftOf="@id/logo"
-                app:layout_constraintTop_toBottomOf="@id/greetings"
-                app:typeface="medium" />
-
-            <com.mayburger.eatclone.util.textfont.TextFont
-                android:id="@+id/sort"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Nearby"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                app:layout_constraintLeft_toLeftOf="@id/logo"
-                app:layout_constraintTop_toBottomOf="@id/subgreeting"
-                app:typeface="bold" />
-
-            <com.mayburger.eatclone.util.textfont.TextFont
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See All"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/sort"
-                app:layout_constraintRight_toRightOf="@id/search"
-                app:layout_constraintTop_toTopOf="@id/sort"
-                app:typeface="bold" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvSort"
-                recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
-                restaurantAdapter="@{viewModel.restaurants}"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintTop_toBottomOf="@id/sort" />
+                android:layout_height="match_parent">
 
-            <com.mayburger.eatclone.util.textfont.TextFont
-                android:id="@+id/meal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Browse by Meal"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                app:layout_constraintLeft_toLeftOf="@id/logo"
-                app:layout_constraintTop_toBottomOf="@id/rvSort"
-                app:typeface="bold" />
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/logo"-->
+                <!--                    android:layout_width="60dp"-->
+                <!--                    android:layout_height="30dp"-->
+                <!--                    android:layout_margin="16dp"-->
+                <!--                    android:src="@drawable/ic_eat_primary"-->
+                <!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-            <com.mayburger.eatclone.util.textfont.TextFont
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See All"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/meal"
-                app:layout_constraintRight_toRightOf="@id/search"
-                app:layout_constraintTop_toTopOf="@id/meal"
-                app:typeface="bold" />
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/search"-->
+                <!--                    android:layout_width="32dp"-->
+                <!--                    android:layout_height="32dp"-->
+                <!--                    android:layout_margin="16dp"-->
+                <!--                    android:onClick="@{()->viewModel.onClickSearch()}"-->
+                <!--                    android:padding="4dp"-->
+                <!--                    android:src="@drawable/ic_search"-->
+                <!--                    app:layout_constraintRight_toRightOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvMeal"
-                recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintTop_toBottomOf="@id/meal"
-                app:mealAdapter="@{viewModel.meals}" />
+                <!--                <com.mayburger.eatclone.util.textfont.TextFont-->
+                <!--                    android:id="@+id/greetings"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="32dp"-->
+                <!--                    android:text="@{viewModel.greetings}"-->
+                <!--                    android:textColor="@color/colorBlack"-->
+                <!--                    android:textSize="24sp"-->
+                <!--                    app:layout_constraintLeft_toLeftOf="@id/logo"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/logo"-->
+                <!--                    app:typeface="bold"-->
+                <!--                    tools:text="Hello Ahmed!" />-->
 
-            <com.mayburger.eatclone.util.textfont.TextFont
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See All"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="@id/meal"
-                app:layout_constraintRight_toRightOf="@id/search"
-                app:layout_constraintTop_toTopOf="@id/meal"
-                app:typeface="bold" />
+                <!--                <com.mayburger.eatclone.util.textfont.TextFont-->
+                <!--                    android:id="@+id/subgreeting"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:text="What would you like to eat today?"-->
+                <!--                    android:textColor="@color/colorTextGrey"-->
+                <!--                    android:textSize="18sp"-->
+                <!--                    app:layout_constraintLeft_toLeftOf="@id/logo"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@id/greetings"-->
+                <!--                    app:typeface="medium" />-->
 
-            <com.mayburger.eatclone.util.textfont.TextFont
-                android:id="@+id/collection"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Collections"
-                android:textColor="@color/colorBlack"
-                android:textSize="18sp"
-                app:layout_constraintLeft_toLeftOf="@id/logo"
-                app:layout_constraintTop_toBottomOf="@id/rvMeal"
-                app:typeface="bold" />
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Nearby"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:typeface="bold" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
+                    android:text="See All"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@id/sort"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/sort"
+                    app:typeface="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvSort"
+                    recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
+                    restaurantAdapter="@{viewModel.restaurants}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/sort" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/meal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Browse by Meal"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp"
+                    app:layout_constraintLeft_toLeftOf="@id/sort"
+                    app:layout_constraintTop_toBottomOf="@id/rvSort"
+                    app:typeface="bold" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="See All"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@id/meal"
+                    app:layout_constraintRight_toRightOf="@id/search"
+                    app:layout_constraintTop_toTopOf="@id/meal"
+                    app:typeface="bold" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMeal"
+                    recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/meal"
+                    app:mealAdapter="@{viewModel.meals}" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="See All"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@id/meal"
+                    app:layout_constraintRight_toRightOf="@id/search"
+                    app:layout_constraintTop_toTopOf="@id/meal"
+                    app:typeface="bold" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/collection"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Collections"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp"
+                    app:layout_constraintLeft_toLeftOf="@id/sort"
+                    app:layout_constraintTop_toBottomOf="@id/rvMeal"
+                    app:typeface="bold" />
 
 
-            <com.mayburger.eatclone.util.textfont.TextFont
-                android:id="@+id/verified"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Verified Restaurants Re-Open for Dine-In"
-                android:textColor="@color/colorBlack"
-                app:layout_constraintLeft_toLeftOf="@id/logo"
-                app:layout_constraintTop_toBottomOf="@id/collection" />
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/verified"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Verified Restaurants Re-Open for Dine-In"
+                    android:textColor="@color/colorBlack"
+                    app:layout_constraintLeft_toLeftOf="@id/sort"
+                    app:layout_constraintTop_toBottomOf="@id/collection" />
 
-            <com.mayburger.eatclone.util.textfont.TextFont
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See All"
-                android:textColor="@color/colorPrimary"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@id/verified"
-                app:layout_constraintRight_toRightOf="@id/search"
-                app:layout_constraintTop_toTopOf="@id/verified"
-                app:typeface="bold" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCollection"
-                recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintTop_toBottomOf="@id/verified"
-                app:restaurantAdapter="@{viewModel.restaurants}" />
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="See All"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@id/verified"
+                    app:layout_constraintRight_toRightOf="@id/search"
+                    app:layout_constraintTop_toTopOf="@id/verified"
+                    app:typeface="bold" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCollection"
+                    recyclerLayoutManager="@{RecyclerConstants.HORIZONTAL_LAYOUT_MANAGER}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/verified"
+                    app:restaurantAdapter="@{viewModel.restaurants}" />
 
-    </androidx.core.widget.NestedScrollView>
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

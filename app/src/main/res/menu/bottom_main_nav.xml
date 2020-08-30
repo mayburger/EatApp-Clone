@@ -18,13 +18,13 @@
         android:id="@+id/support"
         android:icon="@drawable/ic_support"
         android:orderInCategory="2"
-        android:title="Reservations"
+        android:title="Support"
         app:showAsAction="always" />
     <item
         android:id="@+id/more"
         android:icon="@drawable/ic_more"
         android:orderInCategory="2"
-        android:title="Reservations"
+        android:title="More"
         app:showAsAction="always" />
 
 </menu>

@@ -8,7 +8,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.data.DataManager
-import com.mayburger.eatclone.data.events.RestaurantUpdateEvent
+import com.mayburger.eatclone.model.events.RestaurantUpdateEvent
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.TagDataModel
 import com.mayburger.eatclone.ui.base.BaseViewModel

@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
-import com.mayburger.eatclone.data.events.LoginEvent
+import com.mayburger.eatclone.model.events.LoginEvent
 import com.mayburger.eatclone.databinding.ActivityLoginBinding
 import com.mayburger.eatclone.ui.auth.register.RegisterActivity
 import com.mayburger.eatclone.ui.base.BaseActivity

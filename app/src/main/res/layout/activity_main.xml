@@ -21,31 +21,131 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-<!--        <fragment-->
-<!--            android:id="@+id/nav_host"-->
-<!--            android:name="androidx.navigation.fragment.NavHostFragment"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_above="@id/nav"-->
-<!--            app:defaultNavHost="true"-->
-<!--            app:navGraph="@navigation/nav_main" />-->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                app:contentInsetStart="0dp"
+                app:layout_collapseMode="pin">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp">
+
+                    <LinearLayout
+                        android:id="@+id/region"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:visibility="gone"
+                        android:onClick="@{()->viewModel.onClickRegion()}"
+                        android:orientation="horizontal"
+                        android:visibility="@{viewModel.selectedBottomNav != 0 ? View.GONE : View.VISIBLE}"
+                        app:layout_constraintLeft_toLeftOf="@id/apptitle"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.mayburger.eatclone.util.textfont.TextFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="Dubai"
+                            android:text="@{viewModel.region.name}"
+                            android:textSize="12sp" />
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_chevron_down_primary" />
+
+                    </LinearLayout>
+
+                    <com.mayburger.eatclone.util.textfont.TextFont
+                        android:id="@+id/apptitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@{viewModel.selectedBottomNavTitle}"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="20sp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/region"
+                        app:typeface="bold"
+                        tools:text="Reservations" />
+
+                    <RelativeLayout
+                        android:layout_width="32dp"
+                        android:id="@+id/profile"
+                        android:layout_height="32dp"
+                        android:visibility="@{viewModel.selectedBottomNav == 0 ? View.VISIBLE : View.INVISIBLE}"
+                        android:layout_marginEnd="16dp"
+                        tools:visibility="gone"
+                        android:background="@drawable/circle_primary"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/region">
+
+                        <com.mayburger.eatclone.util.textfont.TextFont
+                            nameAbbreviation="@{viewModel.dataManager.user.fullName}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="12sp"
+                            tools:text="MG" />
+
+                    </RelativeLayout>
+
+                    <com.mayburger.eatclone.util.textfont.EditTextFont
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        tools:visibility="gone"
+                        android:layout_marginBottom="16dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shp_grey_8dp"
+                        android:focusable="false"
+                        android:hint="Where would you like to eat?"
+                        android:onClick="@{()->viewModel.onClickSearch()}"
+                        android:padding="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/colorTextGrey"
+                        android:textSize="12sp"
+                        android:visibility="@{viewModel.selectedBottomNav == 0 ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintLeft_toLeftOf="@id/apptitle"
+                        app:layout_constraintRight_toRightOf="@id/profile"
+                        app:layout_constraintTop_toBottomOf="@id/apptitle" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/container"
-            android:layout_above="@id/nav"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
+            android:layout_height="match_parent"
+            android:layout_above="@id/nav"
+            android:layout_below="@id/toolbar"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            app:labelVisibilityMode="labeled"
             android:layout_gravity="bottom"
             android:background="@color/colorWhite"
-            app:menu="@menu/bottom_main_nav"/>
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/bottom_main_nav" />
 
     </RelativeLayout>
 

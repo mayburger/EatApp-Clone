@@ -12,7 +12,7 @@
     </fragment>
     <fragment
         android:id="@+id/reservations"
-        android:name="com.mayburger.eatclone.ui.main.reservations.ReservationsFragment"
+        android:name="com.mayburger.eatclone.ui.main.reservations.ReservationsPageFragment"
         android:label="ReservationsFragment" >
         <action
             android:id="@+id/action_reservations_to_supportFragment"

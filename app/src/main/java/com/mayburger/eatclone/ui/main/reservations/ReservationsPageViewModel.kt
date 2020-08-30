@@ -5,11 +5,11 @@ import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.ui.base.BaseViewModel
 import com.mayburger.eatclone.util.rx.SchedulerProvider
 
-class ReservationsViewModel @ViewModelInject constructor(
+class ReservationsPageViewModel @ViewModelInject constructor(
     dataManager: DataManager,
     schedulerProvider: SchedulerProvider
 ) :
-    BaseViewModel<ReservationsNavigator>(dataManager, schedulerProvider) {
+    BaseViewModel<ReservationsPageNavigator>(dataManager, schedulerProvider) {
 
     override fun onEvent(obj: Any) {
 

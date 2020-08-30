@@ -15,7 +15,6 @@ import com.mayburger.eatclone.model.UserDataModel
 import com.mayburger.eatclone.ui.base.BaseActivity
 import com.mayburger.eatclone.ui.main.MainActivity
 import com.mayburger.eatclone.ui.onboarding.OnBoardingActivity
-import com.mayburger.eatclone.ui.region.SelectRegionActivity
 import com.mayburger.eatclone.util.constants.FirebaseConstants
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -43,12 +42,9 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(),
                 .document(FirebaseAuth.getInstance().currentUser?.uid ?: "").get()
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
-                        viewModel.dataManager.user = it.result?.toObject<UserDataModel>() ?: UserDataModel()
-                        if (viewModel.dataManager.region.id != null) {
-                            MainActivity.startActivity(this)
-                        } else {
-                            SelectRegionActivity.startActivity(this)
-                        }
+                        viewModel.dataManager.user =
+                            it.result?.toObject<UserDataModel>() ?: UserDataModel()
+                        MainActivity.startActivity(this)
                         finish()
                     } else {
                         viewModel.navigator?.onError(it.exception?.message)
