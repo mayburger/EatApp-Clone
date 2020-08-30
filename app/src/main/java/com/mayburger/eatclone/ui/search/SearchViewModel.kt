@@ -8,7 +8,5 @@ import com.mayburger.eatclone.util.rx.SchedulerProvider
 class SearchViewModel @ViewModelInject constructor(dataManager: DataManager, schedulerProvider: SchedulerProvider) :
         BaseViewModel<SearchNavigator>(dataManager, schedulerProvider) {
 
-        override fun onEvent(obj: Any) {
 
-        }
 }

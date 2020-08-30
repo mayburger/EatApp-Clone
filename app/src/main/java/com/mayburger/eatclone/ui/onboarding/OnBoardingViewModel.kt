@@ -13,13 +13,6 @@ class OnBoardingViewModel @ViewModelInject constructor(
 ) :
     BaseViewModel<OnBoardingNavigator>(dataManager, schedulerProvider) {
 
-    override fun onEvent(obj: Any) {
-        when(obj){
-            is LoginEvent->{
-                navigator?.finishActivity()
-            }
-        }
-    }
 
     val imageResource:ObservableField<Int> = ObservableField(0)
     val title = ObservableField(dataManager.boardingData[0].title)

@@ -24,4 +24,6 @@ class MoreFragment : BaseFragment<FragmentMoreBinding, MoreViewModel>(),
         super.onViewCreated(view, savedInstanceState)
         viewModel.navigator = this
     }
+
+
 }

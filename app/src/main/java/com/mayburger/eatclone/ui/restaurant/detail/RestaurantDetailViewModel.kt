@@ -16,9 +16,7 @@ class RestaurantDetailViewModel @ViewModelInject constructor(
 ) :
     BaseViewModel<RestaurantDetailNavigator>(dataManager, schedulerProvider) {
 
-    override fun onEvent(obj: Any) {
 
-    }
 
     val restaurant = ObservableField(RestaurantDataModel())
     val restaurants = liveData(Dispatchers.IO){

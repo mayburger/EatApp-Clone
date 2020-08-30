@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivityMainBinding
+import com.mayburger.eatclone.model.events.SelectRegionEvent
 import com.mayburger.eatclone.ui.base.BaseActivity
 import com.mayburger.eatclone.ui.main.explore.ExploreFragment
 import com.mayburger.eatclone.ui.main.more.MoreFragment
@@ -15,6 +17,7 @@ import com.mayburger.eatclone.ui.main.support.SupportFragment
 import com.mayburger.eatclone.ui.region.SelectRegionActivity
 import com.mayburger.eatclone.ui.search.SearchActivity
 import com.mayburger.eatclone.util.ActivityUtil
+import com.mayburger.eatclone.util.rx.LiveBus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -41,6 +44,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
         if (viewModel.dataManager.region.id == null) {
             SelectRegionActivity.startActivity(this)
         }
+        LiveBus.getDefault().observe(this, Observer {
+            viewModel.region.set(viewModel.dataManager.region)
+        })
         setUpNavigation()
     }
 
@@ -54,6 +60,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
 
     override fun onClickRegion() {
         SelectRegionActivity.startActivity(this)
+    }
+
+    override fun onEvent(obj: Any) {
+        when (obj) {
+            is SelectRegionEvent -> {
+                viewModel.region.set(viewModel.dataManager.region)
+            }
+        }
     }
 
     fun setUpNavigation() {

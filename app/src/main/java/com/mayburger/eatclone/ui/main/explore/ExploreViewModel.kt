@@ -17,21 +17,17 @@ class ExploreViewModel @ViewModelInject constructor(
 ) :
     BaseViewModel<ExploreNavigator>(dataManager, schedulerProvider) {
 
-    override fun onEvent(obj: Any) {
-
-    }
-
     val greetings = ObservableField("Hello ${dataManager.user.fullName}!")
 
-    private val _forceUpdate = MutableLiveData<Boolean>(false)
+    val forceUpdate = MutableLiveData<Boolean>(false)
 
     val onRefreshListener = SwipeRefreshLayout.OnRefreshListener {
-        _forceUpdate.value = true
+        forceUpdate.value = true
     }
 
     val isRefreshing = MutableLiveData<Boolean>(false)
 
-    val restaurants = _forceUpdate.switchMap {
+    val restaurants = forceUpdate.switchMap {
         liveData(IO) {
             try {
                 emit(dataManager.getRestaurants())
@@ -42,7 +38,7 @@ class ExploreViewModel @ViewModelInject constructor(
         }
     }
 
-    var meals = _forceUpdate.switchMap{
+    var meals = forceUpdate.switchMap {
         liveData(IO) {
             try {
                 emit(dataManager.getMeals())

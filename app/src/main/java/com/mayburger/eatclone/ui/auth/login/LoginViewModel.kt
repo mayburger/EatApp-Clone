@@ -15,10 +15,6 @@ class LoginViewModel @ViewModelInject constructor(
 ) :
     BaseViewModel<LoginNavigator>(dataManager, schedulerProvider) {
 
-    override fun onEvent(obj: Any) {
-
-    }
-
     val email = ObservableField("")
     val password = ObservableField("")
 

@@ -18,9 +18,7 @@ class ReserveViewModel @ViewModelInject constructor(
 ) :
     BaseViewModel<ReserveNavigator>(dataManager, schedulerProvider) {
 
-    override fun onEvent(obj: Any) {
 
-    }
 
     val restaurant = ObservableField(RestaurantDataModel())
 

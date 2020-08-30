@@ -11,7 +11,4 @@ class ReservationsPageViewModel @ViewModelInject constructor(
 ) :
     BaseViewModel<ReservationsPageNavigator>(dataManager, schedulerProvider) {
 
-    override fun onEvent(obj: Any) {
-
-    }
 }

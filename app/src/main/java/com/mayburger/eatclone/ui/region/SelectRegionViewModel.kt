@@ -16,9 +16,7 @@ class SelectRegionViewModel @ViewModelInject constructor(
 ) :
     BaseViewModel<SelectRegionNavigator>(dataManager, schedulerProvider) {
 
-    override fun onEvent(obj: Any) {
 
-    }
 
     val layoutManager = ObservableField(RecyclerConstants.VERTICAL_LAYOUT_MANAGER)
 

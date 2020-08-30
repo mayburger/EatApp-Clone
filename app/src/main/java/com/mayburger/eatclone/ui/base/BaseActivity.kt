@@ -11,10 +11,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseApp
 import com.google.firebase.ktx.Firebase
@@ -22,9 +22,10 @@ import com.google.firebase.ktx.initialize
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.util.ShakeDetector
 import com.mayburger.eatclone.util.ext.ViewUtils
+import com.mayburger.eatclone.util.rx.LiveBus
 
 
-abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(),
+abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : BaseEventActivity(),
     BaseFragment.Callback,
     BaseNavigator {
 
@@ -54,8 +55,13 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         performDataBinding()
         FirebaseApp.initializeApp(this)
         Firebase.initialize(this)
+        LiveBus.getDefault().observe(this, Observer {
+            onEvent(it)
+        })
     }
 
+    override fun onEvent(obj: Any) {
+    }
 
     fun initShakeToOpenRestaurant(runnable: Runnable) {
         val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager

@@ -26,11 +26,6 @@ class RegisterViewModel @ViewModelInject constructor(
 
     }
 
-    override fun onEvent(obj: Any) {
-
-    }
-
-
     fun onClickLogin() {
         navigator?.onClickLogin()
     }

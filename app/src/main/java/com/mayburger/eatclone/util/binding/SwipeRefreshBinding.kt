@@ -7,7 +7,7 @@ object SwipeRefreshBinding {
 
     @BindingAdapter("colorSchemeResources")
     @JvmStatic fun bindColorSchemeResources(layout: SwipeRefreshLayout, colors: IntArray?) {
-        colors?.let { layout.setColorSchemeColors(*it) }
+        colors?.let { layout.setColorSchemeColors(*colors)}
     }
 
     @BindingAdapter("onRefreshListener")

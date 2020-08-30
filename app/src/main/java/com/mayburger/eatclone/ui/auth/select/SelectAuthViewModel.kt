@@ -11,10 +11,6 @@ class SelectAuthViewModel @ViewModelInject constructor(
 ) :
     BaseViewModel<SelectAuthNavigator>(dataManager, schedulerProvider) {
 
-    override fun onEvent(obj: Any) {
-
-    }
-
     fun onClickLogin() {
         navigator?.onClickLogin()
     }

@@ -40,6 +40,8 @@ public class BaseApplication extends Application {
 //        );
 
 
+
+
         applicationContext = getApplicationContext();
         applicationHandler = new Handler(applicationContext.getMainLooper());
         //v2

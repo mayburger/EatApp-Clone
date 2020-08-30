@@ -8,12 +8,12 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.data.DataManager
-import com.mayburger.eatclone.model.events.RestaurantUpdateEvent
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.TagDataModel
+import com.mayburger.eatclone.model.events.RestaurantUpdateEvent
 import com.mayburger.eatclone.ui.base.BaseViewModel
 import com.mayburger.eatclone.util.ext.toStringJson
-import com.mayburger.eatclone.util.rx.RxBus
+import com.mayburger.eatclone.util.rx.LiveBus
 import com.mayburger.eatclone.util.rx.SchedulerProvider
 
 class CreateRestaurantViewModel @ViewModelInject constructor(
@@ -21,10 +21,6 @@ class CreateRestaurantViewModel @ViewModelInject constructor(
     schedulerProvider: SchedulerProvider
 ) :
     BaseViewModel<CreateRestaurantNavigator>(dataManager, schedulerProvider) {
-
-    override fun onEvent(obj: Any) {
-
-    }
 
     val id = ObservableField("")
     val name = ObservableField("")
@@ -88,7 +84,7 @@ class CreateRestaurantViewModel @ViewModelInject constructor(
             restaurantDataModel
         ).addOnCompleteListener { create ->
             if (create.isSuccessful) {
-                RxBus.getDefault().send(RestaurantUpdateEvent())
+                LiveBus.post(RestaurantUpdateEvent())
                 navigator?.hideLoading()
                 navigator?.finishActivity()
             }

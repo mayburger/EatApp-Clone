@@ -53,5 +53,4 @@ class AdminActivity : BaseActivity<ActivityAdminRestaurantBinding, AdminViewMode
     override fun onSelectedItem(restaurant: RestaurantDataModel) {
         CreateRestaurantActivity.startActivity(this,restaurant,true)
     }
-
 }
