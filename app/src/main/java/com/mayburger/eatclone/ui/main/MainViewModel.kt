@@ -2,6 +2,7 @@ package com.mayburger.eatclone.ui.main
 
 import androidx.databinding.ObservableField
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.MutableLiveData
 import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.model.events.SelectRegionEvent
 import com.mayburger.eatclone.ui.base.BaseViewModel
@@ -13,7 +14,7 @@ class MainViewModel @ViewModelInject constructor(
 ) :
     BaseViewModel<MainNavigator>(dataManager, schedulerProvider) {
 
-    val selectedBottomNav = ObservableField(0)
+    val selectedBottomNav = MutableLiveData(0)
     val selectedBottomNavTitle = ObservableField("Explore")
     val region = ObservableField(dataManager.region)
 
@@ -21,10 +22,18 @@ class MainViewModel @ViewModelInject constructor(
         navigator?.onClickSearch()
     }
 
+    fun onClickScan(){
+        navigator?.onClickScan()
+    }
+
     fun onClickRegion() {
-        if (selectedBottomNav.get() == 0) {
+        if (selectedBottomNav.value == 0) {
             navigator?.onClickRegion()
         }
+    }
+
+    fun onClickBottomNav(position: Int) {
+        selectedBottomNav.value = position
     }
 
     override fun onEvent(obj: Any) {

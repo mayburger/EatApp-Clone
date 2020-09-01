@@ -23,7 +23,6 @@
         android:clickable="true"
         android:clipToPadding="false"
         android:focusable="true"
-        android:onClick="@{()->viewModel.onClickItem()}"
         android:padding="2dp"
         tools:visibility="visible">
 

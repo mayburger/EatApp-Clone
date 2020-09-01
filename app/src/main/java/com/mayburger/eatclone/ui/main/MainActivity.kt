@@ -4,20 +4,21 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ActivityMainBinding
-import com.mayburger.eatclone.model.events.SelectRegionEvent
 import com.mayburger.eatclone.ui.base.BaseActivity
 import com.mayburger.eatclone.ui.main.explore.ExploreFragment
 import com.mayburger.eatclone.ui.main.more.MoreFragment
 import com.mayburger.eatclone.ui.main.reservations.ReservationsPageFragment
 import com.mayburger.eatclone.ui.main.support.SupportFragment
 import com.mayburger.eatclone.ui.region.SelectRegionActivity
+import com.mayburger.eatclone.ui.scan.ScanActivity
 import com.mayburger.eatclone.ui.search.SearchActivity
 import com.mayburger.eatclone.util.ActivityUtil
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 @AndroidEntryPoint
@@ -39,6 +40,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.navigator = this
+        viewDataBinding.lifecycleOwner = this
         if (viewModel.dataManager.region.id == null) {
             SelectRegionActivity.startActivity(this)
         }
@@ -47,6 +49,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
 
     override fun onBackPressed() {
         finish()
+    }
+
+    override fun onClickScan() {
+        ScanActivity.startActivity(this)
     }
 
     override fun onClickSearch() {
@@ -58,29 +64,34 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(),
     }
 
     fun setUpNavigation() {
-        ActivityUtil.loadFragment(R.id.container, supportFragmentManager, ExploreFragment())
-        nav.setOnNavigationItemSelectedListener {
-            viewModel.selectedBottomNavTitle.set(it.title.toString())
-            when(it.itemId){
-                R.id.explore->{
-                    viewModel.selectedBottomNav.set(0)
-                    ActivityUtil.loadFragment(R.id.container, supportFragmentManager, ExploreFragment())
+        viewModel.selectedBottomNav.observe(this, Observer {
+            when (it) {
+                0 -> {
+                    loadFragment(ExploreFragment())
+                    viewModel.selectedBottomNavTitle.set("Explore")
                 }
-                R.id.reservations->{
-                    viewModel.selectedBottomNav.set(1)
-                    ActivityUtil.loadFragment(R.id.container, supportFragmentManager, ReservationsPageFragment())
+                1 -> {
+                    loadFragment(ReservationsPageFragment())
+                    viewModel.selectedBottomNavTitle.set("Reservations")
                 }
-                R.id.support->{
-                    viewModel.selectedBottomNav.set(2)
-                    ActivityUtil.loadFragment(R.id.container, supportFragmentManager, SupportFragment())
+                2 -> {
+                    loadFragment(SupportFragment())
+                    viewModel.selectedBottomNavTitle.set("Support")
                 }
-                R.id.more->{
-                    viewModel.selectedBottomNav.set(3)
-                    ActivityUtil.loadFragment(R.id.container, supportFragmentManager, MoreFragment())
+                3 -> {
+                    loadFragment(MoreFragment())
+                    viewModel.selectedBottomNavTitle.set("More")
                 }
             }
-            true
-        }
+        })
+    }
+
+    fun loadFragment(fragment: Fragment) {
+        ActivityUtil.loadFragment(
+            R.id.container,
+            supportFragmentManager,
+            fragment
+        )
     }
 
 }

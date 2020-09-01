@@ -55,6 +55,15 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
         }
     }
 
+    override suspend fun getRestaurant(id: String): RestaurantDataModel? {
+        return try {
+            Firebase.firestore.collection(FirebaseConstants.RESTAURANTS).document(id).get().await()
+                .toObject<RestaurantDataModel>()
+        } catch (e: java.lang.Exception) {
+            throw e
+        }
+    }
+
     override suspend fun signIn(email: String, password: String): AuthResult {
         return try {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password).await()

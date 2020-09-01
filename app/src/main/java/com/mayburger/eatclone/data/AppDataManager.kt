@@ -54,6 +54,10 @@ class AppDataManager @Inject constructor(private val mContext: Context,
         return dates
     }
 
+    override suspend fun getRestaurant(id: String): RestaurantDataModel? {
+        return mFirebaseHelper.getRestaurant(id)
+    }
+
     override var isLoggedIn: Boolean
         get() = mHawkHelper.isLoggedIn
         set(value) {

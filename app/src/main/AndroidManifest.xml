@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.mayburger.eatclone">
 
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:name=".ui.base.BaseApplication"
         android:allowBackup="true"
@@ -10,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.scan.ScanActivity"
+            android:theme="@style/AppFullScreen"/>
         <activity android:name=".ui.restaurant.RestaurantActivity" />
         <activity android:name=".ui.admin.create.CreateRestaurantActivity" />
         <activity android:name=".ui.admin.AdminActivity" />

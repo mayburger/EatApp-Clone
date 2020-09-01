@@ -8,6 +8,9 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
+    <style name="AppFullScreen" parent="AppTheme">
+    </style>
+
     <declare-styleable name="TextFont">
         <attr name="typeface" />
     </declare-styleable>

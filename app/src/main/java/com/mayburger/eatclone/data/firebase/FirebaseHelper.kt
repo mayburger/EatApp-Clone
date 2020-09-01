@@ -19,13 +19,14 @@ interface FirebaseHelper {
 
     fun createRestaurant(restaurantDataModel: RestaurantDataModel):Task<DocumentReference>
 
-//    fun createReservation()
 
     suspend fun signIn(email:String, password:String):AuthResult
 
     fun updateRestaurant(restaurantDataModel: RestaurantDataModel):Task<Void>
 
     suspend fun getRestaurants():ArrayList<ItemRestaurantViewModel>?
+
+    suspend fun getRestaurant(id:String):RestaurantDataModel?
 
     suspend fun getMeals():ArrayList<ItemMealViewModel>?
 

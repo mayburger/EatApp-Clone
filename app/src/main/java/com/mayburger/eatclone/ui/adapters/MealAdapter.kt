@@ -95,12 +95,7 @@ class MealAdapter : RecyclerView.Adapter<BaseViewHolder>() {
         override fun onBind(position: Int) {
             if (data.isNotEmpty()) {
                 val viewModel = data[position]
-                viewModel.navigator = object:
-                    ItemMealViewModel.Callback {
-                    override fun onClickItem() {
-                        mListener?.onSelectedItem(data[position].data)
-                    }
-                }
+                mBinding.root.setOnClickListener { mListener?.onSelectedItem(data[position].data) }
                 mBinding.viewModel = viewModel
             }
         }

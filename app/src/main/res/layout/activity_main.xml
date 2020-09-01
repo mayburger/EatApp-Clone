@@ -47,19 +47,19 @@
                         android:id="@+id/region"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        tools:visibility="gone"
                         android:onClick="@{()->viewModel.onClickRegion()}"
                         android:orientation="horizontal"
                         android:visibility="@{viewModel.selectedBottomNav != 0 ? View.GONE : View.VISIBLE}"
                         app:layout_constraintLeft_toLeftOf="@id/apptitle"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="gone">
 
                         <com.mayburger.eatclone.util.textfont.TextFont
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="Dubai"
                             android:text="@{viewModel.region.name}"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            tools:text="Dubai" />
 
                         <ImageView
                             android:layout_width="16dp"
@@ -72,9 +72,9 @@
                     <com.mayburger.eatclone.util.textfont.TextFont
                         android:id="@+id/apptitle"
                         android:layout_width="wrap_content"
-                        android:onClick="@{()->viewModel.onClickRegion()}"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:onClick="@{()->viewModel.onClickRegion()}"
                         android:text="@{viewModel.selectedBottomNavTitle}"
                         android:textColor="@color/colorBlack"
                         android:textSize="20sp"
@@ -84,15 +84,15 @@
                         tools:text="Reservations" />
 
                     <RelativeLayout
-                        android:layout_width="32dp"
                         android:id="@+id/profile"
+                        android:layout_width="32dp"
                         android:layout_height="32dp"
-                        android:visibility="@{viewModel.selectedBottomNav == 0 ? View.VISIBLE : View.INVISIBLE}"
                         android:layout_marginEnd="16dp"
-                        tools:visibility="gone"
                         android:background="@drawable/circle_primary"
+                        android:visibility="@{viewModel.selectedBottomNav == 0 ? View.VISIBLE : View.INVISIBLE}"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/region">
+                        app:layout_constraintTop_toTopOf="@id/region"
+                        tools:visibility="gone">
 
                         <com.mayburger.eatclone.util.textfont.TextFont
                             nameAbbreviation="@{viewModel.dataManager.user.fullName}"
@@ -109,7 +109,6 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        tools:visibility="gone"
                         android:layout_marginBottom="16dp"
                         android:layout_weight="1"
                         android:background="@drawable/shp_grey_8dp"
@@ -123,7 +122,8 @@
                         android:visibility="@{viewModel.selectedBottomNav == 0 ? View.VISIBLE : View.GONE}"
                         app:layout_constraintLeft_toLeftOf="@id/apptitle"
                         app:layout_constraintRight_toRightOf="@id/profile"
-                        app:layout_constraintTop_toBottomOf="@id/apptitle" />
+                        app:layout_constraintTop_toBottomOf="@id/apptitle"
+                        tools:visibility="gone" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -134,20 +134,160 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@id/nav"
             android:layout_below="@id/toolbar"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_above="@id/nav"
+            android:alpha="0.5"
+            android:background="@drawable/shadow_reverse" />
+
+        <LinearLayout
             android:id="@+id/nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
             android:background="@color/colorWhite"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_main_nav" />
+            android:orientation="horizontal"
+            app:menu="@menu/bottom_main_nav">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{()->viewModel.onClickBottomNav(0)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:padding="4dp"
+                    android:src="@{viewModel.selectedBottomNav == 0 ? @drawable/ic_search_primary : @drawable/ic_search_grey}"
+                    tools:src="@drawable/ic_search_grey" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:text="Explore"
+                    android:textAlignment="center"
+                    android:textColor="@{viewModel.selectedBottomNav == 0 ? @color/colorPrimary : @color/colorDecorGreyDark}"
+                    android:textSize="12sp"
+                    app:autoSizeMinTextSize="10sp"
+                    tools:textColor="@color/colorDecorGreyDark" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{()->viewModel.onClickBottomNav(1)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:padding="4dp"
+                    android:src="@{viewModel.selectedBottomNav == 1 ? @drawable/ic_reservations_primary : @drawable/ic_reservations_grey}"
+                    tools:src="@drawable/ic_reservations_grey" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:ellipsize="end"
+                    android:text="Reservations"
+                    android:textColor="@{viewModel.selectedBottomNav == 1 ? @color/colorPrimary : @color/colorDecorGreyDark}"
+                    android:textSize="12sp"
+                    app:autoSizeMinTextSize="10sp"
+                    tools:textColor="@color/colorDecorGreyDark" />
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{()->viewModel.onClickBottomNav(2)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:padding="4dp"
+                    android:src="@{viewModel.selectedBottomNav == 2 ? @drawable/ic_support_primary : @drawable/ic_support_grey}"
+                    tools:src="@drawable/ic_support_grey" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:text="Support"
+                    android:textAlignment="center"
+                    android:textColor="@{viewModel.selectedBottomNav == 2 ? @color/colorPrimary : @color/colorDecorGreyDark}"
+                    android:textSize="12sp"
+                    app:autoSizeMinTextSize="10sp"
+                    tools:textColor="@color/colorDecorGreyDark" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="@{()->viewModel.onClickBottomNav(3)}"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:padding="4dp"
+                    android:src="@{viewModel.selectedBottomNav == 3 ? @drawable/ic_more_primary : @drawable/ic_more_grey}"
+                    tools:src="@drawable/ic_more_grey" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:text="More"
+                    android:textAlignment="center"
+                    android:textColor="@{viewModel.selectedBottomNav == 3 ? @color/colorPrimary : @color/colorDecorGreyDark}"
+                    android:textSize="12sp"
+                    app:autoSizeMinTextSize="10sp"
+                    tools:textColor="@color/colorDecorGreyDark" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/circle_primary"
+            android:onClick="@{()->viewModel.onClickScan()}"
+            android:padding="16dp"
+            android:src="@drawable/ic_scanner_white" />
 
     </RelativeLayout>
 
 </layout>
+
+
