@@ -3,16 +3,16 @@ package com.mayburger.eatclone.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mayburger.eatclone.databinding.ItemMealBinding
-import com.mayburger.eatclone.databinding.ItemMealEmptyBinding
-import com.mayburger.eatclone.model.MealDataModel
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMealViewModel
+import com.mayburger.eatclone.databinding.ItemCategoryBinding
+import com.mayburger.eatclone.databinding.ItemCategoryEmptyBinding
+import com.mayburger.eatclone.model.CategoryDataModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemCategoryViewModel
 import com.mayburger.eatclone.ui.base.BaseViewHolder
 
 
-class MealAdapter : RecyclerView.Adapter<BaseViewHolder>() {
+class CategoryAdapter : RecyclerView.Adapter<BaseViewHolder>() {
 
-    private val data: MutableList<ItemMealViewModel>
+    private val data: MutableList<ItemCategoryViewModel>
     private var mListener: Callback? = null
 
     init {
@@ -47,25 +47,25 @@ class MealAdapter : RecyclerView.Adapter<BaseViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return when (viewType) {
             VIEW_TYPE_NORMAL -> {
-                val viewBinding = ItemMealBinding
+                val viewBinding = ItemCategoryBinding
                     .inflate(LayoutInflater.from(parent.context), parent, false)
-                MealViewHolder(viewBinding)
+                CategoryViewHolder(viewBinding)
             }
             VIEW_TYPE_EMPTY -> {
-                val viewBinding = ItemMealEmptyBinding
+                val viewBinding = ItemCategoryEmptyBinding
                     .inflate(LayoutInflater.from(parent.context), parent, false)
-                MealEmptyViewHolder(viewBinding)
+                CategoryEmptyViewHolder(viewBinding)
             }
             else -> {
-                val viewBinding = ItemMealBinding
+                val viewBinding = ItemCategoryBinding
                     .inflate(LayoutInflater.from(parent.context), parent, false)
-                MealViewHolder(viewBinding)
+                CategoryViewHolder(viewBinding)
             }
         }
     }
 
 
-    fun addItems(data: ArrayList<ItemMealViewModel>) {
+    fun addItems(data: ArrayList<ItemCategoryViewModel>) {
         this.data.addAll(data)
         notifyDataSetChanged()
     }
@@ -80,16 +80,16 @@ class MealAdapter : RecyclerView.Adapter<BaseViewHolder>() {
     }
 
     interface Callback {
-        fun onSelectedItem(restaurant: MealDataModel)
+        fun onSelectedItem(restaurant: CategoryDataModel)
     }
 
-    inner class MealEmptyViewHolder(private val mBinding: ItemMealEmptyBinding) :
+    inner class CategoryEmptyViewHolder(private val mBinding: ItemCategoryEmptyBinding) :
         BaseViewHolder(mBinding.root) {
         override fun onBind(position: Int) {
         }
     }
 
-    inner class MealViewHolder(private val mBinding: ItemMealBinding) :
+    inner class CategoryViewHolder(private val mBinding: ItemCategoryBinding) :
         BaseViewHolder(mBinding.root) {
 
         override fun onBind(position: Int) {

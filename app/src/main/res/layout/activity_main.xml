@@ -134,6 +134,7 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@id/nav"
             android:layout_below="@id/toolbar"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
@@ -282,7 +283,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="24dp"
             android:background="@drawable/circle_primary"
-            android:onClick="@{()->viewModel.onClickScan()}"
+            app:onSingleClick="@{()->viewModel.onClickScan()}"
             android:padding="16dp"
             android:src="@drawable/ic_scanner_white" />
 

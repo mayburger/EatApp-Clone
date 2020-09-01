@@ -1,0 +1,37 @@
+[
+  {
+    "id": "",
+    "name": "Chicken Biryani",
+    "currency": "AED",
+    "price": 14,
+    "image": "https://images.unsplash.com/photo-1552590635-27c2c2128abf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+  },
+  {
+    "id": "",
+    "name": "Chicken Naan Bread",
+    "currency": "AED",
+    "price": 8,
+    "image": "https://thenoshery.com/wp-content/uploads/2018/03/Tandoori-Chicken-Flatbread.jpg"
+  },
+  {
+    "id": "",
+    "name": "Garlic Naan Bread",
+    "currency": "AED",
+    "price": 5,
+    "image": "https://zestfulkitchen.com/wp-content/uploads/2020/01/garlic-naan-cover_for-web.jpg"
+  },
+  {
+    "id": "",
+    "name": "Chicken Shawarma",
+    "currency": "AED",
+    "price": 8,
+    "image": "https://www.recipetineats.com/wp-content/uploads/2014/12/Chicken-Shawarma_5.jpg"
+  },
+  {
+    "id": "",
+    "name": "Beef Shawarma",
+    "currency": "AED",
+    "price": 10,
+    "image": "https://littlespicejar.com/wp-content/uploads/2017/04/Restaurant-Style-Beef-Shawarma-Pressure-Cooker-4-480x480.jpg"
+  }
+]

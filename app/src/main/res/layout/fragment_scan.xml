@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.scan.fragment.ScanFragmentViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.3"
+            android:background="@color/colorBlack" />
+
+        <RelativeLayout
+            android:id="@+id/scanhere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:animateLayoutChanges="true">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@drawable/qrframe"
+                android:visibility="@{viewModel.isQrShowing() ? View.VISIBLE : View.GONE}" />
+
+            <com.mayburger.eatclone.util.textfont.TextFont
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Scan QR Code"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp"
+                android:visibility="@{viewModel.isQrShowing() ? View.VISIBLE : View.GONE}" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="24dp"
+            android:onClick="@{()->viewModel.onClickBack()}"
+            android:padding="4dp"
+            android:src="@drawable/ic_back_white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextureView
+            android:id="@+id/texture_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->viewModel.onClickRestaurant()}"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="24dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/ripple_white_8dp"
+                android:elevation="1dp"
+                android:padding="8dp"
+                android:visibility="@{viewModel.isShowing() ? View.VISIBLE : View.GONE}">
+
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{viewModel.showLoading ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="gone" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/error_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.errorTitle}"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="18sp"
+                    android:visibility="@{viewModel.errorTitle.equals(``) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Invalid QR"
+                    tools:visibility="gone" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.errorMessage}"
+                    android:textColor="@color/colorTextGrey"
+                    android:visibility="@{viewModel.errorMessage.equals(``) ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/error_title"
+                    tools:text="Invalid QR code! Please try another one"
+                    tools:visibility="gone" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:visibility="@{viewModel.isLoaded() ? View.VISIBLE : View.GONE}"
+                    app:cardCornerRadius="4dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{viewModel.data.image}" />
+                </androidx.cardview.widget.CardView>
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:text="@{viewModel.data.name}"
+                    android:textColor="@color/colorBlack"
+                    android:visibility="@{viewModel.isLoaded() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintLeft_toRightOf="@id/image"
+                    app:layout_constraintRight_toLeftOf="@id/chevron"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:typeface="bold"
+                    tools:text="Zaytinya Restaurant"
+                    tools:visibility="visible" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.data.address}"
+                    android:textColor="@color/colorTextGrey"
+                    android:textSize="10sp"
+                    android:visibility="@{viewModel.isLoaded() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintLeft_toLeftOf="@id/name"
+                    app:layout_constraintRight_toLeftOf="@id/chevron"
+                    app:layout_constraintTop_toBottomOf="@id/name"
+                    tools:text="Jumeirah Lake Towers,  Arab "
+                    tools:visibility="visible" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/cuisine"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/stroke_grey_dark_8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="@{viewModel.data.cuisine}"
+                    android:textColor="@color/colorTextGrey"
+                    android:textSize="10sp"
+                    android:visibility="@{viewModel.isLoaded() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/name"
+                    tools:text="Lebanese"
+                    tools:visibility="visible" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/distance"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/stroke_grey_dark_8dp"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="@{viewModel.data.distance}"
+                    android:textColor="@color/colorTextGrey"
+                    android:textSize="10sp"
+                    android:visibility="@{viewModel.isLoaded() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/cuisine"
+                    tools:text="24 kilometers"
+                    tools:visibility="visible" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/price"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/circle_primary"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="4dp"
+                    android:text="@{viewModel.data.price}"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="10sp"
+                    android:visibility="@{viewModel.isLoaded() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/distance"
+                    tools:text="$"
+                    tools:visibility="visible" />
+
+                <ImageView
+                    android:id="@+id/chevron"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_chevron_right_grey"
+                    android:visibility="@{viewModel.isLoaded() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

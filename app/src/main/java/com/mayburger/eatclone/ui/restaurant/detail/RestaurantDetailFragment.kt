@@ -29,7 +29,7 @@ import kotlin.math.abs
 @AndroidEntryPoint
 class RestaurantDetailFragment :
     BaseFragment<FragmentRestaurantDetailBinding, RestaurantDetailViewModel>(),
-    RestaurantDetailNavigator,RestaurantAdapter.Callback{
+    RestaurantDetailNavigator, RestaurantAdapter.Callback {
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -38,7 +38,7 @@ class RestaurantDetailFragment :
     override val viewModel: RestaurantDetailViewModel by viewModels()
 
     @Inject
-    lateinit var restaurantAdapter:RestaurantAdapter
+    lateinit var restaurantAdapter: RestaurantAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,10 +55,10 @@ class RestaurantDetailFragment :
         viewModel.buildVisibility()
         viewModel.navigator = this
         notes.text = viewModel.restaurant.get()?.notes
-        notes.setReadMore(rootNotes,viewModel.showReadMore,viewModel.notesMaxLine)
+        notes.setReadMore(rootNotes, viewModel.showReadMore, viewModel.notesMaxLine)
     }
 
-    fun buildOthers(){
+    fun buildOthers() {
         rvOthers.adapter = restaurantAdapter
         restaurantAdapter.setListener(this)
         restaurantAdapter.asImage()
@@ -117,7 +117,6 @@ class RestaurantDetailFragment :
         alphaAnimation.fillAfter = true
         v.startAnimation(alphaAnimation)
     }
-
 
 
     private fun buildHours() {

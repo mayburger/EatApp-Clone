@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.mayburger.eatclone.ui.adapters.viewmodels.ItemMealViewModel" />
+            type="com.mayburger.eatclone.ui.adapters.viewmodels.ItemCategoryViewModel" />
 
     </data>
 
@@ -36,9 +36,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ripple_white_8dp"
-                android:elevation="2dp"
-                android:paddingBottom="4dp">
+                android:background="@drawable/ripple_white_8dp">
+
 
                 <ImageView
                     android:id="@+id/image"
@@ -46,20 +45,24 @@
                     android:layout_height="120dp"
                     android:background="@color/colorDecorGrey"
                     android:scaleType="centerCrop"
+                    android:transitionName="restaurantName"
+                    app:imageUrl="@{viewModel.data.image}"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:layout_width="80dp"
-                    android:layout_height="10dp"
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="4dp"
-                    android:background="@drawable/circle_grey"
                     android:paddingBottom="8dp"
+                    android:text="@{viewModel.data.name}"
                     android:textColor="@color/colorBlack"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/image"
-                    app:typeface="bold" />
+                    app:typeface="bold"
+                    tools:text="Breakfast" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

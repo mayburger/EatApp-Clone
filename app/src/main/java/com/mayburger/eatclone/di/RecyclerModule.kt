@@ -3,10 +3,11 @@ package com.mayburger.eatclone.di
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mayburger.eatclone.ui.adapters.MealAdapter
+import com.mayburger.eatclone.ui.adapters.CategoryAdapter
 import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
 import com.mayburger.eatclone.ui.onboarding.OnBoardingAdapter
 import com.mayburger.eatclone.ui.region.SelectRegionAdapter
+import com.mayburger.eatclone.ui.adapters.MenuAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,8 +36,12 @@ object RecyclerModule {
     }
 
     @Provides
-    internal fun provideMealAdapter():MealAdapter{
-        return MealAdapter()
+    internal fun provideCategoryAdapter():CategoryAdapter{
+        return CategoryAdapter()
+    }
+    @Provides
+    internal fun provideMenuAdapter(): MenuAdapter {
+        return MenuAdapter()
     }
 //
 //    @Provides

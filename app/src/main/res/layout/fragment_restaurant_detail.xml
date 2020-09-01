@@ -159,7 +159,7 @@
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintTop_toTopOf="parent"
-                                android:onClick="@{()->viewModel.navigator.finishActivity()}"
+                                android:onClick="@{()->viewModel.onClickBack()}"
                                 tools:src="@drawable/ic_back_white" />
 
 
@@ -367,6 +367,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
                             app:tags="@{viewModel.restaurant.tags}"
+                            android:animateLayoutChanges="true"
                             app:alignContent="stretch"
                             app:alignItems="stretch"
                             app:flexWrap="wrap" />

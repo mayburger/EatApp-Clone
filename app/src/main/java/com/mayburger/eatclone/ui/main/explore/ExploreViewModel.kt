@@ -32,6 +32,7 @@ class ExploreViewModel @ViewModelInject constructor(
         liveData(IO) {
             try {
                 emit(dataManager.getRestaurants())
+
             } catch (e: Exception) {
                 navigator?.onError(e.message)
             }
@@ -39,10 +40,10 @@ class ExploreViewModel @ViewModelInject constructor(
         }
     }
 
-    var meals = _forceUpdate.switchMap {
+    var categories = _forceUpdate.switchMap {
         liveData(IO) {
             try {
-                emit(dataManager.getMeals())
+                emit(dataManager.getCategories())
             } catch (e: Exception) {
                 navigator?.onError(e.message)
             }

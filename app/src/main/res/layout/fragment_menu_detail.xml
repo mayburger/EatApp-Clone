@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.menu.detail.MenuDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:orientation="vertical"
+        android:paddingBottom="32dp">
+
+        <FrameLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include layout="@layout/bottom_sheet_header" />
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toBottomOf="@id/header">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{viewModel.menu.image}" />
+        </androidx.cardview.widget.CardView>
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{viewModel.menu.name}"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/price"
+            app:layout_constraintTop_toBottomOf="@id/image"
+            app:typeface="bold"
+            tools:text="Chicken Biryani" />
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:text="@{viewModel.price}"
+            android:textColor="@color/colorTextGrey"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/name"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/name"
+            tools:text="30 AED" />
+
+        <com.mayburger.eatclone.util.textfont.TextFont
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/shp_primary_8dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:text="Add to cart"
+            android:textAlignment="center"
+            android:onClick="@{()->viewModel.onClickAdd()}"
+            android:textColor="@color/text_button_color_white"
+            tools:visibility="gone"
+            android:textSize="18sp"
+            android:visibility="@{viewModel.quantity > 0 ? View.GONE : View.VISIBLE}"
+            app:layout_constraintLeft_toLeftOf="@id/name"
+            app:layout_constraintRight_toRightOf="@id/price"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:typeface="bold" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

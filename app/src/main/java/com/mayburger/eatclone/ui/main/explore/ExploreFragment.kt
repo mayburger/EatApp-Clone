@@ -6,9 +6,9 @@ import androidx.fragment.app.viewModels
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.FragmentExploreBinding
-import com.mayburger.eatclone.model.MealDataModel
+import com.mayburger.eatclone.model.CategoryDataModel
 import com.mayburger.eatclone.model.RestaurantDataModel
-import com.mayburger.eatclone.ui.adapters.MealAdapter
+import com.mayburger.eatclone.ui.adapters.CategoryAdapter
 import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
 import com.mayburger.eatclone.ui.base.BaseFragment
 import com.mayburger.eatclone.ui.restaurant.RestaurantActivity
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreViewModel>(),
-    ExploreNavigator, MealAdapter.Callback, RestaurantAdapter.Callback {
+    ExploreNavigator, CategoryAdapter.Callback, RestaurantAdapter.Callback {
 
     override val bindingVariable: Int
         get() = BR.viewModel
@@ -34,20 +34,20 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreViewModel>()
     lateinit var collectionAdapter: RestaurantAdapter
 
     @Inject
-    lateinit var mealsAdapter: MealAdapter
+    lateinit var categoriesAdapter: CategoryAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.navigator = this
         viewDataBinding?.lifecycleOwner = viewLifecycleOwner
         initSort()
-        initMeals()
+        initCategories()
         initCollection()
     }
 
-    fun initMeals() {
-        rvMeal.adapter = mealsAdapter
-        mealsAdapter.setListener(this)
+    fun initCategories() {
+        rvCategories.adapter = categoriesAdapter
+        categoriesAdapter.setListener(this)
     }
 
     fun initSort() {
@@ -70,7 +70,7 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreViewModel>()
         activity?.let { RestaurantActivity.startActivity(it, restaurant) }
     }
 
-    override fun onSelectedItem(restaurant: MealDataModel) {
+    override fun onSelectedItem(restaurant: CategoryDataModel) {
 
     }
 

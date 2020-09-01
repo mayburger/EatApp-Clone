@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_scan"
+    app:startDestination="@id/main">
+
+    <fragment
+        android:id="@+id/main"
+        android:name="com.mayburger.eatclone.ui.scan.fragment.ScanFragment"
+        android:label="ScanMainFragment" >
+        <action
+            android:id="@+id/action_main_to_menu"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/main"
+            app:destination="@id/menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/menu"
+        android:name="com.mayburger.eatclone.ui.menu.main.MenuFragment"
+        android:label="ScanMenuFragment" />
+</navigation>

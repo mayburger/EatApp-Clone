@@ -2,18 +2,22 @@ package com.mayburger.eatclone.util.binding
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ItemTagsBinding
 import com.mayburger.eatclone.model.TagDataModel
-import com.mayburger.eatclone.ui.adapters.MealAdapter
+import com.mayburger.eatclone.ui.adapters.CategoryAdapter
 import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMealViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemCategoryViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemTagViewModel
 import com.mayburger.eatclone.ui.region.ItemRegionViewModel
 import com.mayburger.eatclone.ui.region.SelectRegionAdapter
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel
+import com.mayburger.eatclone.ui.adapters.MenuAdapter
 
 object AdapterBinding {
 
@@ -65,19 +69,41 @@ object AdapterBinding {
         }
     }
 
-    @BindingAdapter("mealAdapter")
+    @BindingAdapter("categoryAdapter")
     @JvmStatic
-    fun addMealItems(
+    fun addCategoryItems(
         recyclerView: RecyclerView,
-        items: LiveData<ArrayList<ItemMealViewModel>>
+        items: LiveData<ArrayList<ItemCategoryViewModel>>
     ) {
-        val adapter = recyclerView.adapter as MealAdapter?
+        val adapter = recyclerView.adapter as CategoryAdapter?
         if (adapter != null) {
             adapter.clearItems()
             items.value?.let {
                 adapter.clearItems()
                 adapter.addItems(it)
             }
+
+        }
+    }
+
+    @BindingAdapter("menuAdapter")
+    @JvmStatic
+    fun addMenuitems(
+        recyclerView: RecyclerView,
+        items: LiveData<ArrayList<ItemMenuViewModel>>
+    ) {
+        val adapter = recyclerView.adapter as MenuAdapter?
+        if (adapter != null) {
+            adapter.clearItems()
+            items.value?.let {
+                adapter.clearItems()
+                adapter.addItems(it)
+            }
+            val context = recyclerView.context;
+            val controller =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+            recyclerView.layoutAnimation = controller;
+            recyclerView.scheduleLayoutAnimation()
 
         }
     }

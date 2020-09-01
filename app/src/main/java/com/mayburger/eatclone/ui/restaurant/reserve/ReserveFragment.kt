@@ -29,10 +29,6 @@ class ReserveFragment : BaseFragment<FragmentReserveBinding, ReserveViewModel>()
     companion object {
         const val ARG_RESTAURANT = "arg_restaurant"
 
-        fun getInstance(restaurant: RestaurantDataModel) = ReserveFragment().apply {
-            arguments = bundleOf(ARG_RESTAURANT to restaurant)
-        }
-
         fun getBundle(restaurant:RestaurantDataModel):Bundle{
             return bundleOf(ARG_RESTAURANT to restaurant)
         }

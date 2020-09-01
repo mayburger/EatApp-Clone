@@ -1,15 +1,20 @@
 package com.mayburger.eatclone.ui.base
 
+import android.app.Dialog
 import android.content.ContentResolver
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
 
 abstract class BaseBSDFragment<T : ViewDataBinding, V : BaseViewModel<*>> :
     BottomSheetDialogFragment(),BaseNavigatorFragment{
@@ -78,6 +83,20 @@ abstract class BaseBSDFragment<T : ViewDataBinding, V : BaseViewModel<*>> :
 
     override fun showSnackBar(message: String) {
         baseActivity?.showSnackBar(message)
+    }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog =
+            super.onCreateDialog(savedInstanceState)
+
+        dialog.setOnShowListener { dialog ->
+            val d = dialog as BottomSheetDialog
+            val bottomSheet =
+                d.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout?
+            BottomSheetBehavior.from<FrameLayout?>(bottomSheet!!).state =
+                BottomSheetBehavior.STATE_EXPANDED
+        }
+        return dialog
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

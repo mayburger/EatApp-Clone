@@ -14,9 +14,10 @@ import com.mayburger.eatclone.model.OnBoardingModel
 import com.mayburger.eatclone.model.RegionDataModel
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.UserDataModel
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMealViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemCategoryViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
 import com.mayburger.eatclone.ui.region.ItemRegionViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel
 import java.io.*
 import java.util.*
 import javax.inject.Inject
@@ -40,6 +41,10 @@ class AppDataManager @Inject constructor(private val mContext: Context,
             calendar.add(Calendar.DATE,1)
         }
         return dates
+    }
+
+    override suspend fun getMenus(restaurantId: String?): ArrayList<ItemMenuViewModel>? {
+        return mFirebaseHelper.getMenus(restaurantId)
     }
 
     override fun getAvailableTimes(): ArrayList<Date> {
@@ -88,8 +93,8 @@ class AppDataManager @Inject constructor(private val mContext: Context,
         return mFirebaseHelper.getRestaurants()
     }
 
-    override suspend fun getMeals(): ArrayList<ItemMealViewModel>? {
-        return mFirebaseHelper.getMeals()
+    override suspend fun getCategories(): ArrayList<ItemCategoryViewModel>? {
+        return mFirebaseHelper.getCategories()
     }
 
     override suspend fun getRegions(): ArrayList<ItemRegionViewModel>? {

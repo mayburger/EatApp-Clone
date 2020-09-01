@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.graphics.Color" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/menuRoot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:animateLayoutChanges="true"
+            android:background="@drawable/ripple_white_8dp"
+            android:elevation="1dp"
+            android:padding="8dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/image"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:cardCornerRadius="4dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{viewModel.data.image}" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/image"
+                app:layout_constraintRight_toLeftOf="@id/order"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.data.name}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="16sp"
+                    app:typeface="bold"
+                    tools:text="Chicken Biryani" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.price}"
+                    android:textColor="@color/colorTextGrey"
+                    android:textSize="12sp"
+                    tools:text="5 AED" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:background="@{viewModel.quantity > 0?@drawable/shp_white_8dp:@drawable/shp_primary_8dp}"
+                android:elevation="1dp"
+                android:gravity="center_vertical"
+                android:onClick="@{()->viewModel.onClickOrder()}"
+                android:orientation="horizontal"
+                android:paddingStart="4dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@drawable/shp_primary_8dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_remove_primary"
+                    android:onClick="@{()->viewModel.onClickRemove()}"
+                    android:visibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    tools:text="1"
+                    android:text="@{viewModel.quantity.toString()}"
+                    android:textColor="@color/colorBlack"
+                    android:visibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}"
+                    app:typeface="bold" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="8dp"
+                    android:onClick="@{()->viewModel.onClickAdd()}"
+                    android:src="@drawable/ic_add_primary"
+                    android:visibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_add_white"
+                    android:visibility="@{viewModel.quantity > 0?View.GONE : View.VISIBLE}"
+                    tools:src="@drawable/ic_add_white"
+                    tools:visibility="gone" />
+
+                <com.mayburger.eatclone.util.textfont.TextFont
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/colorWhite"
+                    android:text="Order"
+                    android:visibility="@{viewModel.quantity > 0?View.GONE : View.VISIBLE}"
+                    tools:text="Order"
+                    tools:visibility="gone" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>
