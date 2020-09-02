@@ -62,6 +62,10 @@ class ExploreFragment : BaseFragment<FragmentExploreBinding, ExploreViewModel>()
         collectionAdapter.asCollection()
     }
 
+    override fun onClickSeeAll(){
+        RestaurantActivity.startActivity(requireActivity())
+    }
+
     override fun onClickSearch() {
         activity?.let { SearchActivity.startActivity(it) }
     }

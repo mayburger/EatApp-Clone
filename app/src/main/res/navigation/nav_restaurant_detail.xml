@@ -16,6 +16,6 @@
     </fragment>
     <fragment
         android:id="@+id/reserveFragment"
-        android:name="com.mayburger.eatclone.ui.restaurant.reserve.ReserveFragment"
+        android:name="com.mayburger.eatclone.ui.reserve.ReserveFragment"
         android:label="ReserveFragment" />
 </navigation>

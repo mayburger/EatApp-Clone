@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.mayburger.eatclone.ui.restaurant.reserve.ReserveViewModel" />
+            type="com.mayburger.eatclone.ui.reserve.ReserveViewModel" />
 
         <import type="com.mayburger.eatclone.util.constants.RecyclerConstants" />
     </data>

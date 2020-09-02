@@ -85,6 +85,10 @@ class RestaurantAdapter : RecyclerView.Adapter<BaseViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun isAsList():Boolean{
+        return this.viewType == VIEW_TYPE_LIST
+    }
+
     fun asCollection(){
         this.viewType = VIEW_TYPE_COLLECTION
         notifyDataSetChanged()
@@ -127,10 +131,15 @@ class RestaurantAdapter : RecyclerView.Adapter<BaseViewHolder>() {
                     .inflate(LayoutInflater.from(parent.context), parent, false)
                 ImageEmptyViewHolder(viewBinding)
             }
-            else -> {
+            VIEW_TYPE_LIST->{
                 val viewBinding = ItemRestaurantListBinding
                     .inflate(LayoutInflater.from(parent.context), parent, false)
                 ListViewHolder(viewBinding)
+            }
+            else -> {
+                val viewBinding = ItemRestaurantListEmptyBinding
+                    .inflate(LayoutInflater.from(parent.context), parent, false)
+                ListEmptyViewHolder(viewBinding)
             }
         }
     }
@@ -226,6 +235,12 @@ class RestaurantAdapter : RecyclerView.Adapter<BaseViewHolder>() {
     inner class CollectionEmptyViewHolder(private val mBinding: ItemRestaurantCollectionEmptyBinding) :
         BaseViewHolder(mBinding.root) {
 
+        override fun onBind(position: Int) {
+        }
+    }
+
+    inner class ListEmptyViewHolder(private val mBinding: ItemRestaurantListEmptyBinding) :
+        BaseViewHolder(mBinding.root) {
         override fun onBind(position: Int) {
         }
     }

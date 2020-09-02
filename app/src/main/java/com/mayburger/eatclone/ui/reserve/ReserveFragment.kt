@@ -1,4 +1,4 @@
-package com.mayburger.eatclone.ui.restaurant.reserve
+package com.mayburger.eatclone.ui.reserve
 
 import android.os.Bundle
 import android.view.View

@@ -10,14 +10,14 @@ import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ItemTagsBinding
 import com.mayburger.eatclone.model.TagDataModel
 import com.mayburger.eatclone.ui.adapters.CategoryAdapter
+import com.mayburger.eatclone.ui.adapters.MenuAdapter
 import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemCategoryViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemTagViewModel
 import com.mayburger.eatclone.ui.region.ItemRegionViewModel
 import com.mayburger.eatclone.ui.region.SelectRegionAdapter
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel
-import com.mayburger.eatclone.ui.adapters.MenuAdapter
 
 object AdapterBinding {
 
@@ -29,7 +29,7 @@ object AdapterBinding {
     ) {
         val adapter = recyclerView.adapter as SelectRegionAdapter?
         if (adapter != null) {
-            items.value?.let{
+            items.value?.let {
                 adapter.clearItems()
                 adapter.addItems(it)
             }
@@ -48,12 +48,19 @@ object AdapterBinding {
                 adapter.clearItems()
                 adapter.addItems(it)
             }
+            if (adapter.isAsList()) {
+                val context = recyclerView.context;
+                val controller =
+                    AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+                recyclerView.layoutAnimation = controller;
+                recyclerView.scheduleLayoutAnimation()
+            }
         }
     }
 
     @BindingAdapter("tags")
     @JvmStatic
-    fun addTagsItem(view: ViewGroup,tags:ArrayList<TagDataModel>?){
+    fun addTagsItem(view: ViewGroup, tags: ArrayList<TagDataModel>?) {
         view.removeAllViews()
         tags?.let {
             for (i in it) {

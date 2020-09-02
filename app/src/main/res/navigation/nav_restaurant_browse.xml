@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_restaurant"
+    app:startDestination="@id/restaurantBrowseFragment">
+    <fragment
+        android:id="@+id/restaurantBrowseFragment"
+        android:name="com.mayburger.eatclone.ui.restaurant.browse.RestaurantBrowseFragment"
+        android:label="RestaurantBrowseFragment" />
+</navigation>

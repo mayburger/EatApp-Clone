@@ -17,8 +17,8 @@ import com.mayburger.eatclone.databinding.ItemOpenHoursBinding
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
 import com.mayburger.eatclone.ui.base.BaseFragment
+import com.mayburger.eatclone.ui.reserve.ReserveFragment
 import com.mayburger.eatclone.ui.restaurant.RestaurantActivity
-import com.mayburger.eatclone.ui.restaurant.reserve.ReserveFragment
 import com.mayburger.eatclone.util.ext.setReadMore
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_restaurant_detail.*
