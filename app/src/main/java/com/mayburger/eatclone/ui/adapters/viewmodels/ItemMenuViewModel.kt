@@ -10,19 +10,26 @@ class ItemMenuViewModel(val data: MenuDataModel) : BaseItemViewModel() {
     override fun onEvent(obj: Any) {
         when (obj) {
             is MenuQuantityChangeEvent -> {
-                if (data.id == obj.id) {
+                if (data.id == obj.menu.id) {
                     onClickAdd()
                 }
             }
         }
     }
 
-    val showContent = ObservableField(false)
+    var navigator:Callback? = null
+
+    interface Callback{
+        fun onQuantityChanged(quantity:Int)
+    }
+
     val price = ObservableField("${data.price} ${data.currency}")
     val quantity = ObservableField(0)
 
     fun onClickAdd() {
         quantity.set(quantity.get()?.plus(1))
+        data.quantity = quantity.get()!!
+        quantity.get()?.let { navigator?.onQuantityChanged(it) }
     }
 
     fun onClickOrder() {
@@ -33,5 +40,7 @@ class ItemMenuViewModel(val data: MenuDataModel) : BaseItemViewModel() {
 
     fun onClickRemove() {
         quantity.set(quantity.get()?.minus(1))
+        data.quantity = quantity.get()!!
+        quantity.get()?.let { navigator?.onQuantityChanged(it) }
     }
 }

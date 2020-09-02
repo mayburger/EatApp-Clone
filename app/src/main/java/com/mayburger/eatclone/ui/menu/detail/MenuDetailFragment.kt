@@ -40,8 +40,8 @@ class MenuDetailFragment : BaseBSDFragment<FragmentMenuDetailBinding, MenuDetail
         initMenu()
     }
 
-    override fun onChangeQuantity(quantity: Int) {
-        RxBus.getDefault().send(viewModel.menu.get()?.id?.let { MenuQuantityChangeEvent(it,quantity) })
+    override fun onChangeQuantity(menu: MenuDataModel) {
+        RxBus.getDefault().send(viewModel.menu.get()?.id?.let { MenuQuantityChangeEvent(menu) })
         dismiss()
     }
 

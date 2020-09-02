@@ -28,11 +28,17 @@ class MenuDetailViewModel @ViewModelInject constructor(
     val position = ObservableField(0)
     fun onClickAdd(){
         quantity.set(quantity.get()?.plus(1))
-        navigator?.onChangeQuantity(quantity.get()?:0)
+        menu.get()?.let {
+            it.quantity = quantity.get()!!
+        }
+        menu.get()?.let { navigator?.onChangeQuantity(it) }
     }
-
-    fun onClickRemove(){
-        quantity.set(quantity.get()?.plus(1))
-        navigator?.onChangeQuantity(quantity.get()?:0)
-    }
+//
+//    fun onClickRemove(){
+//        quantity.set(quantity.get()?.plus(1))
+//        menu.get()?.let {
+//            it.quantity = quantity.get()
+//        }
+//        navigator?.onChangeQuantity(quantity.get()?:0)
+//    }
 }

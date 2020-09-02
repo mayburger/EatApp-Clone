@@ -80,6 +80,7 @@ class MenuAdapter : RecyclerView.Adapter<BaseViewHolder>() {
 
     interface Callback {
         fun onSelectedItem(menu: MenuDataModel,position:Int)
+        fun onQuantityChanged(menu:MenuDataModel)
     }
 
     inner class MenuEmptyViewHolder(private val mBinding: ItemMenuEmptyBinding) :
@@ -94,6 +95,13 @@ class MenuAdapter : RecyclerView.Adapter<BaseViewHolder>() {
         override fun onBind(position: Int) {
             if (data.isNotEmpty()) {
                 val viewModel = data[position]
+                val menu = data[position].data
+                viewModel.navigator= object:ItemMenuViewModel.Callback{
+                    override fun onQuantityChanged(quantity: Int) {
+                        menu.quantity = quantity
+                        mListener?.onQuantityChanged(menu)
+                    }
+                }
                 mBinding.viewModel = viewModel
                 mBinding.root.setOnClickListener {
                     mListener?.onSelectedItem(data[position].data,position)

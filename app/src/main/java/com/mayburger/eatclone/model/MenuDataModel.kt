@@ -11,7 +11,9 @@ data class MenuDataModel(
     @SerializedName("currency")
     val currency:String? = null,
     @SerializedName("price")
-    val price:Int? = 0,
+    val price:Int = 0,
     @SerializedName("image")
-    val image:String? = null
+    val image:String? = null,
+    @SerializedName("quantity")
+    var quantity:Int = 0
 ):Serializable

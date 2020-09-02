@@ -1,3 +1,5 @@
 package com.mayburger.eatclone.model.events
 
-class MenuQuantityChangeEvent(val id:String,quantity:Int)
+import com.mayburger.eatclone.model.MenuDataModel
+
+class MenuQuantityChangeEvent(val menu:MenuDataModel)
