@@ -5,15 +5,18 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.google.firebase.auth.FirebaseAuth
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.FragmentCheckoutBinding
 import com.mayburger.eatclone.model.MenuDataModel
+import com.mayburger.eatclone.model.OrderDataModel
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.events.MenuQuantityChangeEvent
 import com.mayburger.eatclone.ui.adapters.CheckoutAdapter
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
 import com.mayburger.eatclone.ui.base.BaseBSDFragment
+import com.mayburger.eatclone.ui.success.SuccessFragment
 import com.mayburger.eatclone.util.rx.RxBus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_checkout.*
@@ -67,7 +70,19 @@ class CheckoutFragment : BaseBSDFragment<FragmentCheckoutBinding, CheckoutViewMo
             if (it.isEmpty()) {
                 activity?.onBackPressed()
             }
+            val menus = ArrayList<MenuDataModel>()
+            viewModel.order = OrderDataModel(
+                "",
+                menus.apply { it?.map { menus.add(it.data) } },
+                viewModel.restaurant.get()?.data?.id,
+                FirebaseAuth.getInstance().currentUser?.uid,
+                subtotal
+            )
         })
+    }
+
+    override fun onSuccessOrder() {
+        SuccessFragment().show(requireActivity().supportFragmentManager,"")
     }
 
     override fun onSelectedItem(menu: MenuDataModel, position: Int) {

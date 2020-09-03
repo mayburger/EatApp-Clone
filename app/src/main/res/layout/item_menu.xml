@@ -107,7 +107,7 @@
                     android:layout_height="20dp"
                     android:onClick="@{()->viewModel.onClickRemove()}"
                     android:src="@drawable/ic_remove_primary"
-                    app:delayVisibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}" />
+                    app:visibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}" />
 
                 <com.mayburger.eatclone.util.textfont.TextFont
                     android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
                     android:layout_marginEnd="8dp"
                     android:text="@{viewModel.quantity.toString()}"
                     android:textColor="@color/colorBlack"
-                    app:delayVisibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}"
+                    app:visibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}"
                     app:typeface="bold"
                     tools:text="1" />
 
@@ -128,14 +128,14 @@
                     android:layout_marginEnd="8dp"
                     android:onClick="@{()->viewModel.onClickAdd()}"
                     android:src="@drawable/ic_add_primary"
-                    app:delayVisibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}" />
+                    app:visibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}" />
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginEnd="4dp"
                     android:src="@drawable/ic_add_white"
-                    app:delayVisibility="@{viewModel.quantity > 0?View.GONE : View.VISIBLE}"
+                    app:visibility="@{viewModel.quantity > 0?View.GONE : View.VISIBLE}"
                     tools:src="@drawable/ic_add_white"
                     tools:visibility="gone" />
 
@@ -146,7 +146,7 @@
                     android:gravity="center_vertical"
                     android:text="Order"
                     android:textColor="@color/colorWhite"
-                    app:delayVisibility="@{viewModel.quantity > 0?View.GONE : View.VISIBLE}"
+                    app:visibility="@{viewModel.quantity > 0?View.GONE : View.VISIBLE}"
                     tools:text="Order"
                     tools:visibility="gone" />
             </LinearLayout>

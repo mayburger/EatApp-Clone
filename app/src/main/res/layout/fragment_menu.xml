@@ -13,7 +13,7 @@
             name="viewModel"
             type="com.mayburger.eatclone.ui.menu.main.MenuViewModel" />
 
-        <import type="com.mayburger.eatclone.util.constants.RecyclerConstants" />
+        <import type="com.mayburger.eatclone.constants.RecyclerConstants" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -131,7 +131,7 @@
                     android:paddingEnd="16dp"
                     android:onClick="@{()->viewModel.onClickCheckout()}"
                     android:paddingBottom="8dp"
-                    android:text="Place Order"
+                    android:text="Checkout"
                     android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -10,14 +10,11 @@ import com.google.gson.reflect.TypeToken
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.data.firebase.FirebaseHelper
 import com.mayburger.eatclone.data.hawk.HawkHelper
-import com.mayburger.eatclone.model.OnBoardingModel
-import com.mayburger.eatclone.model.RegionDataModel
-import com.mayburger.eatclone.model.RestaurantDataModel
-import com.mayburger.eatclone.model.UserDataModel
+import com.mayburger.eatclone.model.*
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemCategoryViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
 import com.mayburger.eatclone.ui.region.ItemRegionViewModel
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel
 import java.io.*
 import java.util.*
 import javax.inject.Inject
@@ -77,8 +74,20 @@ class AppDataManager @Inject constructor(private val mContext: Context,
         return mFirebaseHelper.createFirestoreUser(user,uuid)
     }
 
+    override suspend fun createOrder(orderDataModel: OrderDataModel): DocumentReference? {
+        return mFirebaseHelper.createOrder(orderDataModel)
+    }
+
+    override suspend fun updateOrder(orderDataModel: OrderDataModel): Void? {
+        return mFirebaseHelper.updateOrder(orderDataModel)
+    }
+
     override fun getUserByEmail(email: String): Task<QuerySnapshot> {
         return mFirebaseHelper.getUserByEmail(email)
+    }
+
+    override suspend fun hasOngoingOrder(): Boolean {
+        return mFirebaseHelper.hasOngoingOrder()
     }
 
     override fun createRestaurant(restaurantDataModel: RestaurantDataModel): Task<DocumentReference> {

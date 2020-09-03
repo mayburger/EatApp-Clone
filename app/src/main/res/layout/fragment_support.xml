@@ -13,7 +13,7 @@
             name="viewModel"
             type="com.mayburger.eatclone.ui.main.support.SupportViewModel" />
 
-        <import type="com.mayburger.eatclone.util.constants.RecyclerConstants" />
+        <import type="com.mayburger.eatclone.constants.RecyclerConstants" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

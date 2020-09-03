@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_scan"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_scan"
     app:startDestination="@id/main">
 
     <fragment
         android:id="@+id/main"
         android:name="com.mayburger.eatclone.ui.scan.fragment.ScanFragment"
-        android:label="ScanMainFragment" >
+        android:label="ScanMainFragment">
         <action
             android:id="@+id/action_main_to_menu"
-            app:popUpToInclusive="true"
+            app:destination="@id/menu"
             app:popUpTo="@id/main"
-            app:destination="@id/menu" />
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/menu"
         android:name="com.mayburger.eatclone.ui.menu.main.MenuFragment"
-        android:label="ScanMenuFragment" >
+        android:label="ScanMenuFragment">
         <action
             android:id="@+id/action_menu_to_checkout"
-            app:destination="@id/checkoutFragment" />
+            app:destination="@id/checkoutFragment"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/checkoutFragment"

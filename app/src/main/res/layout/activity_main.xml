@@ -13,7 +13,7 @@
             name="viewModel"
             type="com.mayburger.eatclone.ui.main.MainViewModel" />
 
-        <import type="com.mayburger.eatclone.util.constants.RecyclerConstants" />
+        <import type="com.mayburger.eatclone.constants.RecyclerConstants" />
     </data>
 
     <RelativeLayout

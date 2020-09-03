@@ -15,7 +15,7 @@ import com.mayburger.eatclone.model.UserDataModel
 import com.mayburger.eatclone.ui.base.BaseActivity
 import com.mayburger.eatclone.ui.main.MainActivity
 import com.mayburger.eatclone.ui.onboarding.OnBoardingActivity
-import com.mayburger.eatclone.util.constants.FirebaseConstants
+import com.mayburger.eatclone.constants.FirebaseConstants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

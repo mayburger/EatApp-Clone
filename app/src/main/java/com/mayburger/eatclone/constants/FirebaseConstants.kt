@@ -1,4 +1,4 @@
-package com.mayburger.eatclone.util.constants
+package com.mayburger.eatclone.constants
 
 object FirebaseConstants {
     const val USERS = "users"
@@ -9,4 +9,5 @@ object FirebaseConstants {
     const val REGIONS = "regions"
     const val REGION = "region"
     const val EMAIL = "email"
+    const val ORDERS = "orders"
 }

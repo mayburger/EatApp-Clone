@@ -1,4 +1,4 @@
-package com.mayburger.eatclone.util.constants
+package com.mayburger.eatclone.constants
 
 object RecyclerConstants{
     const val VERTICAL_LAYOUT_MANAGER = 0

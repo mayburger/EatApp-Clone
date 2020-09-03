@@ -4,4 +4,5 @@ import com.mayburger.eatclone.ui.base.BaseNavigator
 
 
 interface CheckoutNavigator: BaseNavigator {
+    fun onSuccessOrder()
 }

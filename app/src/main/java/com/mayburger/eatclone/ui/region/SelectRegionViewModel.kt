@@ -6,7 +6,7 @@ import androidx.lifecycle.liveData
 import com.mayburger.eatclone.data.DataManager
 import com.mayburger.eatclone.model.RegionDataModel
 import com.mayburger.eatclone.ui.base.BaseViewModel
-import com.mayburger.eatclone.util.constants.RecyclerConstants
+import com.mayburger.eatclone.constants.RecyclerConstants
 import com.mayburger.eatclone.util.rx.SchedulerProvider
 import kotlinx.coroutines.Dispatchers.IO
 

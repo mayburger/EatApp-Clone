@@ -8,13 +8,15 @@ import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
+import com.mayburger.eatclone.constants.FirebaseConstants
+import com.mayburger.eatclone.constants.OrderStatusConstants
+import com.mayburger.eatclone.model.OrderDataModel
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.UserDataModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemCategoryViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel
 import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
 import com.mayburger.eatclone.ui.region.ItemRegionViewModel
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel
-import com.mayburger.eatclone.util.constants.FirebaseConstants
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -40,6 +42,38 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
         val db = Firebase.firestore
         return db.collection(FirebaseConstants.USERS).whereEqualTo(FirebaseConstants.EMAIL, email)
             .get()
+    }
+
+    override suspend fun createOrder(orderDataModel: OrderDataModel): DocumentReference {
+        val db = Firebase.firestore
+        return try {
+            db.collection(FirebaseConstants.ORDERS)
+                .add(orderDataModel).await()
+        } catch (e: Exception) {
+            throw e
+        }
+    }
+
+    override suspend fun updateOrder(orderDataModel: OrderDataModel): Void?{
+        return try{
+            Firebase.firestore.collection(FirebaseConstants.ORDERS)
+                .document(orderDataModel.id?:"")
+                .set(orderDataModel).await()
+        } catch (e:Exception){
+            throw e
+        }
+    }
+
+    override suspend fun hasOngoingOrder(): Boolean {
+        return try{
+            val query = Firebase.firestore.collection(FirebaseConstants.ORDERS)
+                .whereEqualTo(OrderDataModel.USER_ID,FirebaseAuth.getInstance().currentUser?.uid)
+                .whereEqualTo(OrderDataModel.STATUS,OrderStatusConstants.STATUS_ONGOING)
+                .get().await()
+            query.documents.isNotEmpty()
+        } catch (e:Exception){
+            throw e
+        }
     }
 
     override suspend fun getRestaurants(): ArrayList<ItemRestaurantViewModel>? {
@@ -69,15 +103,16 @@ class AppFirebaseHelper @Inject constructor() : FirebaseHelper {
         return try {
             val data = ArrayList<ItemMenuViewModel>()
             if (restaurantId != null) {
-                Firebase.firestore.collection(FirebaseConstants.RESTAURANTS).document(restaurantId).collection(FirebaseConstants.MENU).get().await()?.let { it ->
-                    it.map {
-                        data.add(
-                            ItemMenuViewModel(
-                                it.toObject()
+                Firebase.firestore.collection(FirebaseConstants.RESTAURANTS).document(restaurantId)
+                    .collection(FirebaseConstants.MENU).get().await()?.let { it ->
+                        it.map {
+                            data.add(
+                                ItemMenuViewModel(
+                                    it.toObject()
+                                )
                             )
-                        )
+                        }
                     }
-                }
             }
             data
         } catch (e: java.lang.Exception) {
