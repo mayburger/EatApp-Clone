@@ -2,6 +2,7 @@ package com.mayburger.eatclone.ui.adapters.viewmodels
 
 import androidx.databinding.ObservableField
 import com.mayburger.eatclone.model.MenuDataModel
+import com.mayburger.eatclone.model.events.MenuAddEvent
 import com.mayburger.eatclone.model.events.MenuQuantityChangeEvent
 import com.mayburger.eatclone.ui.base.BaseItemViewModel
 
@@ -11,16 +12,21 @@ class ItemMenuViewModel(val data: MenuDataModel) : BaseItemViewModel() {
         when (obj) {
             is MenuQuantityChangeEvent -> {
                 if (data.id == obj.menu.id) {
+                    quantity.set(obj.menu.quantity)
+                }
+            }
+            is MenuAddEvent ->{
+                if(data.id == obj.menu.id){
                     onClickAdd()
                 }
             }
         }
     }
 
-    var navigator:Callback? = null
+    var navigator: Callback? = null
 
-    interface Callback{
-        fun onQuantityChanged(quantity:Int)
+    interface Callback {
+        fun onQuantityChanged(quantity: Int)
     }
 
     val price = ObservableField("${data.price} ${data.currency}")

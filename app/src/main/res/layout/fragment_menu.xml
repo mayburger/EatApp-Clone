@@ -52,24 +52,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="Zaytuna Restaurant"
+                    tools:text="Zaytuna Restaurant"
+                    android:text="@{viewModel.restaurant.name}"
                     android:textColor="@color/colorBlack"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@id/back"
                     app:layout_constraintLeft_toRightOf="@id/back"
                     app:layout_constraintTop_toTopOf="@id/back"
                     app:typeface="bold" />
-
-
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_margin="16dp"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_cart_black"
-                    app:layout_constraintBottom_toBottomOf="@id/back"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/back" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -78,7 +68,6 @@
                 recyclerLayoutManager="@{RecyclerConstants.VERTICAL_LAYOUT_MANAGER}"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layoutAnimation="@anim/layout_animation_fall_down"
                 app:layout_constraintBottom_toTopOf="@id/footer"
                 app:layout_constraintTop_toBottomOf="@id/header"
                 app:menuAdapter="@{viewModel.menus}" />
@@ -140,6 +129,7 @@
                     android:paddingStart="16dp"
                     android:paddingTop="8dp"
                     android:paddingEnd="16dp"
+                    android:onClick="@{()->viewModel.onClickCheckout()}"
                     android:paddingBottom="8dp"
                     android:text="Place Order"
                     android:textColor="@color/colorPrimary"

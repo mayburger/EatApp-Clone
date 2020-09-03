@@ -55,6 +55,12 @@ object ViewBinding {
         view.layoutManager = layoutManager
     }
 
+    @BindingAdapter("delayVisibility")
+    @JvmStatic
+    fun delayVisibility(view:View,visibility:Int){
+        view.visibility = visibility
+    }
+
     @BindingAdapter("onClickAnimate")
     @JvmStatic
     fun setOnClickAnimate(view: View, runnable: Runnable) {

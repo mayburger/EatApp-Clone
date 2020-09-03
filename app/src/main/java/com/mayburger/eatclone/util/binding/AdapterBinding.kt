@@ -5,17 +5,16 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.ItemTagsBinding
 import com.mayburger.eatclone.model.TagDataModel
 import com.mayburger.eatclone.ui.adapters.CategoryAdapter
+import com.mayburger.eatclone.ui.adapters.CheckoutAdapter
 import com.mayburger.eatclone.ui.adapters.MenuAdapter
 import com.mayburger.eatclone.ui.adapters.RestaurantAdapter
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemCategoryViewModel
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemRestaurantViewModel
-import com.mayburger.eatclone.ui.adapters.viewmodels.ItemTagViewModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.*
 import com.mayburger.eatclone.ui.region.ItemRegionViewModel
 import com.mayburger.eatclone.ui.region.SelectRegionAdapter
 
@@ -106,12 +105,21 @@ object AdapterBinding {
                 adapter.clearItems()
                 adapter.addItems(it)
             }
-            val context = recyclerView.context;
-            val controller =
-                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
-            recyclerView.layoutAnimation = controller;
-            recyclerView.scheduleLayoutAnimation()
+        }
+    }
 
+    @BindingAdapter("checkoutAdapter")
+    @JvmStatic
+    fun addCheckoutItems(
+        recyclerView: RecyclerView,
+        items: MutableLiveData<ArrayList<ItemCheckoutViewModel>>
+    ) {
+        val adapter = recyclerView.adapter as CheckoutAdapter?
+        if (adapter != null) {
+            items.value?.let {
+                adapter.clearItems()
+                adapter.addItems(it)
+            }
         }
     }
 

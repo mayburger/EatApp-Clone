@@ -23,7 +23,7 @@ class MenuDetailViewModel @ViewModelInject constructor(
         price.set("${menu.get()?.price} ${menu.get()?.currency}")
     }
 
-    val quantity = ObservableField(0)
+    val quantity = ObservableField(menu.get()?.quantity)
 
     val position = ObservableField(0)
     fun onClickAdd(){
@@ -33,12 +33,4 @@ class MenuDetailViewModel @ViewModelInject constructor(
         }
         menu.get()?.let { navigator?.onChangeQuantity(it) }
     }
-//
-//    fun onClickRemove(){
-//        quantity.set(quantity.get()?.plus(1))
-//        menu.get()?.let {
-//            it.quantity = quantity.get()
-//        }
-//        navigator?.onChangeQuantity(quantity.get()?:0)
-//    }
 }

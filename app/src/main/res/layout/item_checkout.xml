@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.mayburger.eatclone.ui.adapters.viewmodels.ItemMenuViewModel" />
+            type="com.mayburger.eatclone.ui.adapters.viewmodels.ItemCheckoutViewModel" />
 
     </data>
 
@@ -19,45 +19,26 @@
         android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
         android:clipToPadding="false"
+        android:animateLayoutChanges="true"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/menuRoot"
             android:layout_width="match_parent"
+            android:elevation="1dp"
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
+            android:background="@drawable/shp_white_8dp"
             android:animateLayoutChanges="true"
-            android:background="@drawable/ripple_white_8dp"
-            android:elevation="1dp"
             android:padding="8dp">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/image"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                app:cardCornerRadius="4dp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="visible">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    app:imageUrl="@{viewModel.data.image}" />
-            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/image"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/order"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -87,71 +68,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:animateLayoutChanges="true"
-                android:background="@{viewModel.quantity > 0?@drawable/shp_white_8dp:@drawable/shp_primary_8dp}"
-                android:elevation="2dp"
-                android:gravity="center"
-                android:onClick="@{()->viewModel.onClickOrder()}"
+                android:background="@drawable/stroke_grey_4dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingStart="4dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@drawable/shp_primary_8dp">
-
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:layout_width="20dp"
-                    android:visibility="gone"
                     android:layout_height="20dp"
                     android:onClick="@{()->viewModel.onClickRemove()}"
-                    android:src="@drawable/ic_remove_primary"
-                    app:delayVisibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}" />
+                    android:src="@drawable/ic_remove_primary" />
 
                 <com.mayburger.eatclone.util.textfont.TextFont
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:visibility="gone"
                     android:layout_marginEnd="8dp"
                     android:text="@{viewModel.quantity.toString()}"
                     android:textColor="@color/colorBlack"
-                    app:delayVisibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}"
                     app:typeface="bold"
                     tools:text="1" />
 
                 <ImageView
                     android:layout_width="20dp"
-                    android:visibility="gone"
                     android:layout_height="20dp"
                     android:layout_marginEnd="8dp"
                     android:onClick="@{()->viewModel.onClickAdd()}"
-                    android:src="@drawable/ic_add_primary"
-                    app:delayVisibility="@{viewModel.quantity > 0?View.VISIBLE : View.GONE}" />
+                    android:src="@drawable/ic_add_primary" />
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginEnd="4dp"
-                    android:src="@drawable/ic_add_white"
-                    app:delayVisibility="@{viewModel.quantity > 0?View.GONE : View.VISIBLE}"
-                    tools:src="@drawable/ic_add_white"
-                    tools:visibility="gone" />
-
-                <com.mayburger.eatclone.util.textfont.TextFont
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:gravity="center_vertical"
-                    android:text="Order"
-                    android:textColor="@color/colorWhite"
-                    app:delayVisibility="@{viewModel.quantity > 0?View.GONE : View.VISIBLE}"
-                    tools:text="Order"
-                    tools:visibility="gone" />
             </LinearLayout>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
 </layout>

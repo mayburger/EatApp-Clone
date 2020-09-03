@@ -44,7 +44,7 @@ class ReserveFragment : BaseFragment<FragmentReserveBinding, ReserveViewModel>()
     }
 
     fun initRestaurant() {
-        viewModel.restaurant.set(arguments?.getSerializable(ARG_RESTAURANT) as RestaurantDataModel)
+        viewModel.restaurant.set(arguments?.getParcelable(ARG_RESTAURANT))
     }
 
     private fun initDate() {

@@ -8,7 +8,7 @@ import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.FragmentMenuDetailBinding
 import com.mayburger.eatclone.model.MenuDataModel
-import com.mayburger.eatclone.model.events.MenuQuantityChangeEvent
+import com.mayburger.eatclone.model.events.MenuAddEvent
 import com.mayburger.eatclone.ui.base.BaseBSDFragment
 import com.mayburger.eatclone.util.rx.RxBus
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,12 +41,12 @@ class MenuDetailFragment : BaseBSDFragment<FragmentMenuDetailBinding, MenuDetail
     }
 
     override fun onChangeQuantity(menu: MenuDataModel) {
-        RxBus.getDefault().send(viewModel.menu.get()?.id?.let { MenuQuantityChangeEvent(menu) })
+        RxBus.getDefault().send(viewModel.menu.get()?.id?.let { MenuAddEvent(menu) })
         dismiss()
     }
 
     fun initMenu() {
-        viewModel.menu.set(arguments?.getSerializable(ARG_MENU) as MenuDataModel)
+        viewModel.menu.set(arguments?.getParcelable(ARG_MENU))
         viewModel.setPrice()
     }
 }

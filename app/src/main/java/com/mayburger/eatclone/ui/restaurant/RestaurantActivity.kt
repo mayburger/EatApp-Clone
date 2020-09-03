@@ -34,7 +34,7 @@ class RestaurantActivity: BaseActivity<ActivityRestaurantBinding, RestaurantView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val restaurant = intent?.getSerializableExtra(EXTRA_RESTAURANT) as RestaurantDataModel?
+        val restaurant = intent?.getParcelableExtra<RestaurantDataModel>(EXTRA_RESTAURANT)
         var navigator = 0
         restaurant?.let {
             navigator = R.navigation.nav_restaurant_detail

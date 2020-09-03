@@ -1,8 +1,15 @@
 package com.mayburger.eatclone.util.ext
 
 import android.content.Context
+import androidx.databinding.ObservableArrayList
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.mayburger.eatclone.model.MenuDataModel
+import com.mayburger.eatclone.ui.adapters.viewmodels.ItemCheckoutViewModel
 import java.io.*
 
 
@@ -18,6 +25,19 @@ fun Int.toStringJson(mContext: Context): String {
         }
     }
     return writer.toString()
+}
+
+fun <T> String.jsonToArraylistObject():ArrayList<T>{
+    val json = this
+    return Gson().fromJson(json, object:TypeToken<ArrayList<T>>(){}.type)
+}
+
+fun <T> LiveData<T>.getObserverValue(owner:LifecycleOwner):T?{
+    var returnValue:T? = null
+    this.observe(owner, Observer {
+        returnValue = it
+    })
+    return returnValue
 }
 
 operator fun <T> MutableLiveData<ArrayList<T>>.plusAssign(values: List<T>) {
@@ -51,6 +71,31 @@ fun ArrayList<MenuDataModel>.indexWithId(id: String?): Int? {
         }
     }
     return index
+}
+fun ObservableArrayList<ItemCheckoutViewModel>.indexWithId(id: String?): Int? {
+    var index: Int? = null
+    this.mapIndexed { i, it ->
+        if (it.data.id == id) {
+            index = i
+        }
+    }
+    return index
+}
+
+fun ObservableArrayList<ItemCheckoutViewModel>.change(menu:MenuDataModel){
+    val value = ObservableArrayList<ItemCheckoutViewModel>()
+    value.addAll(this)
+    value.indexWithId(menu.id)?.let {
+        if (menu.quantity == 0) {
+            value.removeAt(it)
+        } else {
+            value.set(it, ItemCheckoutViewModel(menu))
+        }
+    } ?: kotlin.run {
+        value.add(ItemCheckoutViewModel(menu))
+    }
+    this.clear()
+    this.addAll(value)
 }
 
 fun MutableLiveData<ArrayList<MenuDataModel>>.change(menu: MenuDataModel) {

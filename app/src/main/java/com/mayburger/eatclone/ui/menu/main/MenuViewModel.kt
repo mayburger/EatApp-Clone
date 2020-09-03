@@ -10,6 +10,7 @@ import com.mayburger.eatclone.model.MenuDataModel
 import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.model.events.MenuQuantityChangeEvent
 import com.mayburger.eatclone.ui.base.BaseViewModel
+import com.mayburger.eatclone.util.ext.change
 import com.mayburger.eatclone.util.rx.SchedulerProvider
 import kotlinx.coroutines.Dispatchers
 
@@ -22,7 +23,7 @@ class MenuViewModel @ViewModelInject constructor(
     override fun onEvent(obj: Any) {
         when (obj) {
             is MenuQuantityChangeEvent -> {
-
+                orders.change(obj.menu)
             }
         }
     }
@@ -34,6 +35,10 @@ class MenuViewModel @ViewModelInject constructor(
     val orders = MutableLiveData<ArrayList<MenuDataModel>>()
     val totalOrder = MutableLiveData("")
     val totalPrice = MutableLiveData("")
+
+    fun onClickCheckout(){
+        navigator?.onClickCheckout()
+    }
 
     val menus = _forceUpdate.switchMap {
         liveData(Dispatchers.IO) {

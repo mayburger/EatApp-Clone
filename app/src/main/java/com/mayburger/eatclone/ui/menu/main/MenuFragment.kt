@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.mayburger.eatclone.BR
 import com.mayburger.eatclone.R
 import com.mayburger.eatclone.databinding.FragmentMenuBinding
@@ -13,7 +14,9 @@ import com.mayburger.eatclone.model.RestaurantDataModel
 import com.mayburger.eatclone.ui.adapters.MenuAdapter
 import com.mayburger.eatclone.ui.base.BaseFragment
 import com.mayburger.eatclone.ui.menu.detail.MenuDetailFragment
+import com.mayburger.eatclone.ui.order.CheckoutFragment
 import com.mayburger.eatclone.util.ext.change
+import com.mayburger.eatclone.util.ext.getObserverValue
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_menu.*
 import javax.inject.Inject
@@ -42,6 +45,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.navigator = this
+        navController = Navigation.findNavController(view)
         viewDataBinding?.lifecycleOwner = viewLifecycleOwner
         initRestaurant()
         initMenus()
@@ -53,7 +57,7 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(),
     }
 
     fun initRestaurant() {
-        viewModel.restaurant.set(arguments?.getSerializable(ARG_RESTAURANT) as RestaurantDataModel)
+        viewModel.restaurant.set(arguments?.getParcelable(ARG_RESTAURANT))
         viewModel.orders.observe(viewLifecycleOwner, Observer { it ->
             var size = 0
             var price = 0
@@ -79,5 +83,18 @@ class MenuFragment : BaseFragment<FragmentMenuBinding, MenuViewModel>(),
 
     override fun onQuantityChanged(menu: MenuDataModel) {
         viewModel.orders.change(menu)
+    }
+
+    override fun onClickCheckout() {
+        val menus = ArrayList<MenuDataModel>()
+        viewModel.orders.getObserverValue(viewLifecycleOwner)?.map {
+            menus.add(it)
+        }
+        navController.navigate(
+            R.id.action_menu_to_checkout,
+            CheckoutFragment.getBundle(menus,viewModel.restaurant.get()?:RestaurantDataModel()),
+            null,
+            null
+        )
     }
 }

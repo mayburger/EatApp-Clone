@@ -103,8 +103,8 @@ class MenuAdapter : RecyclerView.Adapter<BaseViewHolder>() {
                     }
                 }
                 mBinding.viewModel = viewModel
-                mBinding.root.setOnClickListener {
-                    mListener?.onSelectedItem(data[position].data,position)
+                mBinding.image.setOnClickListener {
+                    mListener?.onSelectedItem(menu,position)
                 }
             }
         }

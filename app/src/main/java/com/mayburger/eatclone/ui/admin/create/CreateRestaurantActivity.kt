@@ -78,7 +78,7 @@ class CreateRestaurantActivity : BaseActivity<ActivityCreateRestaurantBinding, C
     }
 
     fun initEditMode(){
-        val i = intent.getSerializableExtra(EXTRA_RESTAURANT) as RestaurantDataModel
+        val i = intent.getParcelableExtra<RestaurantDataModel>(EXTRA_RESTAURANT)?:RestaurantDataModel()
         viewModel.id.set(i.id)
         viewModel.name.set(i.name)
         viewModel.address.set(i.address)

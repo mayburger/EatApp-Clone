@@ -1,8 +1,10 @@
 package com.mayburger.eatclone.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class MenuDataModel(
     @SerializedName("id")
     val id:String? = null,
@@ -16,4 +18,4 @@ data class MenuDataModel(
     val image:String? = null,
     @SerializedName("quantity")
     var quantity:Int = 0
-):Serializable
+): Parcelable

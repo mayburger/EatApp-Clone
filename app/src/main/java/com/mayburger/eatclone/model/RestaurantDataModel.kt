@@ -1,8 +1,10 @@
 package com.mayburger.eatclone.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class RestaurantDataModel(
     @SerializedName("id")
     var id: String? = null,
@@ -25,7 +27,7 @@ data class RestaurantDataModel(
     @SerializedName("tags")
     var tags: ArrayList<TagDataModel>? = null
 
-) : Serializable {
+) : Parcelable {
     fun price(): String {
         return when (_price) {
             1 -> {

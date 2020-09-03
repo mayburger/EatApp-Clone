@@ -51,7 +51,7 @@ class RestaurantDetailFragment :
     }
 
     fun buildDetail() {
-        viewModel.restaurant.set(activity?.intent?.getSerializableExtra(RestaurantActivity.EXTRA_RESTAURANT) as RestaurantDataModel)
+        viewModel.restaurant.set(activity?.intent?.getParcelableExtra(RestaurantActivity.EXTRA_RESTAURANT))
         viewModel.buildVisibility()
         viewModel.navigator = this
         notes.text = viewModel.restaurant.get()?.notes
